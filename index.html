@@ -335,6 +335,13 @@
   .footer-social{ display:flex; gap:14px; }
   .footer-social a{ color:var(--muted); transition:color .2s; }
   .footer-social a:hover{ color:var(--teal); }
+  .footer-sister{
+    margin:0 0 34px; padding:26px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; gap:28px; flex-wrap:wrap;
+  }
+  .footer-sister-logo{ width:min(250px,42vw); display:flex; align-items:center; justify-content:center; }
+  .footer-sister-logo img{ width:100%; height:auto; max-height:74px; object-fit:contain; }
+  .footer-sister p{ margin:0; max-width:620px; color:var(--muted); font-size:0.82rem; line-height:1.65; }
   /* ---------- GLOBAL MOBILE PASS ---------- */
   @media(max-width:760px){
     nav{ padding:12px 5%; }
@@ -346,6 +353,9 @@
     .ticker-wrap{ margin-top:36px; padding:18px 0; }
     .ticker{ gap:18px; }
     .ticker-chip{ width:84px; height:44px; padding:8px; }
+    .footer-sister{ flex-direction:column; gap:14px; text-align:center; padding:22px 0; }
+    .footer-sister-logo{ width:min(280px,78vw); }
+    .footer-sister p{ max-width:92%; font-size:0.76rem; }
 
     #stats{ padding:60px 6%; }
     #stats h2{ margin-bottom:34px; font-size:1.3rem; line-height:1.5; }
@@ -787,7 +797,7 @@
     </div>
   </div>
   <div class="footer-sister">
-    <div class="footer-sister-logo"><img src="assets/brand/getbuilder-logo.png" alt="Get Builder"></div>
+    <div class="footer-sister-logo"><img src="assets/brand/getbuilder-logo.svg" alt="Get Builder"></div>
     <p>Customer service has been handled by Silk Bridge for our Get Builder sister company.</p>
   </div>
   <div class="footer-bottom">
