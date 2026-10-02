@@ -1,7 +1,7 @@
 function renderNav(){
   const path=location.pathname.split("/").pop()||"index.html";
   const links=[["solutions.html","Solutions"],["ecosystem.html","Partners"],["industries.html","Industries"],["about.html","About"],["insights.html","Insights"],["contact.html","Contact"]];
-  const nav='<nav class="eco-nav" aria-label="Primary navigation"><div class="eco-nav-inner"><a class="eco-brand" href="index.html" aria-label="SilkBridge home"><img src="assets/brand/silkbridge-logo-trim.png" alt="SilkBridge"></a><button class="eco-menu" type="button" aria-expanded="false" aria-controls="ecoNavLinks"><span></span><span></span><span></span><b>Menu</b></button><div class="eco-nav-right" id="ecoNavLinks">'+links.map(([href,label])=>'<a href="'+href+'" class="'+(path===href?"active":"")+'">'+label+'</a>').join("")+'</div></div></nav>';
+  const nav='<nav class="eco-nav" aria-label="Primary navigation"><div class="eco-nav-inner"><a class="eco-brand" href="index.html" aria-label="SilkBridge home"><img src="assets/brand/silkbridge-logo-trim.png" alt="SilkBridge"></a><button class="eco-menu" type="button" aria-expanded="false" aria-controls="ecoNavLinks"><span></span><span></span><span></span><b>Menu</b></button><div class="eco-nav-right" id="ecoNavLinks">'+links.map(([href,label])=>'<a href="'+href+'" class="'+(path===href?"active":"")+'"'+(path===href?' aria-current="page"':'')+'>'+label+'</a>').join("")+'</div></div></nav>';
   document.body.insertAdjacentHTML("afterbegin",nav);
   const button=document.querySelector(".eco-menu"),linksEl=document.getElementById("ecoNavLinks");
   button?.addEventListener("click",()=>{const open=linksEl.classList.toggle("open");button.setAttribute("aria-expanded",String(open))});
