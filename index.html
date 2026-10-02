@@ -455,32 +455,40 @@
 
     #country-panel{ padding:30px 22px; }
   }
-  /* ---------- DASHBOARD CANVASES ---------- */
-  .dashboard-canvas{
-    flex:1; display:flex; flex-direction:column; gap:14px;
-    justify-content:center;
+  /* ---------- SOLUTION CAPABILITY VISUALS ---------- */
+  .solution-signal{
+    flex:1; min-height:320px; display:grid; grid-template-columns:1fr auto 1fr auto 1fr;
+    align-items:center; gap:10px; position:relative; padding:10px;
   }
-  .dash-card{
-    background:var(--surface-2); border:1px solid var(--line); border-radius:10px;
-    padding:16px 20px;
+  .signal-node{
+    background:linear-gradient(180deg,rgba(24,39,65,.95),rgba(18,28,46,.88));
+    border:1px solid var(--line); border-radius:14px; padding:18px 14px;
+    min-height:122px; display:flex; flex-direction:column; justify-content:center;
+    box-shadow:0 16px 40px rgba(0,0,0,.16);
   }
-  .dash-label{ font-size:0.75rem; color:var(--muted); margin:0 0 6px; letter-spacing:0.04em; }
-  .dash-kpi{ font-family:'Space Grotesk',sans-serif; font-size:2rem; font-weight:700; margin:0; color:var(--gold); }
-  .dash-kpi.teal{ color:var(--teal); }
-  .dash-chart-wrap{ background:var(--surface-2); border:1px solid var(--line); border-radius:10px; padding:16px 20px; }
-  .dash-chart-wrap canvas{ width:100% !important; height:100px !important; display:block; margin-top:8px; }
+  .signal-node span{
+    font-family:'DM Mono',monospace; color:var(--gold); font-size:.7rem; letter-spacing:.08em; margin-bottom:10px;
+  }
+  .signal-node strong{ font-family:'Space Grotesk',sans-serif; font-size:1.05rem; }
+  .signal-node small{ color:var(--muted); line-height:1.45; margin-top:6px; }
+  .signal-arrow{ color:var(--teal); font-size:1.25rem; text-align:center; }
+  .signal-foot{
+    grid-column:1 / -1; color:var(--muted); font-size:.72rem; letter-spacing:.03em; text-align:center; margin-top:4px;
+  }
 
-  /* ---------- LIVE OPERATIONS SECTION ---------- */
-  #live-ops{ padding:90px 6%; border-top:1px solid var(--line); }
-  #live-ops .ops-header{ margin-bottom:40px; }
-  #live-ops .ops-header h2{ font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:10px; }
-  #live-ops .ops-header p{ color:var(--muted); max-width:520px; line-height:1.7; }
-  .ops-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
-  .ops-card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:22px; }
-  .ops-card .ops-label{ font-size:0.75rem; color:var(--muted); letter-spacing:0.05em; text-transform:uppercase; margin:0 0 8px; }
-  .ops-card .ops-val{ font-family:'Space Grotesk',sans-serif; font-size:1.9rem; font-weight:700; margin:0 0 16px; color:var(--teal); }
-  .ops-card canvas{ width:100% !important; height:80px !important; display:block; }
-  @media(max-width:760px){ .ops-grid{ grid-template-columns:1fr; } }
+  /* ---------- SILKBRIDGE MODEL ---------- */
+  #silkbridge-model{ padding:90px 6%; border-top:1px solid var(--line); }
+  #silkbridge-model .model-header{ margin-bottom:40px; }
+  #silkbridge-model .model-header h2{ font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:10px; }
+  #silkbridge-model .model-header p{ color:var(--muted); max-width:520px; line-height:1.7; }
+  .model-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .model-card{ background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:22px; }
+  @media(max-width:760px){
+    .model-grid{ grid-template-columns:1fr; }
+    .solution-signal{ grid-template-columns:1fr; gap:12px; min-height:auto; }
+    .signal-arrow{ transform:rotate(90deg); }
+    .signal-foot{ margin-top:2px; }
+  }
 </style>
 </head>
 <body>
@@ -499,12 +507,12 @@
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </button>
     <a href="contact.html" class="contact-btn">Contact Us</a>
-    <button class="hamburger" id="hamburger-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger-toggle" aria-label="Menu" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <div id="menu-backdrop"></div>
-<div id="mobile-menu">
+<div id="mobile-menu" aria-hidden="true">
   <ul>
     <li><a href="ecosystem.html">Partners</a></li>
     <li><a href="solutions.html">Solutions</a></li>
@@ -560,7 +568,7 @@
   </h2>
   <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:60px;">
     <div class="stat"><div class="stat-num" data-count="2022" data-plain="true">0</div><div class="stat-label">Founded</div></div>
-    <div class="stat"><div class="stat-num" data-count="4">0</div><div class="stat-label">Years of Excellence</div></div>
+    <div class="stat"><div class="stat-num" data-count="5">0</div><div class="stat-label">Specialist Verticals</div></div>
     <div class="stat"><div class="stat-num" data-count="4">0</div><div class="stat-label">Countries</div></div>
     <div class="stat"><div class="stat-num" data-count="16">0</div><div class="stat-label">Brand Partners</div></div>
   </div>
@@ -614,19 +622,13 @@
       </a>
     </div>
   </div>
-  <div class="vertical-canvas dashboard-canvas" id="marketing-dash">
-    <div class="dash-card">
-      <p class="dash-label">Conversations Handled</p>
-      <p class="dash-kpi" id="mkt-kpi1">0</p>
-    </div>
-    <div class="dash-card">
-      <p class="dash-label">Avg Response Time</p>
-      <p class="dash-kpi teal" id="mkt-kpi2">0s</p>
-    </div>
-    <div class="dash-chart-wrap">
-      <p class="dash-label">Engagement Rate</p>
-      <canvas id="mkt-chart" role="img" aria-label="Line chart showing rising engagement rate over 6 months">Engagement rate rising: 42, 55, 61, 70, 78, 88 percent.</canvas>
-    </div>
+  <div class="vertical-canvas solution-signal" aria-label="Illustrative marketing capability flow">
+    <div class="signal-node"><span>01</span><strong>Customer data</strong><small>Unified signals</small></div>
+    <div class="signal-arrow" aria-hidden="true">→</div>
+    <div class="signal-node"><span>02</span><strong>Engagement</strong><small>Journeys &amp; automation</small></div>
+    <div class="signal-arrow" aria-hidden="true">→</div>
+    <div class="signal-node"><span>03</span><strong>Loyalty</strong><small>Retention loop</small></div>
+    <div class="signal-foot">Illustrative capability map · not live operational data</div>
   </div>
 </section>
 <section class="vertical reverse" id="healthcare">
@@ -655,19 +657,13 @@
       </a>
     </div>
   </div>
-  <div class="vertical-canvas dashboard-canvas" id="health-dash">
-    <div class="dash-card">
-      <p class="dash-label">Diagnosis Time Reduced</p>
-      <p class="dash-kpi teal" id="hlth-kpi">0%</p>
-    </div>
-    <div class="dash-chart-wrap">
-      <p class="dash-label">Cardiac Monitoring — Live Signal</p>
-      <canvas id="ecg-chart" role="img" aria-label="Animated ECG heartbeat waveform representing cardiac monitoring">Steady cardiac waveform rhythm.</canvas>
-    </div>
-    <div class="dash-card">
-      <p class="dash-label">System Uptime</p>
-      <p class="dash-kpi" id="hlth-kpi2">0%</p>
-    </div>
+  <div class="vertical-canvas solution-signal" aria-label="Illustrative healthcare capability flow">
+    <div class="signal-node"><span>01</span><strong>Patient data</strong><small>Structured records</small></div>
+    <div class="signal-arrow" aria-hidden="true">→</div>
+    <div class="signal-node"><span>02</span><strong>Clinical workflow</strong><small>Documents &amp; decisions</small></div>
+    <div class="signal-arrow" aria-hidden="true">→</div>
+    <div class="signal-node"><span>03</span><strong>Care intelligence</strong><small>Operational visibility</small></div>
+    <div class="signal-foot">Illustrative capability map · not live operational data</div>
   </div>
 </section>
 
@@ -754,18 +750,18 @@
   </div>
 </section>
 
-<section id="live-ops">
-  <div class="ops-header">
+<section id="silkbridge-model">
+  <div class="model-header">
     <span class="eyebrow" style="text-align:left;">The SilkBridge Model</span>
     <h2>From technology proposition to regional traction.</h2>
     <p>We structure the path between a technology company and the GCC market around five connected motions.</p>
   </div>
-  <div class="ops-grid">
-    <article class="ops-card model-card"><span class="model-index">01</span><strong>Discover</strong><p>Understand the technology, proposition and regional opportunity.</p><div class="model-line"><i></i></div></article>
-    <article class="ops-card model-card"><span class="model-index">02</span><strong>Match</strong><p>Connect capabilities with the right partners, sectors and buying contexts.</p><div class="model-line"><i></i></div></article>
-    <article class="ops-card model-card"><span class="model-index">03</span><strong>Localize</strong><p>Adapt the market story, route-to-market and engagement for regional realities.</p><div class="model-line"><i></i></div></article>
-    <article class="ops-card model-card"><span class="model-index">04</span><strong>Activate</strong><p>Turn the opportunity into partner conversations, commercial motion and deployments.</p><div class="model-line"><i></i></div></article>
-    <article class="ops-card model-card"><span class="model-index">05</span><strong>Grow</strong><p>Use market feedback and partner momentum to build the next stage of scale.</p><div class="model-line"><i></i></div></article>
+  <div class="model-grid">
+    <article class="model-card"><span class="model-index">01</span><strong>Discover</strong><p>Understand the technology, proposition and regional opportunity.</p><div class="model-line"><i></i></div></article>
+    <article class="model-card"><span class="model-index">02</span><strong>Match</strong><p>Connect capabilities with the right partners, sectors and buying contexts.</p><div class="model-line"><i></i></div></article>
+    <article class="model-card"><span class="model-index">03</span><strong>Localize</strong><p>Adapt the market story, route-to-market and engagement for regional realities.</p><div class="model-line"><i></i></div></article>
+    <article class="model-card"><span class="model-index">04</span><strong>Activate</strong><p>Turn the opportunity into partner conversations, commercial motion and deployments.</p><div class="model-line"><i></i></div></article>
+    <article class="model-card"><span class="model-index">05</span><strong>Grow</strong><p>Use market feedback and partner momentum to build the next stage of scale.</p><div class="model-line"><i></i></div></article>
   </div>
 </section>
 
@@ -820,9 +816,9 @@
     </div>
   </div>
   <form id="contact-form" action="mailto:info@SilkBridge.eu" method="post" enctype="text/plain">
-    <input type="text" name="name" placeholder="Your name" required>
-    <input type="email" name="email" placeholder="Your email" required>
-    <input type="text" name="company" placeholder="Company">
+    <input type="text" name="name" placeholder="Your name" aria-label="Your name" autocomplete="name" required>
+    <input type="email" name="email" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
+    <input type="text" name="company" placeholder="Company" aria-label="Company" autocomplete="organization">
     <textarea name="message" placeholder="How can we help?" required></textarea>
     <button type="submit">Send Message</button>
     <span class="form-note">This form opens your email client — direct inbox delivery is being finalized.</span>
@@ -871,7 +867,6 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -887,38 +882,48 @@ const menuBackdrop = document.getElementById('menu-backdrop');
 function toggleMenu(open){
   mobileMenu.classList.toggle('open', open);
   menuBackdrop.classList.toggle('open', open);
+  hamburger.setAttribute('aria-expanded', String(open));
+  mobileMenu.setAttribute('aria-hidden', String(!open));
 }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') toggleMenu(false); });
 hamburger.addEventListener('click', ()=> toggleMenu(!mobileMenu.classList.contains('open')));
 menuBackdrop.addEventListener('click', ()=> toggleMenu(false));
 mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> toggleMenu(false)));
 
 /* ---------- SEARCH ---------- */
-const searchIndex = [
-  {title:'Scal-e', section:'Marketing & Customer Care', id:'marketing'},
-  {title:'MySender', section:'Marketing & Customer Care', id:'marketing'},
-  {title:'Avaya Aura', section:'Marketing & Customer Care', id:'marketing'},
-  {title:'4A Med CRM', section:'Healthcare IT', id:'healthcare'},
-  {title:'Signatus', section:'Healthcare IT', id:'healthcare'},
-  {title:'Qualitum', section:'Healthcare IT', id:'healthcare'},
-  {title:'Rhythmus', section:'Healthcare IT', id:'healthcare'},
-  {title:'TalentLyft', section:'HR Systems', id:'hr'},
-  {title:'SunFish', section:'HR Systems', id:'hr'},
-  {title:'eWyse', section:'HR Systems', id:'hr'},
-  {title:'improv3', section:'HR Systems', id:'hr'},
-  {title:'High Class Relocation', section:'HR Systems', id:'hr'},
-  {title:'Rentlio', section:'Hospitality Technology', id:'hospitality'},
-  {title:'4spaces', section:'Hospitality Technology', id:'hospitality'},
-  {title:'Sinago', section:'Hospitality Technology', id:'hospitality'},
-  {title:'Benchmarked', section:'Cybersecurity', id:'cyber'},
-  {title:'Marketing & Customer Care', section:'Vertical', id:'marketing'},
-  {title:'Healthcare IT', section:'Vertical', id:'healthcare'},
-  {title:'HR Systems', section:'Vertical', id:'hr'},
-  {title:'Hospitality Technology', section:'Vertical', id:'hospitality'},
-  {title:'Cybersecurity', section:'Vertical', id:'cyber'},
-  {title:'Global Footprint', section:'Section', id:'footprint'},
-  {title:'Contact', section:'Section', id:'contact'},
-  {title:'Solutions', section:'Section', id:'solutions'},
+let searchIndex = [
+  {title:'Partners', section:'Ecosystem', href:'ecosystem.html', searchText:'partners ecosystem brands technology'},
+  {title:'Solutions', section:'Site', href:'solutions.html', searchText:'solutions verticals technology'},
+  {title:'Industries', section:'Site', href:'industries.html', searchText:'industries buyers sectors'},
+  {title:'About SilkBridge', section:'Site', href:'about.html', searchText:'about company silkbridge'},
+  {title:'Insights', section:'Site', href:'insights.html', searchText:'insights perspectives market access'},
+  {title:'Contact SilkBridge', section:'Site', href:'contact.html', searchText:'contact partner market entry solution'},
+  {title:'Global Footprint', section:'Site', href:'#footprint', searchText:'global footprint uae saudi qatar egypt presence'},
 ];
+
+(async function loadGlobalSearch(){
+  try{
+    const data = await import('./assets/js/ecosystem-data.js');
+    const {silkBridge} = data;
+    const verticals = silkBridge.verticals.map(v=>({
+      title:v.title, section:'Solution vertical', href:'solution.html?slug='+encodeURIComponent(v.id),
+      searchText:[v.title,v.description,...v.capabilities].join(' ')
+    }));
+    const partners = silkBridge.partners.map(p=>({
+      title:p.name, section:'Partner · '+(silkBridge.verticals.find(v=>v.id===p.vertical)?.title || p.vertical),
+      href:'partner.html?slug='+encodeURIComponent(p.slug),
+      searchText:[p.name,p.short,p.description,...p.capabilities,...p.useCases,...p.industries].join(' ')
+    }));
+    const industries = silkBridge.industries.map(i=>({
+      title:i.name, section:'Industry', href:'industries.html', searchText:[i.name,i.intro,...i.verticals].join(' ')
+    }));
+    const insights = silkBridge.insights.map(i=>({
+      title:i.title, section:'Insight', href:'insight.html?slug='+encodeURIComponent(i.slug), searchText:[i.title,i.summary,i.tag].join(' ')
+    }));
+    searchIndex = [...searchIndex, ...verticals, ...partners, ...industries, ...insights];
+  }catch(err){ console.warn('Global search data unavailable', err); }
+})();
+
 const searchOverlay = document.getElementById('search-overlay');
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
@@ -932,16 +937,20 @@ searchInput.addEventListener('input', ()=>{
   const q = searchInput.value.trim().toLowerCase();
   searchResults.innerHTML = '';
   if(!q) return;
-  const matches = searchIndex.filter(item => item.title.toLowerCase().includes(q));
+  const matches = searchIndex.filter(item => (item.searchText || item.title).toLowerCase().includes(q));
   matches.slice(0,8).forEach(item=>{
     const a = document.createElement('a');
-    a.href = '#'+item.id;
-    a.innerHTML = `${item.title}<span>${item.section}</span>`;
+    a.href = item.href;
+    const title = document.createElement('strong');
+    title.textContent = item.title;
+    const section = document.createElement('span');
+    section.textContent = item.section;
+    a.append(title, section);
     a.addEventListener('click', ()=> searchOverlay.classList.remove('open'));
     searchResults.appendChild(a);
   });
   if(matches.length === 0){
-    searchResults.innerHTML = '<a style="cursor:default;">No results found<span>Try "Cyber" or "Healthcare"</span></a>';
+    searchResults.innerHTML = '<a style="cursor:default;">No results found<span>Try a partner, solution, industry or insight.</span></a>';
   }
 });
 
