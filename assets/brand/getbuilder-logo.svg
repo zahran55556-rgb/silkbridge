@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1298 384" role="img" aria-labelledby="title desc">
+<title id="title">GetBuilder</title>
+<desc id="desc">GetBuilder — Home improvements made simple</desc>
+<rect width="1298" height="384" fill="none"/>
+<!-- Interlocking house / tools mark -->
+<g transform="translate(18 42)">
+  <path d="M18 213 L113 118 L190 193 L190 275 L105 275 L105 219 L72 252 L72 314 L0 314 L0 220 Z" fill="#315CC5"/>
+  <path d="M105 205 L105 278 L135 278 L135 205 Z" fill="#F4A51C"/>
+  <path d="M157 55 C188 23 239 21 271 50 C302 79 302 129 271 160 L205 226 L165 186 L231 120 C243 108 243 91 231 80 C219 69 201 69 189 81 L149 121 L109 81 Z" fill="#F4A51C"/>
+  <path d="M178 118 L213 83 L239 109 L204 144 Z" fill="#0B1220"/>
+  <path d="M211 83 L235 59 L250 74 L226 98 Z" fill="#F4A51C"/>
+  <path d="M226 98 L245 79 L268 102 L249 121 Z" fill="#F4A51C"/>
+  <path d="M171 128 L203 160 L169 194 L137 162 Z" fill="#315CC5"/>
+</g>
+<text x="360" y="220" font-family="Arial, Helvetica, sans-serif" font-size="122" font-weight="700" letter-spacing="-5" fill="#315CC5">GetBuilder</text>
+<text x="370" y="295" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="600" fill="#F4A51C">Home improvements made simple</text>
+</svg>
