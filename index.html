@@ -169,6 +169,42 @@
     .cf-card.prev, .cf-card.next{ opacity:0.25; }
   }
 
+  /* ---------- PREMIUM HERO LAYER ---------- */
+  .hero-intro{position:relative;display:flex;justify-content:center;align-items:center;min-height:44px}
+  .hero-intro .eyebrow{margin-bottom:0}
+  .hero-signal{position:absolute;right:calc(50% - 520px);display:flex;align-items:center;gap:5px;opacity:.72}
+  .hero-signal span{width:34px;height:1px;background:linear-gradient(90deg,transparent,var(--teal));display:block}
+  .hero-signal i,.hero-signal b{width:5px;height:5px;border-radius:50%;display:block;background:var(--teal);box-shadow:0 0 14px rgba(63,208,201,.75)}
+  .hero-signal b{background:var(--gold);box-shadow:0 0 14px rgba(201,162,39,.65)}
+  #hero h1{font-size:clamp(2.7rem,6.2vw,5.6rem);max-width:1000px;letter-spacing:-.045em;line-height:.98;margin-top:14px;margin-bottom:24px}
+  #hero h1 em{font-style:normal;color:transparent;background:linear-gradient(110deg,var(--text) 10%,var(--teal) 72%);-webkit-background-clip:text;background-clip:text}
+  .hero-lede{max-width:650px;margin:0 auto 22px;text-align:center;color:var(--muted);font-size:clamp(.95rem,1.4vw,1.08rem);line-height:1.75}
+  .hero-path{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:0 auto 34px;color:var(--text);font:500 .7rem "Space Grotesk";letter-spacing:.12em;text-transform:uppercase}
+  .hero-path span{padding:7px 10px;border:1px solid var(--line);background:rgba(18,28,46,.5);border-radius:999px}
+  .hero-path span:nth-of-type(2){border-color:rgba(63,208,201,.35);color:var(--teal)}
+  .hero-path b{color:var(--gold);font-weight:500}
+  .hero-scroll-cue{display:flex;flex-direction:column;align-items:center;gap:9px;margin:36px auto 4px;color:var(--muted);font:500 .62rem "Space Grotesk";letter-spacing:.14em;text-transform:uppercase}
+  .hero-scroll-cue i{display:block;width:1px;height:34px;background:linear-gradient(var(--teal),transparent);animation:scrollPulse 1.8s ease-in-out infinite}
+  @keyframes scrollPulse{0%,100%{opacity:.25;transform:scaleY(.6);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
+
+  /* ---------- MODEL / STORY CARDS ---------- */
+  #live-ops{padding:110px 6%;border-top:1px solid var(--line);background:radial-gradient(circle at 80% 20%,rgba(63,208,201,.055),transparent 32%),linear-gradient(180deg,var(--bg),var(--surface))}
+  #live-ops .ops-header{margin-bottom:44px;max-width:720px}
+  #live-ops .ops-header h2{font-size:clamp(2rem,4vw,3rem);line-height:1.08;margin-bottom:14px}
+  #live-ops .ops-header p{color:var(--muted);max-width:600px;line-height:1.75}
+  .ops-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .ops-card.model-card{min-height:250px;background:linear-gradient(160deg,rgba(24,39,65,.72),rgba(18,28,46,.7));border:1px solid var(--line);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,.84,.44,1),border-color .3s,background .3s}
+  .ops-card.model-card:hover{transform:translateY(-8px);border-color:rgba(63,208,201,.42);background:linear-gradient(160deg,rgba(24,39,65,.95),rgba(18,28,46,.86))}
+  .model-index{font:500 .65rem "DM Mono","Space Grotesk";color:var(--gold);letter-spacing:.08em}
+  .model-card strong{display:block;margin-top:48px;font:600 1.35rem "Space Grotesk";letter-spacing:-.02em}
+  .model-card p{margin-top:10px;color:var(--muted);font-size:.8rem;line-height:1.65}
+  .model-line{position:absolute;left:22px;right:22px;bottom:22px;height:1px;background:var(--line);overflow:hidden}
+  .model-line i{display:block;width:35%;height:100%;background:linear-gradient(90deg,var(--teal),transparent);transition:width .45s}
+  .model-card:hover .model-line i{width:100%}
+  @media(max-width:1000px){.ops-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:650px){.ops-grid{grid-template-columns:1fr 1fr}.hero-signal{display:none}}
+  @media(max-width:460px){.ops-grid{grid-template-columns:1fr}.hero-path{gap:6px}.hero-path b{font-size:.6rem}}
+
   /* ---------- STATS ---------- */
   #stats{ position:relative; background:linear-gradient(180deg, var(--bg), var(--surface) 60%, var(--bg)); }
   .stat-num{ font-family:'Space Grotesk',sans-serif; font-size:2.6rem; font-weight:700; color:var(--teal); }
@@ -240,8 +276,12 @@
     overflow:hidden;
   }
   #video-sticky video{
-    width:100%; height:100%; object-fit:cover; transform:scale(0.6);
+    width:100%; height:100%; object-fit:cover; transform:scale(0.62); border-radius:24px;
+    filter:saturate(.82) contrast(1.04);
   }
+  #video-sticky::before{content:"";position:absolute;inset:5%;border:1px solid rgba(232,237,245,.09);border-radius:24px;z-index:2;pointer-events:none}
+  .video-caption{max-width:820px}
+  .video-caption h2{letter-spacing:-.035em;line-height:1.05}
   .video-caption{
     position:absolute; z-index:2; text-align:center; color:#fff; padding:0 6%;
     text-shadow:0 2px 20px rgba(0,0,0,0.6);
@@ -469,8 +509,15 @@
 </div>
 
 <section id="hero">
-  <span class="eyebrow">SilkBridge Modern Solutions · GCC</span>
-  <h1>Marketing, Healthcare, HR, Hospitality &amp; Cybersecurity — Unified &amp; Simplified.</h1>
+  <div class="hero-intro">
+    <span class="eyebrow">GCC Technology Distribution · Dubai</span>
+    <div class="hero-signal" aria-hidden="true"><i></i><span></span><b></b><span></span><i></i></div>
+  </div>
+  <h1>Global technology.<br><em>Regional impact.</em></h1>
+  <p class="hero-lede">SilkBridge connects specialist technology companies with opportunities across the GCC — through distribution, partner development and market access.</p>
+  <div class="hero-path" aria-label="SilkBridge market access path">
+    <span>Technology</span><b>→</b><span>SilkBridge</span><b>→</b><span>GCC</span><b>→</b><span>Business impact</span>
+  </div>
 
   <div class="coverflow" id="coverflow">
     <div class="cf-card" data-i="0"><img src="assets/photos/01-meeting-overhead.jpg" alt="Enterprise partnerships">
@@ -485,6 +532,7 @@
   </div>
   <div class="cf-dots" id="cf-dots"></div>
 
+  <div class="hero-scroll-cue" aria-hidden="true"><span>Explore the ecosystem</span><i></i></div>
   <div class="ticker-wrap">
     <div class="ticker" id="ticker"></div>
   </div>
@@ -693,26 +741,16 @@
 
 <section id="live-ops">
   <div class="ops-header">
-    <span class="eyebrow" style="text-align:left;">Live Operations</span>
-    <h2>Real numbers. Real impact.</h2>
-    <p>A snapshot of what our partner platforms deliver every day across the GCC region.</p>
+    <span class="eyebrow" style="text-align:left;">The SilkBridge Model</span>
+    <h2>From technology proposition to regional traction.</h2>
+    <p>We structure the path between a technology company and the GCC market around five connected motions.</p>
   </div>
   <div class="ops-grid">
-    <div class="ops-card">
-      <p class="ops-label">Active Deployments</p>
-      <p class="ops-val" id="ops-kpi1">0</p>
-      <canvas id="ops-chart1" role="img" aria-label="Bar chart showing growing number of deployments">Deployments: 18, 24, 31, 38, 44, 52.</canvas>
-    </div>
-    <div class="ops-card">
-      <p class="ops-label">Partner Uptime</p>
-      <p class="ops-val" id="ops-kpi2">0%</p>
-      <canvas id="ops-chart2" role="img" aria-label="Line chart showing stable high uptime">Uptime: 98.1, 98.5, 99.0, 99.2, 99.7, 99.9 percent.</canvas>
-    </div>
-    <div class="ops-card">
-      <p class="ops-label">Countries Served</p>
-      <p class="ops-val" id="ops-kpi3">0</p>
-      <canvas id="ops-chart3" role="img" aria-label="Bar chart showing countries served over time">Countries: 1, 2, 2, 3, 4, 4.</canvas>
-    </div>
+    <article class="ops-card model-card"><span class="model-index">01</span><strong>Discover</strong><p>Understand the technology, proposition and regional opportunity.</p><div class="model-line"><i></i></div></article>
+    <article class="ops-card model-card"><span class="model-index">02</span><strong>Match</strong><p>Connect capabilities with the right partners, sectors and buying contexts.</p><div class="model-line"><i></i></div></article>
+    <article class="ops-card model-card"><span class="model-index">03</span><strong>Localize</strong><p>Adapt the market story, route-to-market and engagement for regional realities.</p><div class="model-line"><i></i></div></article>
+    <article class="ops-card model-card"><span class="model-index">04</span><strong>Activate</strong><p>Turn the opportunity into partner conversations, commercial motion and deployments.</p><div class="model-line"><i></i></div></article>
+    <article class="ops-card model-card"><span class="model-index">05</span><strong>Grow</strong><p>Use market feedback and partner momentum to build the next stage of scale.</p><div class="model-line"><i></i></div></article>
   </div>
 </section>
 
@@ -1336,27 +1374,7 @@ if(typeof Chart !== 'undefined'){
     }
   });
 
-  /* --- Live Ops Section --- */
-  ScrollTrigger.create({ trigger:'#live-ops', start:'top 80%', once:true,
-    onEnter:()=>{
-      let v1=0; const t1=setInterval(()=>{ v1+=2; document.getElementById('ops-kpi1').textContent=Math.min(v1,52); if(v1>=52) clearInterval(t1); },25);
-      let v2=97; const t2=setInterval(()=>{ v2+=0.08; document.getElementById('ops-kpi2').textContent=Math.min(v2,99.9).toFixed(1)+'%'; if(v2>=99.9) clearInterval(t2); },35);
-      let v3=0; const t3=setInterval(()=>{ v3+=1; document.getElementById('ops-kpi3').textContent=Math.min(v3,4); if(v3>=4) clearInterval(t3); },200);
-      new Chart(document.getElementById('ops-chart1'), {
-        type:'bar',
-        data:{ labels:['Q1','Q2','Q3','Q4','Q5','Q6'], datasets:[{ data:[18,24,31,38,44,52], backgroundColor:'#C9A227', borderRadius:4 }] },
-        options: chartOpts(0, 60)
-      });
-      new Chart(document.getElementById('ops-chart2'), {
-        type:'line',
-        data:{ labels:['Jan','Feb','Mar','Apr','May','Jun'], datasets:[{ data:[98.1,98.5,99.0,99.2,99.7,99.9], borderColor:'#3FD0C9', backgroundColor:'rgba(63,208,201,0.1)', fill:true, tension:0.4, pointRadius:0, borderWidth:2 }] },
-        options: chartOpts(97, 100.5)
-      });
-      new Chart(document.getElementById('ops-chart3'), {
-        type:'bar',
-        data:{ labels:['2022','2023','2023','2024','2024','2025'], datasets:[{ data:[1,2,2,3,4,4], backgroundColor:'#3FD0C9', borderRadius:4 }] },
-        options: chartOpts(0, 5)
-      });
+
     }
   });
 }
