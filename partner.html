@@ -2,7 +2,7 @@
 </head>
 <body class="eco-page"><main id="app"></main><script type="module">
 import{silkBridge}from"./assets/js/ecosystem-data.js";import{partnerBySlug,verticalById,esc,renderNav,renderFooter,track}from"./assets/js/ecosystem-ui.js";
-renderNav();const url=new URL(location.href);url.hash="";const slug=url.searchParams.get("slug")||"scal-e",p=partnerBySlug(slug),app=document.getElementById("app");
+renderNav();const url=new URL("https://silkbridge.eu"+location.pathname);url.hash="";const slug=url.searchParams.get("slug")||"scal-e",p=partnerBySlug(slug),app=document.getElementById("app");
 if(!p){app.innerHTML='<section class="eco-profile"><div class="eco-shell"><h1 class="eco-title">Profile not found.</h1><a class="eco-btn" href="ecosystem.html">Back to ecosystem</a></div></section>'}
 else{const v=verticalById(p.vertical);url.searchParams.set("slug",p.slug);const canonical=document.querySelector('link[rel="canonical"]');if(canonical)canonical.href=url.toString();document.title=p.name+" | SilkBridge Partner";document.querySelector('meta[name="description"]').content=p.short;track("partner_view",{partner:p.slug});
 const related=silkBridge.partners.filter(x=>x.vertical===p.vertical&&x.slug!==p.slug).slice(0,3);
