@@ -4,3 +4,5 @@ function verticalById(id){return silkBridge.verticals.find(v=>v.id===id)}
 function partnerBySlug(slug){return silkBridge.partners.find(p=>p.slug===slug)}
 function esc(v=""){return String(v).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function track(name,payload={}){try{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...payload});console.info("[SilkBridge]",name,payload)}catch{}}
+
+export { renderNav, renderFooter, verticalById, partnerBySlug, esc, track };
