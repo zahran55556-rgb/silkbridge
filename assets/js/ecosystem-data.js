@@ -45,5 +45,5 @@ export const silkBridge = {
     {slug:"regional-fit-gap",title:"From product to regional fit: the technology distribution gap",tag:"Partner strategy",summary:"Why entering a new market is more than opening a sales channel — and how disciplined distribution can connect product capability with regional demand."},
     {slug:"five-vertical-ecosystem",title:"Designing a partner ecosystem across five specialist verticals",tag:"Ecosystem",summary:"How focused verticals can create a more useful partner portfolio without turning a technology distributor into a generalist catalogue."}
   ],
-  contact:{uae:"+971 4 871 4140",whatsapp:"+971 52 893 8137",saudi:"+966 54 473 9960",email:"info@SilkBridge.eu"}
+  contact:{uae:"+971 4 871 4140",whatsapp:"+971 52 893 8137",saudi:"+966 54 473 9960",email:"sales@silkbridge.eu"}
 };
