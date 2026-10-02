@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Partner Ecosystem | SilkBridge</title><meta name="description" content="Explore the SilkBridge technology partner ecosystem across five specialist verticals.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/ecosystem.css"></head>
+<body class="eco-page"><main>
+<section class="eco-header"><div class="eco-shell"><span class="eco-kicker">Partner ecosystem · 16 brands</span>
+<h1 class="eco-title">Global technology.<br><span style="color:var(--teal)">Regional context.</span></h1>
+<p class="eco-lead">Explore the technology portfolio SilkBridge brings together across marketing, healthcare, HR, hospitality and cybersecurity.</p>
+<div class="eco-toolbar"><input id="partnerSearch" class="eco-search" type="search" placeholder="Search partners, capabilities or industries" aria-label="Search partners"><span id="count" class="eco-count">16 partners</span></div>
+<div id="filters" class="eco-toolbar" style="margin-top:0"></div></div></section>
+<section class="eco-section"><div class="eco-shell"><div id="grid" class="eco-grid"></div></div></section>
+</main>
+<script type="module">
+import{silkBridge}from"./assets/js/ecosystem-data.js";import{verticalById,esc,renderNav,renderFooter,track}from"./assets/js/ecosystem-ui.js";
+renderNav();const filters=[["all","All"],...silkBridge.verticals.map(v=>[v.id,v.title])];let active="all";
+document.getElementById("filters").innerHTML=filters.map(f=>'<button class="eco-filter '+(f[0]==="all"?"active":"")+'" data-filter="'+f[0]+'">'+esc(f[1])+"</button>").join("");
+const grid=document.getElementById("grid"),search=document.getElementById("partnerSearch"),count=document.getElementById("count");
+function paint(){const q=search.value.trim().toLowerCase();const rows=silkBridge.partners.filter(p=>(active==="all"||p.vertical===active)&&[p.name,p.short,p.description,...p.capabilities,...p.industries].join(" ").toLowerCase().includes(q));
+count.textContent=rows.length+" "+(rows.length===1?"partner":"partners");
+grid.innerHTML=rows.length?rows.map((p,i)=>{const v=verticalById(p.vertical);return '<article class="eco-card"><div class="eco-index">'+String(i+1).padStart(2,"0")+' · '+esc(v?.title||"Partner")+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.short)+'</p><div class="eco-tags">'+p.capabilities.slice(0,3).map(x=>'<span class="eco-tag">'+esc(x)+"</span>").join("")+'</div><a class="eco-link" href="partner.html?slug='+encodeURIComponent(p.slug)+'" data-partner="'+esc(p.slug)+'">Explore profile ↗</a></article>'}).join(""):'<div class="eco-empty">No partner matches this search.</div>';
+grid.querySelectorAll("[data-partner]").forEach(a=>a.addEventListener("click",()=>track("partner_cta_click",{partner:a.dataset.partner})))} 
+document.querySelectorAll(".eco-filter").forEach(b=>b.addEventListener("click",()=>{active=b.dataset.filter;document.querySelectorAll(".eco-filter").forEach(x=>x.classList.toggle("active",x===b));paint()}));search.addEventListener("input",paint);paint();renderFooter();
+</script></body></html>
