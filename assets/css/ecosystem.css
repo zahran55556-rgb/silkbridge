@@ -156,3 +156,21 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
   .mobile-eco-partners a{display:flex;justify-content:space-between;gap:12px;min-width:0;padding:11px 12px;border:1px solid var(--line);color:var(--muted);text-decoration:none;font:.78rem "IBM Plex Sans";overflow-wrap:anywhere}
   .mobile-eco-partners a span{color:var(--teal)}
 }
+
+
+/* Shared visual polish for the inner experience */
+.eco-header{position:relative;overflow:hidden}
+.eco-header:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(232,237,245,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(232,237,245,.025) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 88%)}
+.eco-header .eco-shell{position:relative;z-index:1}
+.eco-card{position:relative;overflow:hidden}
+.eco-card:before{content:"";position:absolute;left:0;top:0;width:0;height:1px;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .35s ease}
+.eco-card:hover:before{width:100%}
+.eco-item{position:relative;overflow:hidden}
+.eco-item:after{content:"";position:absolute;left:0;bottom:0;width:34px;height:1px;background:var(--teal);opacity:.35}
+@media(max-width:700px){
+  .eco-section-head{flex-direction:column;align-items:flex-start;gap:12px}
+  .partner-link-main{flex-direction:column;align-items:flex-start;padding:22px}
+  .partner-link-main>b{align-self:flex-end}
+  .spotlight-grid{grid-template-columns:1fr}
+  .eco-empty{padding:42px 18px}
+}

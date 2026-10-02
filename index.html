@@ -489,6 +489,20 @@
     .signal-arrow{ transform:rotate(90deg); }
     .signal-foot{ margin-top:2px; }
   }
+
+  /* ---------- MOBILE WIDTH HARDENING ---------- */
+  @media(max-width:700px){
+    #contact{padding:72px 5%;gap:36px}
+    #contact .contact-info,#contact form{min-width:0;width:100%;flex-basis:100%}
+    .country-marker .label{white-space:normal;max-width:118px;font-size:.68rem;line-height:1.3}
+    .country-marker{max-width:150px}
+    .footer-cols{gap:28px}
+    .footer-top{gap:30px}
+    .hero-lede{padding:0 5%}
+    .coverflow{overflow:hidden}
+    .ticker-wrap{max-width:100vw}
+  }
+
 </style>
 </head>
 <body>
