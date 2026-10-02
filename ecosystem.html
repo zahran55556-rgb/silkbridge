@@ -147,12 +147,21 @@ function paint(){
 }
 const filters=[["all","All"],...silkBridge.verticals.map(v=>[v.id,v.title])];
 document.getElementById("filters").innerHTML=filters.map(f=>'<button class="eco-filter '+(f[0]==="all"?"active":"")+'" data-filter="'+f[0]+'">'+esc(f[1])+'</button>').join("");
-document.querySelectorAll(".eco-filter").forEach(b=>b.addEventListener("click",()=>{
- active=b.dataset.filter;
- document.querySelectorAll(".eco-filter").forEach(x=>x.classList.toggle("active",x===b));
+function setFilter(value){
+ active=value;
+ document.querySelectorAll(".eco-filter").forEach(x=>x.classList.toggle("active",x.dataset.filter===active));
  document.querySelectorAll(".graph-connector,.partner-connector,.graph-node").forEach(el=>el.classList.toggle("dimmed",active!=="all"&&el.dataset.vertical&&el.dataset.vertical!==active));
  paint();
  track("partner_filter",{vertical:active});
+}
+document.querySelectorAll(".eco-filter").forEach(b=>b.addEventListener("click",()=>setFilter(b.dataset.filter)));
+nodes.querySelectorAll(".vertical-node").forEach(node=>{
+ const go=()=>setFilter(node.dataset.vertical);
+ node.addEventListener("click",go);
+ node.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+});
+nodes.querySelectorAll(".partner-node").forEach(node=>node.addEventListener("click",()=>{
+ location.href="partner.html?slug="+encodeURIComponent(node.dataset.partner);
 }));
 search.addEventListener("input",paint);
 
