@@ -63,7 +63,7 @@
 .ecosystem-status{opacity:.85}
 .partner-logo-frame{height:72px;width:100%;display:flex;align-items:center;justify-content:flex-start;margin:20px 0 6px}
 .partner-logo-frame img{max-width:170px;max-height:60px;width:auto;height:auto;object-fit:contain}
-.ecosystem-card h3{margin:8px 0 8px}
+.partner-site-mini{display:inline-flex;align-items:center;width:max-content;margin:12px 0 2px;font:500 .65rem "DM Mono";letter-spacing:.04em;color:var(--teal);text-decoration:none}.partner-site-mini:hover{text-decoration:underline}.partner-site-mini.muted{color:var(--muted);cursor:default}.ecosystem-card h3{margin:8px 0 8px}
 .ecosystem-card p{margin-bottom:0}
 .ecosystem-card .eco-link{margin-top:auto;padding-top:18px}
 .ecosystem-spotlight{background:linear-gradient(180deg,var(--bg),rgba(18,28,46,.45))}
