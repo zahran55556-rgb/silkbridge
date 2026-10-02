@@ -194,10 +194,10 @@
   @keyframes scrollPulse{0%,100%{opacity:.25;transform:scaleY(.6);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
 
   /* ---------- MODEL / STORY CARDS ---------- */
-  #live-ops{padding:110px 6%;border-top:1px solid var(--line);background:radial-gradient(circle at 80% 20%,rgba(63,208,201,.055),transparent 32%),linear-gradient(180deg,var(--bg),var(--surface))}
-  #live-ops .ops-header{margin-bottom:44px;max-width:720px}
-  #live-ops .ops-header h2{font-size:clamp(2rem,4vw,3rem);line-height:1.08;margin-bottom:14px}
-  #live-ops .ops-header p{color:var(--muted);max-width:600px;line-height:1.75}
+  #silkbridge-model{padding:110px 6%;border-top:1px solid var(--line);background:radial-gradient(circle at 80% 20%,rgba(63,208,201,.055),transparent 32%),linear-gradient(180deg,var(--bg),var(--surface))}
+  #silkbridge-model .ops-header{margin-bottom:44px;max-width:720px}
+  #silkbridge-model .ops-header h2{font-size:clamp(2rem,4vw,3rem);line-height:1.08;margin-bottom:14px}
+  #silkbridge-model .ops-header p{color:var(--muted);max-width:600px;line-height:1.75}
   .ops-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
   .ops-card.model-card{min-height:250px;background:linear-gradient(160deg,rgba(24,39,65,.72),rgba(18,28,46,.7));border:1px solid var(--line);border-radius:14px;padding:22px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,.84,.44,1),border-color .3s,background .3s}
   .ops-card.model-card:hover{transform:translateY(-8px);border-color:rgba(63,208,201,.42);background:linear-gradient(160deg,rgba(24,39,65,.95),rgba(18,28,46,.86))}
@@ -619,7 +619,7 @@
       </a>
       <a class="brand-item" href="partner.html?slug=avaya-aura">
         <div class="brand-logo"><img src="assets/logos/avaya-aura.png" alt="Avaya Aura"></div>
-        <div class="brand-text"><strong>Avaya Aura Dashboard</strong><span>Call center solution developed for Avaya technologies, focused on global clients.</span></div>
+        <div class="brand-text"><strong>Avaya Aura</strong><span>Enterprise voice and unified communications infrastructure for reliable, scalable business communications.</span></div>
       </a>
     </div>
   </div>
@@ -791,7 +791,7 @@
   <div class="flag" id="panel-flag">🇦🇪</div>
   <span class="tag" id="panel-tag">Where we operate</span>
   <h3 id="panel-name">Country</h3>
-  <p id="panel-brief">Brief goes here.</p>
+  <p id="panel-brief">Select a market to view its regional role.</p>
 </aside>
 
 <section id="contact">
@@ -1386,6 +1386,7 @@ if(homeForm){
     }
     if(String(data.get('botcheck')||'')) return;
     homeSubject.value=interest+' — New SilkBridge website enquiry';
+    data.set('subject',homeSubject.value);
     homeStatus.textContent='Sending your message…';
     const submit=homeForm.querySelector('button[type=submit]');
     submit.disabled=true;

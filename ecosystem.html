@@ -80,11 +80,11 @@ let active="all";
 
 const palette={marketing:"teal",healthcare:"gold",hr:"teal",hospitality:"gold",cybersecurity:"teal"};
 const positions={
-  marketing:{x:128,y:112,labelX:58,labelY:85,angle:-1.65},
-  healthcare:{x:118,y:280,labelX:28,labelY:276,angle:-2.75},
-  hr:{x:360,y:392,labelX:332,labelY:460,angle:1.52},
-  hospitality:{x:601,y:282,labelX:548,labelY:276,angle:.42},
-  cybersecurity:{x:592,y:112,labelX:524,labelY:85,angle:-.52}
+  marketing:{x:155,y:125,labelX:82,labelY:92,angle:-1.45},
+  healthcare:{x:150,y:300,labelX:55,labelY:298,angle:-2.75},
+  hr:{x:360,y:390,labelX:332,labelY:447,angle:1.57},
+  hospitality:{x:565,y:300,labelX:500,labelY:298,angle:.42},
+  cybersecurity:{x:565,y:125,labelX:492,labelY:92,angle:-.52}
 };
 
 function shortLogoName(slug){return "assets/logos/"+logoMap[slug]}
@@ -112,9 +112,9 @@ function renderGraph(){
 
     v.partners=silkBridge.partners.filter(partner=>partner.vertical===v.id);
     v.partners.forEach((partner,idx)=>{
-      const spread=(idx-(v.partners.length-1)/2)*42;
-      const px=p.x + Math.cos(p.angle)*92 + Math.cos(p.angle+Math.PI/2)*spread;
-      const py=p.y + Math.sin(p.angle)*92 + Math.sin(p.angle+Math.PI/2)*spread;
+      const spread=(idx-(v.partners.length-1)/2)*38;
+      const px=p.x + Math.cos(p.angle)*84 + Math.cos(p.angle+Math.PI/2)*spread;
+      const py=p.y + Math.sin(p.angle)*84 + Math.sin(p.angle+Math.PI/2)*spread;
       const pg=document.createElementNS("http://www.w3.org/2000/svg","g");
       pg.setAttribute("class","graph-node partner-node "+palette[v.id]);
       pg.dataset.vertical=v.id;
@@ -141,6 +141,7 @@ function renderMobileEcosystem(){
     const partners=silkBridge.partners.filter(p=>p.vertical===v.id);
     return '<section class="mobile-eco-group"><button type="button" class="mobile-eco-head"><span>'+esc(v.index)+'</span><strong>'+esc(v.title)+'</strong><b>+</b></button><div class="mobile-eco-partners">'+partners.map(p=>'<a href="partner.html?slug='+encodeURIComponent(p.slug)+'">'+esc(p.name)+' <span>↗</span></a>').join("")+'</div></section>';
   }).join("");
+  mobile.querySelector(".mobile-eco-group")?.classList.add("open");
   mobile.querySelectorAll(".mobile-eco-head").forEach(btn=>btn.addEventListener("click",()=>btn.closest(".mobile-eco-group").classList.toggle("open")));
 }
 renderMobileEcosystem();
@@ -172,9 +173,11 @@ nodes.querySelectorAll(".vertical-node").forEach(node=>{
  node.addEventListener("click",go);
  node.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
 });
-nodes.querySelectorAll(".partner-node").forEach(node=>node.addEventListener("click",()=>{
- location.href="partner.html?slug="+encodeURIComponent(node.dataset.partner);
-}));
+nodes.querySelectorAll(".partner-node").forEach(node=>{
+  const go=()=>location.href="partner.html?slug="+encodeURIComponent(node.dataset.partner);
+  node.addEventListener("click",go);
+  node.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go();}});
+});
 search.addEventListener("input",paint);
 
 function spotlight(){
