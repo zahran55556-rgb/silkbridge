@@ -18,7 +18,7 @@
 <meta name="twitter:title" content="SilkBridge — The bridge between technology and the GCC">
 <meta name="twitter:description" content="GCC-focused technology distribution, partner development and market access across specialist verticals.">
 <meta name="twitter:image" content="https://silkbridge.eu/assets/photos/10-worldmap-meeting.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SilkBridge","url":"https://silkbridge.eu/","email":"info@SilkBridge.eu","description":"GCC-focused B2B technology distributor connecting global technology brands with regional opportunities."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"SilkBridge","url":"https://silkbridge.eu/","email":"sales@silkbridge.eu","description":"GCC-focused B2B technology distributor connecting global technology brands with regional opportunities."}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -363,11 +363,11 @@
   .contact-detail strong{ display:block; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; }
   .contact-detail span{ color:var(--muted); font-size:0.85rem; }
   #contact form{ flex:1; min-width:280px; display:flex; flex-direction:column; gap:14px; }
-  #contact form input, #contact form textarea{
+  #contact form input, #contact form select, #contact form textarea{
     background:var(--surface); border:1px solid var(--line); color:var(--text);
     padding:14px 16px; border-radius:6px; font-family:'IBM Plex Sans',sans-serif; font-size:0.92rem; outline:none;
   }
-  #contact form input:focus, #contact form textarea:focus{ border-color:var(--teal); }
+  #contact form input:focus, #contact form select:focus, #contact form textarea:focus{ border-color:var(--teal); }
   #contact form textarea{ min-height:120px; resize:vertical; }
   #contact form button{
     background:var(--teal); color:#0B1220; border:none; padding:14px 24px; border-radius:6px;
@@ -499,8 +499,9 @@
     <li><a href="ecosystem.html">Partners</a></li>
     <li><a href="solutions.html">Solutions</a></li>
     <li><a href="industries.html">Industries</a></li>
-    <li><a href="#footprint">Presence</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="insights.html">Insights</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
   <div class="nav-right">
     <button class="icon-btn" id="search-toggle" aria-label="Search">
@@ -517,9 +518,9 @@
     <li><a href="ecosystem.html">Partners</a></li>
     <li><a href="solutions.html">Solutions</a></li>
     <li><a href="industries.html">Industries</a></li>
-    <li><a href="#footprint">Presence</a></li>
+    <li><a href="about.html">About</a></li>
     <li><a href="insights.html">Insights</a></li>
-    <li><a href="contact.html" class="contact-btn">Contact Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
   </ul>
 </div>
 
@@ -608,15 +609,15 @@
     <h2>Tools that keep every customer conversation moving.</h2>
     <p>Contact-center platforms, engagement suites, and campaign tooling for teams that can't afford dropped conversations.</p>
     <div class="brand-list">
-      <a class="brand-item" href="https://scal-e.com/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=scal-e">
         <div class="brand-logo"><img src="assets/logos/scal-e.png" alt="Scal-e"></div>
         <div class="brand-text"><strong>Scal-e</strong><span>Marketing CDP platform connecting CRM and company systems to unify customer data, with a loyalty program module.</span></div>
       </a>
-      <a class="brand-item" href="https://mysender.im/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=mysender">
         <div class="brand-logo"><img src="assets/logos/mysender.png" alt="MySender"></div>
         <div class="brand-text"><strong>MySender</strong><span>Cloud customer experience center focused on messengers, social media, and automation/chat bots.</span></div>
       </a>
-      <a class="brand-item" href="https://www.avaya.com/en/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=avaya-aura">
         <div class="brand-logo"><img src="assets/logos/avaya-aura.png" alt="Avaya Aura"></div>
         <div class="brand-text"><strong>Avaya Aura Dashboard</strong><span>Call center solution developed for Avaya technologies, focused on global clients.</span></div>
       </a>
@@ -639,19 +640,19 @@
     <h2>Infrastructure built for clinical-grade reliability.</h2>
     <p>Hospital information systems and clinical data platforms distributed with the compliance rigor healthcare demands.</p>
     <div class="brand-list">
-      <a class="brand-item" href="https://4amed.com/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=4a-med-crm">
         <div class="brand-logo"><img src="assets/logos/amed-crm.png" alt="4A Med CRM"></div>
         <div class="brand-text"><strong>4A Med CRM</strong><span>All-in-one medical clinic information system: waiting room, calendar, financial management &amp; invoicing, medical documentation, client management, call center.</span></div>
       </a>
-      <a class="brand-item" href="https://www.anasoft.com/signatus/en/industries/healthcare" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=signatus">
         <div class="brand-logo"><img src="assets/logos/signatus.png" alt="Signatus"></div>
         <div class="brand-text"><strong>Signatus</strong><span>Award-winning electronic content management (ECM) combining e-signatures, workflow automation, consent management, and document distribution.</span></div>
       </a>
-      <a class="brand-item" href="https://qualitum.ai/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=qualitum">
         <div class="brand-logo"><img src="assets/logos/qualitum.png" alt="Qualitum"></div>
         <div class="brand-text"><strong>Qualitum</strong><span>Private agentic platform for regulated industries (life-science, digital validation). Engineered in the EU, deployed and audited globally.</span></div>
       </a>
-      <a class="brand-item" href="https://rhythmus.kz/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=rhythmus">
         <div class="brand-logo"><img src="assets/logos/rhythmus.png" alt="Rhythmus"></div>
         <div class="brand-text"><strong>Rhythmus</strong><span>MedTech company specializing in AI for cardiac diagnosis — the "software brain" for cardiology devices, automating data analysis for faster diagnosis.</span></div>
       </a>
@@ -674,23 +675,23 @@
     <h2>Workforce platforms for a region that's scaling fast.</h2>
     <p>Payroll, talent, and workforce management systems configured for multi-country GCC operations.</p>
     <div class="brand-list">
-      <a class="brand-item" href="https://www.talentlyft.com" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=talentlyft">
         <div class="brand-logo"><img src="assets/logos/talentlyft.png" alt="TalentLyft"></div>
         <div class="brand-text"><strong>TalentLyft</strong><span>Online recruiting software with both Recruitment Marketing and Applicant Tracking System solutions.</span></div>
       </a>
-      <a class="brand-item" href="https://dataon.com/en/sunfish-hr-core/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=sunfish">
         <div class="brand-logo"><img src="assets/logos/sunfish.png" alt="SunFish"></div>
         <div class="brand-text"><strong>SunFish</strong><span>Enterprise-level HR Information System covering any functionality required by mid-size to largest companies.</span></div>
       </a>
-      <a class="brand-item" href="https://ewyse.agency/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=ewyse">
         <div class="brand-logo"><img src="assets/logos/ewyse.png" alt="eWyse"></div>
         <div class="brand-text"><strong>eWyse</strong><span>Globally leading eLearning content creation platform: tailored courses that engage, entertain, and educate.</span></div>
       </a>
-      <a class="brand-item" href="https://improv3.com/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=improv3">
         <div class="brand-logo"><img src="assets/logos/improv3.png" alt="improv3"></div>
         <div class="brand-text"><strong>improv3</strong><span>Employee engagement platform, measuring and improving engagement through real-time, anonymous pulse surveys.</span></div>
       </a>
-      <a class="brand-item" href="https://highclass.hr/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=high-class-relocation">
         <div class="brand-logo"><img src="assets/logos/high-class-relocation.png" alt="High Class Relocation"></div>
         <div class="brand-text"><strong>High Class Relocation</strong><span>Agency specializing in helping companies and their international employees settle in the GCC.</span></div>
       </a>
@@ -706,15 +707,15 @@
     <h2>Guest experience, from booking to checkout.</h2>
     <p>Property management, smart-hotel systems, and interior concepts for hotels across the Gulf's fastest-growing hospitality market.</p>
     <div class="brand-list">
-      <a class="brand-item" href="https://rentl.io/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=rentlio">
         <div class="brand-logo"><img src="assets/logos/rentlio.png" alt="Rentlio"></div>
         <div class="brand-text"><strong>Rentlio</strong><span>Cloud-based property management system (PMS) and channel manager for vacation rentals, hostels, and small hotels.</span></div>
       </a>
-      <a class="brand-item" href="https://4spaces.io" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=4spaces">
         <div class="brand-logo"><img src="assets/logos/4spaces.png" alt="4spaces"></div>
         <div class="brand-text"><strong>4spaces</strong><span>Smart hotel solution covering access management and energy efficiency.</span></div>
       </a>
-      <a class="brand-item" href="https://www.sinago.hr/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=sinago">
         <div class="brand-logo"><img src="assets/logos/sinago.png" alt="Sinago"></div>
         <div class="brand-text"><strong>Sinago</strong><span>Designing, producing, and executing bespoke interior concepts.</span></div>
       </a>
@@ -731,7 +732,7 @@
     <h2>The layer that protects everything above it.</h2>
     <p>Governance, risk, compliance and audit services for enterprises that can't afford downtime.</p>
     <div class="brand-list">
-      <a class="brand-item" href="https://benchmarked.co/" target="_blank" rel="noopener">
+      <a class="brand-item" href="partner.html?slug=benchmarked">
         <div class="brand-logo" style="background:#0B1220;"><img src="assets/logos/benchmarked.png" alt="Benchmarked"></div>
         <div class="brand-text"><strong>Benchmarked</strong><span>Consulting-as-a-service for GRC and cybersecurity — ongoing support, audits, and advice with a focus on cost-optimization, scalability, and transparent reporting.</span></div>
       </a>
@@ -769,14 +770,14 @@
   <img loading="lazy" decoding="async" src="assets/photos/11-lightbulb.jpg" alt="" style="width:56px; height:56px; object-fit:cover; border-radius:50%; margin:0 auto 26px;">
   <h2>Ready to bring your technology into the GCC?</h2>
   <p>We're always looking for brand partners ready to scale into Saudi Arabia, the UAE, Qatar, and Egypt.</p>
-  <a href="#contact" class="contact-btn" style="display:inline-block;">Become a Partner →</a>
+  <a href="contact.html?interest=Partner%20with%20SilkBridge" class="contact-btn" style="display:inline-block;">Become a Partner →</a>
 </section>
 
 <section id="footprint">
   <div class="footprint-header">
     <span class="eyebrow">Where We Operate</span>
     <h2>Our Global Footprint</h2>
-    <p>SilkBridge coordinates every partnership from our Dubai hub, with active coverage across four GCC markets.</p>
+    <p>SilkBridge coordinates every partnership from our Dubai hub, with active coverage across four core markets spanning the GCC and Egypt.</p>
   </div>
   <div class="globe-wrap">
     <canvas id="globe-canvas"></canvas>
@@ -812,16 +813,26 @@
     </div>
     <div class="contact-detail">
       <span class="ico">✉</span>
-      <div><strong>Email</strong><span><a href="mailto:info@SilkBridge.eu">info@SilkBridge.eu</a></span></div>
+      <div><strong>Email</strong><span><a href="mailto:sales@silkbridge.eu">sales@silkbridge.eu</a></span></div>
     </div>
   </div>
-  <form id="contact-form" action="mailto:info@SilkBridge.eu" method="post" enctype="text/plain">
+  <form id="contact-form" novalidate>
+    <input type="hidden" name="access_key" value="880d6436-d077-4724-8f79-43f9cceeab52">
+    <input type="hidden" name="subject" id="home-form-subject" value="New SilkBridge website enquiry">
+    <input type="hidden" name="from_name" value="SilkBridge Website">
+    <input type="text" name="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0" aria-hidden="true">
     <input type="text" name="name" placeholder="Your name" aria-label="Your name" autocomplete="name" required>
-    <input type="email" name="email" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
-    <input type="text" name="company" placeholder="Company" aria-label="Company" autocomplete="organization">
-    <textarea name="message" placeholder="How can we help?" required></textarea>
+    <input type="email" name="email" placeholder="Work email" aria-label="Work email" autocomplete="email" required>
+    <input type="text" name="company" placeholder="Company" aria-label="Company" autocomplete="organization" required>
+    <select name="interest" aria-label="What can we help with?" required>
+      <option value="">What can we help with?</option>
+      <option>Partner with SilkBridge</option>
+      <option>Discuss a technology solution</option>
+      <option>Talk about GCC market entry</option>
+    </select>
+    <textarea name="message" placeholder="How can we help?" aria-label="How can we help?" required></textarea>
     <button type="submit">Send Message</button>
-    <span class="form-note">This form opens your email client — direct inbox delivery is being finalized.</span>
+    <span class="form-note" id="home-form-status" role="status" aria-live="polite">Your message will be sent securely to the SilkBridge team.</span>
   </form>
 </section>
 
@@ -842,7 +853,7 @@
       </div>
       <div class="footer-col">
         <h4>Company</h4>
-        <a href="#stats">About Us</a>
+        <a href="about.html">About Us</a>
         <a href="contact.html?interest=Careers">Careers</a>
         <a href="#contact">Contact</a>
       </div>
@@ -861,7 +872,7 @@
     <p>© <span id="year"></span> SilkBridge Modern Solutions. All rights reserved.</p>
     <div class="footer-social">
       <a href="https://wa.me/971528938137" target="_blank" rel="noopener" aria-label="WhatsApp">WhatsApp</a>
-      <a href="mailto:info@SilkBridge.eu" aria-label="Email">Email</a>
+      <a href="mailto:sales@silkbridge.eu" aria-label="Email">Email</a>
     </div>
   </div>
 </footer>
@@ -1250,7 +1261,12 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
     { name:'Egypt', flag:'🇪🇬', color:0x8AB4F8,
       brief:'Sales and marketing operations supporting our wider regional distribution network.' }
   ];
-  const markerLatLon = [ {lat:25,lon:40}, {lat:-15,lon:130}, {lat:50,lon:-60}, {lat:-35,lon:-140} ];
+  const markerLatLon = [
+    {lat:25.2048,lon:55.2708},
+    {lat:24.7136,lon:46.6753},
+    {lat:25.2854,lon:51.5310},
+    {lat:30.0444,lon:31.2357}
+  ];
   function latLonToVector3(lat, lon, radius){
     const phi = (90 - lat) * (Math.PI/180);
     const theta = (lon + 180) * (Math.PI/180);
@@ -1350,6 +1366,44 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
   });
 })();
 
+/* ---------- HOME CONTACT FORM ---------- */
+const homeForm=document.getElementById('contact-form');
+const homeStatus=document.getElementById('home-form-status');
+const homeSubject=document.getElementById('home-form-subject');
+if(homeForm){
+  homeForm.addEventListener('focusin',()=>{window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'contact_start',source:'homepage'});},{once:true});
+  homeForm.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const data=new FormData(homeForm);
+    const name=String(data.get('name')||'').trim();
+    const email=String(data.get('email')||'').trim();
+    const company=String(data.get('company')||'').trim();
+    const interest=String(data.get('interest')||'').trim();
+    const message=String(data.get('message')||'').trim();
+    if(!name||!email.includes('@')||!company||!interest||!message){
+      homeStatus.textContent='Please complete all fields with a valid work email.';
+      return;
+    }
+    if(String(data.get('botcheck')||'')) return;
+    homeSubject.value=interest+' — New SilkBridge website enquiry';
+    homeStatus.textContent='Sending your message…';
+    const submit=homeForm.querySelector('button[type=submit]');
+    submit.disabled=true;
+    try{
+      const response=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data,headers:{Accept:'application/json'}});
+      const result=await response.json();
+      if(!response.ok||!result.success) throw new Error(result.message||'Submission failed');
+      homeForm.reset();
+      homeStatus.textContent='Message sent successfully. Thank you — our team will review your request and get back to you shortly.';
+      window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'contact_submit',source:'homepage',interest});
+    }catch(err){
+      console.error(err);
+      homeStatus.textContent='We couldn’t send your message right now. Please email sales@silkbridge.eu directly.';
+      window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'contact_error',source:'homepage',interest});
+    }finally{submit.disabled=false;}
+  });
+}
+
 /* ---------- STORY MOTION ---------- */
 /* ---------- HERO MICRO-INTERACTION ---------- */
 const hero = document.getElementById('hero');
@@ -1372,7 +1426,7 @@ if (hero && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && !(
 if (typeof ScrollTrigger !== 'undefined') {
   gsap.set('.model-card', {autoAlpha:0, y:34});
   ScrollTrigger.create({
-    trigger:'#live-ops',
+    trigger:'#silkbridge-model',
     start:'top 78%',
     once:true,
     onEnter:()=>gsap.to('.model-card',{autoAlpha:1,y:0,duration:.7,stagger:.1,ease:'power3.out'})
