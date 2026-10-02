@@ -94,3 +94,65 @@
 .eco-tag-link:hover{border-color:var(--teal);color:var(--teal)}
 @media(max-width:700px){.eco-card-actions{align-items:flex-start;flex-direction:column;gap:9px}.eco-mini-link{font-size:.74rem}}
 @media(prefers-reduced-motion:reduce){.eco-mini-link,.eco-site-link{transition:none}}
+
+
+/* 2026-10 launch hardening: partner profiles, ecosystem scale and mobile containment */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+.eco-page,.eco-page main,.eco-shell,.eco-grid,.eco-card,.eco-panel,.eco-split>*{min-width:0}
+.eco-page img,.eco-page svg,.eco-page video,.eco-page canvas{max-width:100%}
+.partner-visual-stack{display:grid;gap:16px;min-width:0}
+.partner-hero-visual{min-height:330px;border:1px solid var(--line);background:radial-gradient(circle at 50% 40%,rgba(63,208,201,.14),transparent 36%),linear-gradient(145deg,rgba(24,39,65,.88),rgba(11,18,32,.96));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;padding:34px;position:relative;overflow:hidden}
+.partner-hero-visual:before,.partner-hero-visual:after{content:"";position:absolute;border:1px solid rgba(63,208,201,.11);border-radius:50%;width:280px;height:280px}
+.partner-hero-visual:after{width:390px;height:390px;border-color:rgba(201,162,39,.08)}
+.partner-logo-large{position:relative;z-index:2;width:min(290px,78%);min-height:125px;padding:26px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.partner-logo-large img{display:block;max-width:100%;max-height:82px;width:auto;height:auto;object-fit:contain}
+.partner-visual-meta{position:relative;z-index:2;display:grid;gap:8px;text-align:center}
+.partner-visual-meta span{color:var(--text);font:600 .95rem "Space Grotesk"}
+.partner-visual-meta b{color:var(--teal);font:500 .62rem "DM Mono";letter-spacing:.12em}
+.partner-gcc-section{background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.05),transparent 30%)}
+.ecosystem-hero .eco-hero-grid{grid-template-columns:1fr;gap:48px}
+.ecosystem-hero .eco-hero-grid>div:first-child{max-width:860px}
+.ecosystem-visual{min-height:680px}
+.ecosystem-visual svg{max-height:650px;width:min(100%,980px);overflow:visible}
+.partner-dot{stroke-width:2}
+.partner-label{font:600 11.5px "IBM Plex Sans";paint-order:stroke;stroke:rgba(11,18,32,.94);stroke-width:3px;stroke-linejoin:round}
+.node-label{font-size:15px}
+.core-title{font-size:16px}
+.core-sub{font-size:9px}
+.mobile-ecosystem{display:none}
+@media(max-width:700px){
+  .eco-shell{width:calc(100% - 28px);max-width:100%}
+  .eco-header{padding:112px 0 54px}
+  .eco-title{font-size:clamp(2.25rem,12vw,3.55rem);overflow-wrap:anywhere}
+  .eco-lead{font-size:.96rem;line-height:1.7}
+  .eco-section{padding:64px 0}
+  .eco-card,.eco-panel,.eco-item{padding:20px}
+  .eco-toolbar,.eco-toolbar-filters{width:100%;max-width:100%;min-width:0}
+  .eco-search-wrap,.eco-search{min-width:0;width:100%}
+  .eco-count{margin-left:0;width:100%}
+  .eco-btn,.eco-link,.eco-mini-link,.eco-site-link{max-width:100%;white-space:normal}
+  .eco-tags{max-width:100%}
+  .eco-tag{max-width:100%;overflow-wrap:anywhere}
+  .eco-profile{padding:118px 0 58px}
+  .eco-profile h1{font-size:clamp(2.5rem,14vw,4rem);overflow-wrap:anywhere}
+  .partner-actions{width:100%}
+  .partner-actions .eco-btn{justify-content:center}
+  .partner-hero-visual{min-height:260px;padding:24px 18px}
+  .partner-logo-large{width:min(250px,86%);min-height:105px;padding:20px}
+  .partner-logo-large img{max-height:68px}
+  .ecosystem-hero{overflow:hidden}
+  .ecosystem-visual{min-height:auto;padding:18px;display:block;overflow:hidden}
+  .ecosystem-visual svg,.ecosystem-orbit,.ecosystem-visual:before,.ecosystem-visual:after{display:none}
+  .ecosystem-visual-caption{position:static;transform:none;margin:16px auto 0;width:max-content;max-width:100%;white-space:normal;justify-content:center;flex-wrap:wrap;text-align:center}
+  .mobile-ecosystem{display:grid;gap:10px;width:100%}
+  .mobile-eco-group{border:1px solid var(--line);background:rgba(18,28,46,.6);min-width:0}
+  .mobile-eco-head{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;padding:16px;border:0;background:transparent;color:var(--text)}
+  .mobile-eco-head span{font:500 .66rem "DM Mono";color:var(--gold)}
+  .mobile-eco-head strong{font:600 .9rem "Space Grotesk";min-width:0}
+  .mobile-eco-head b{color:var(--teal);font-size:1.25rem;font-weight:400;transition:transform .2s}
+  .mobile-eco-partners{display:none;padding:0 14px 14px;grid-template-columns:1fr;gap:7px}
+  .mobile-eco-group.open .mobile-eco-partners{display:grid}
+  .mobile-eco-group.open .mobile-eco-head b{transform:rotate(45deg)}
+  .mobile-eco-partners a{display:flex;justify-content:space-between;gap:12px;min-width:0;padding:11px 12px;border:1px solid var(--line);color:var(--muted);text-decoration:none;font:.78rem "IBM Plex Sans";overflow-wrap:anywhere}
+  .mobile-eco-partners a span{color:var(--teal)}
+}

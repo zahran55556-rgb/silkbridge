@@ -33,6 +33,7 @@
           <desc id="ecosystemGraphDesc">SilkBridge at the center connects five technology verticals and their partner brands.</desc>
           <g id="graphLines"></g><g id="graphNodes"></g>
         </svg>
+        <div id="mobileEcosystem" class="mobile-ecosystem" aria-label="SilkBridge ecosystem by vertical"></div>
         <div class="ecosystem-visual-caption"><span>GLOBAL TECHNOLOGY</span><b>→</b><span>SilkBridge</span><b>→</b><span>GCC</span></div>
       </div>
     </div>
@@ -111,14 +112,15 @@ function renderGraph(){
 
     v.partners=silkBridge.partners.filter(partner=>partner.vertical===v.id);
     v.partners.forEach((partner,idx)=>{
-      const spread=(idx-(v.partners.length-1)/2)*34;
-      const px=p.x + Math.cos(p.angle)*78 + Math.cos(p.angle+Math.PI/2)*spread;
-      const py=p.y + Math.sin(p.angle)*78 + Math.sin(p.angle+Math.PI/2)*spread;
+      const spread=(idx-(v.partners.length-1)/2)*42;
+      const px=p.x + Math.cos(p.angle)*92 + Math.cos(p.angle+Math.PI/2)*spread;
+      const py=p.y + Math.sin(p.angle)*92 + Math.sin(p.angle+Math.PI/2)*spread;
       const pg=document.createElementNS("http://www.w3.org/2000/svg","g");
       pg.setAttribute("class","graph-node partner-node "+palette[v.id]);
       pg.dataset.vertical=v.id;
       pg.dataset.partner=partner.slug;
-      pg.innerHTML=`<circle cx="${px}" cy="${py}" r="13" class="partner-dot"></circle><text x="${px}" y="${py+29}" class="partner-label">${esc(partner.name)}</text>`;
+      pg.setAttribute("tabindex","0");pg.setAttribute("role","link");pg.setAttribute("aria-label",`Open ${partner.name} partner profile`);
+      pg.innerHTML=`<circle cx="${px}" cy="${py}" r="16" class="partner-dot"></circle><text x="${px}" y="${py+34}" class="partner-label">${esc(partner.name)}</text>`;
       nodes.appendChild(pg);
 
       const pl=document.createElementNS("http://www.w3.org/2000/svg","line");
@@ -133,6 +135,15 @@ function renderGraph(){
   nodes.appendChild(core);
 }
 renderGraph();
+function renderMobileEcosystem(){
+  const mobile=document.getElementById("mobileEcosystem");
+  mobile.innerHTML=silkBridge.verticals.map(v=>{
+    const partners=silkBridge.partners.filter(p=>p.vertical===v.id);
+    return '<section class="mobile-eco-group"><button type="button" class="mobile-eco-head"><span>'+esc(v.index)+'</span><strong>'+esc(v.title)+'</strong><b>+</b></button><div class="mobile-eco-partners">'+partners.map(p=>'<a href="partner.html?slug='+encodeURIComponent(p.slug)+'">'+esc(p.name)+' <span>↗</span></a>').join("")+'</div></section>';
+  }).join("");
+  mobile.querySelectorAll(".mobile-eco-head").forEach(btn=>btn.addEventListener("click",()=>btn.closest(".mobile-eco-group").classList.toggle("open")));
+}
+renderMobileEcosystem();
 
 function card(p,i){
  const v=verticalById(p.vertical);
