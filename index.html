@@ -1325,58 +1325,20 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
   });
 })();
 
-/* ---------- CHART.JS DEFAULTS ---------- */
-if(typeof Chart !== 'undefined'){
-  Chart.defaults.color = '#8291AA';
-  Chart.defaults.borderColor = 'rgba(232,237,245,0.06)';
-
-  const chartOpts = (min, max) => ({
-    responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{display:false}},
-    scales:{ x:{display:false}, y:{display:false, min, max} },
-    animation:{duration:1200}
+/* ---------- STORY MOTION ---------- */
+if (typeof ScrollTrigger !== 'undefined') {
+  gsap.set('.model-card', {autoAlpha:0, y:34});
+  ScrollTrigger.create({
+    trigger:'#live-ops',
+    start:'top 78%',
+    once:true,
+    onEnter:()=>gsap.to('.model-card',{autoAlpha:1,y:0,duration:.7,stagger:.1,ease:'power3.out'})
   });
-
-  /* --- Marketing Dashboard --- */
-  ScrollTrigger.create({ trigger:'#marketing-dash', start:'top 80%', once:true,
-    onEnter:()=>{
-      let k1=0; const t1=setInterval(()=>{ k1+=12; document.getElementById('mkt-kpi1').textContent=Math.min(k1,1240).toLocaleString(); if(k1>=1240) clearInterval(t1); },30);
-      let k2=0; const t2=setInterval(()=>{ k2+=0.1; document.getElementById('mkt-kpi2').textContent=Math.min(k2,1.8).toFixed(1)+'s'; if(k2>=1.8) clearInterval(t2); },30);
-      new Chart(document.getElementById('mkt-chart'), {
-        type:'line',
-        data:{ labels:['Jan','Feb','Mar','Apr','May','Jun'], datasets:[{ data:[42,55,61,70,78,88], borderColor:'#3FD0C9', backgroundColor:'rgba(63,208,201,0.1)', fill:true, tension:0.4, pointRadius:3, pointBackgroundColor:'#3FD0C9', borderWidth:2 }] },
-        options: chartOpts(35, 95)
-      });
-    }
-  });
-
-  /* --- Healthcare ECG --- */
-  function genEcg(n){
-    const d=[];
-    for(let i=0;i<n;i++){
-      const x=i%40;
-      let v=0;
-      if(x===18) v=-4; else if(x===20) v=20; else if(x===22) v=-7; else if(x>=24&&x<=27) v=4;
-      d.push(v);
-    }
-    return d;
-  }
-  ScrollTrigger.create({ trigger:'#health-dash', start:'top 80%', once:true,
-    onEnter:()=>{
-      let k1=0; const t1=setInterval(()=>{ k1+=2; document.getElementById('hlth-kpi').textContent=Math.min(k1,40)+'%'; if(k1>=40) clearInterval(t1); },30);
-      let k2=98.1; const t2=setInterval(()=>{ k2+=0.05; document.getElementById('hlth-kpi2').textContent=Math.min(k2,99.9).toFixed(1)+'%'; if(k2>=99.9) clearInterval(t2); },40);
-      const ecgData = genEcg(120);
-      new Chart(document.getElementById('ecg-chart'), {
-        type:'line',
-        data:{ labels:ecgData.map((_,i)=>i), datasets:[{ data:ecgData, borderColor:'#3FD0C9', borderWidth:1.5, pointRadius:0, tension:0.1 }] },
-        options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{x:{display:false}, y:{display:false, min:-10, max:24}}, animation:{duration:1800} }
-      });
-    }
-  });
-
-
-    }
-  });
+  gsap.fromTo('.hero-path span',
+    {y:12,autoAlpha:0},
+    {y:0,autoAlpha:1,duration:.55,stagger:.08,ease:'power2.out',
+      scrollTrigger:{trigger:'#hero',start:'top 75%',once:true}}
+  );
 }
 </script>
 </body>
