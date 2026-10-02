@@ -1040,6 +1040,7 @@ ScrollTrigger.create({
 
 /* ---------- VERTICAL 3D SHAPES ---------- */
 document.querySelectorAll('.vertical-canvas').forEach(container=>{
+  if(container.classList.contains('solution-signal')) return;
   const shapeName = container.dataset.shape;
   const renderer = new THREE.WebGLRenderer({alpha:true, antialias:!isMobile});
   renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio,2));
