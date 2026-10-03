@@ -5,8 +5,32 @@ function renderNav(){
   const nav='<nav class="eco-nav" aria-label="Primary navigation"><div class="eco-nav-inner"><a class="eco-brand" href="index.html" aria-label="SilkBridge home"><img src="assets/brand/silkbridge-logo-trim.png" alt="SilkBridge"></a><button class="eco-menu" type="button" aria-expanded="false" aria-controls="ecoNavLinks"><span></span><span></span><span></span><b>Menu</b></button><div class="eco-nav-right" id="ecoNavLinks">'+links.map(([href,label])=>'<a href="'+href+'" class="'+(path===href?"active":"")+'"'+(path===href?' aria-current="page"':'')+'>'+label+'</a>').join("")+'</div></div></nav>';
   document.body.insertAdjacentHTML("afterbegin",nav);
   const button=document.querySelector(".eco-menu"),linksEl=document.getElementById("ecoNavLinks");
-  button?.addEventListener("click",()=>{const open=linksEl.classList.toggle("open");button.setAttribute("aria-expanded",String(open))});
-  linksEl?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{linksEl.classList.remove("open");button?.setAttribute("aria-expanded","false")}));
+  const mobileQuery=window.matchMedia("(max-width:900px)");
+  function setNavOpen(open,{returnFocus=false}={}){
+    const mobile=mobileQuery.matches;
+    const shouldOpen=mobile&&open;
+    linksEl?.classList.toggle("open",shouldOpen);
+    button?.setAttribute("aria-expanded",String(shouldOpen));
+    if(linksEl){
+      linksEl.inert=mobile&&!shouldOpen;
+      linksEl.setAttribute("aria-hidden",String(mobile&&!shouldOpen));
+    }
+    if(returnFocus&&mobile) button?.focus();
+  }
+  function syncNavMode(){
+    if(!mobileQuery.matches){
+      linksEl?.classList.remove("open");
+      button?.setAttribute("aria-expanded","false");
+      if(linksEl){linksEl.inert=false;linksEl.setAttribute("aria-hidden","false")}
+    }else{
+      setNavOpen(linksEl?.classList.contains("open")||false);
+    }
+  }
+  button?.addEventListener("click",()=>setNavOpen(!linksEl.classList.contains("open")));
+  linksEl?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setNavOpen(false)));
+  document.addEventListener("keydown",e=>{if(e.key==="Escape"&&linksEl?.classList.contains("open"))setNavOpen(false,{returnFocus:true})});
+  mobileQuery.addEventListener?.("change",syncNavMode);
+  syncNavMode();
 }
 function enhanceSEO(){
   const absolute=new URL(location.href);
