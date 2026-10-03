@@ -360,14 +360,14 @@
     animation:hrSceneFloat 8.2s ease-in-out infinite;animation-play-state:paused;
   }
   .hr-command-visual.is-active svg{animation-play-state:running}
-  .hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation-play-state:paused}
-  .hr-command-visual.is-active .hr-ring,.hr-command-visual.is-active .hr-people-ring,.hr-command-visual.is-active .hr-core,.hr-command-visual.is-active .hr-side-card{animation-play-state:running}
+  .hr-command-visual .hr-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-system-card{animation-play-state:paused}
+  .hr-command-visual.is-active .hr-ring,.hr-command-visual.is-active .hr-core,.hr-command-visual.is-active .hr-system-card{animation-play-state:running}
   .hr-ring-a{animation:hrRingSpinA 19s linear infinite}
   .hr-ring-b{animation:hrRingSpinB 28s linear infinite reverse}
   .hr-people-ring{animation:hrPeopleOrbit 34s linear infinite}
   .hr-core{transform-origin:550px 310px;animation:hrCoreBreath 5.8s ease-in-out infinite}
-  .hr-side-card{transform-box:fill-box;transform-origin:center;animation:hrCardFloat 6.4s ease-in-out infinite}
-  .hr-card-b,.hr-card-d{animation-delay:-2.3s}.hr-card-c{animation-delay:-3.8s}
+  .hr-system-card{transform-box:fill-box;transform-origin:center;animation:hrCardFloat 6.4s ease-in-out infinite}
+  .hr-card-b,.hr-card-e{animation-delay:-2.3s}.hr-card-c,.hr-card-f{animation-delay:-3.8s}
   @keyframes hrSceneFloat{0%,100%{transform:perspective(1300px) rotateX(3.4deg) rotateY(-1.4deg) translateY(0) scale(.97)}50%{transform:perspective(1300px) rotateX(1.7deg) rotateY(1.3deg) translateY(-8px) scale(.982)}}
   @keyframes hrRingSpinA{to{transform:rotate(360deg)}}
   @keyframes hrRingSpinB{to{transform:rotate(360deg)}}
@@ -399,7 +399,7 @@
   @media(max-width:860px){
     .vertical, .vertical.reverse{ flex-direction:column; padding:80px 6%; gap:36px; }
     .vertical-canvas{ width:100%; height:320px; }
-    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual,.hospitality-hub-visual,.cyber-shield-visual,.cyber-shield-visual{width:100%;height:380px}
+    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual,.hospitality-hub-visual,.cyber-shield-visual{width:100%;height:380px}
     .vertical-inner{ max-width:100%; }
   }
 
@@ -657,7 +657,7 @@
 
 
   @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-ecg-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}.hospitality-hub-visual svg,.hospitality-hub-visual .hs-core,.hospitality-hub-visual .hs-card{animation:none!important}.hospitality-hub-visual .hs-flow,.hospitality-hub-visual .hs-endpoint-pulse{display:none!important}.cyber-shield-visual svg,.cyber-shield-visual .cy-ring,.cyber-shield-visual .cy-shield{animation:none!important}.cyber-shield-visual .cy-flow,.cyber-shield-visual .cy-endpoint-pulse{display:none!important}}
+    html{scroll-behavior:auto}.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-ecg-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-system-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}.hospitality-hub-visual svg,.hospitality-hub-visual .hs-core,.hospitality-hub-visual .hs-card{animation:none!important}.hospitality-hub-visual .hs-flow,.hospitality-hub-visual .hs-endpoint-pulse{display:none!important}.cyber-shield-visual svg,.cyber-shield-visual .cy-ring,.cyber-shield-visual .cy-shield{animation:none!important}.cyber-shield-visual .cy-flow,.cyber-shield-visual .cy-endpoint-pulse{display:none!important}}
     .ticker,.hero-scroll-cue i{animation:none!important}
     .cf-card,.sol-card,.brand-item,.ticker-chip{transition:none!important}
   }
@@ -837,14 +837,7 @@
         <ellipse cx="550" cy="528" rx="166" ry="20" fill="none" stroke="#5BBEFF" stroke-opacity=".3" stroke-width="2" stroke-dasharray="8 10"/>
       </g>
 
-      <g class="hub-branches" fill="none">
-        <use href="#mktPath1" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath2" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath3" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath4" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath5" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath6" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
+      
 
       <g class="hub-rotor hub-rotor-a" transform-origin="550px 310px">
         <circle cx="550" cy="310" r="198" fill="none" stroke="#3FD0C9" stroke-opacity=".35" stroke-width="4" stroke-dasharray="42 18 9 24"/>
@@ -853,6 +846,15 @@
       <g class="hub-rotor hub-rotor-b" transform-origin="550px 310px">
         <circle cx="550" cy="310" r="219" fill="none" stroke="#347CF4" stroke-opacity=".2" stroke-width="2" stroke-dasharray="5 12"/>
         <circle cx="550" cy="310" r="166" fill="none" stroke="#8DEAFF" stroke-opacity=".38" stroke-width="3" stroke-dasharray="12 14 46 18"/>
+      </g>
+
+      <g class="hub-branches hub-branches-top" fill="none">
+        <use href="#mktPath1" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath2" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath3" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath4" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath5" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath6" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
 
       <g class="hub-ports" fill="#D7FBFF" stroke="#55DFFF" stroke-width="4" filter="url(#mktGlow)">
@@ -955,146 +957,109 @@
       </a>
     </div>
   </div>
-  <div class="healthcare-tech-visual" role="img" aria-label="Animated hospital and clinic management platform with five connected operational systems and heartbeat-style data pulses">
+  <div class="healthcare-tech-visual" role="img" aria-label="Animated hospital and clinic management platform with five connected operational systems and moving ECG waveform pulses">
     <svg viewBox="0 0 1100 620" aria-hidden="true">
       <defs>
         <linearGradient id="hcPlatform" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#155C86"/>
-          <stop offset=".46" stop-color="#0A3557"/>
-          <stop offset="1" stop-color="#061827"/>
+          <stop offset="0" stop-color="#155C86"/><stop offset=".46" stop-color="#0A3557"/><stop offset="1" stop-color="#061827"/>
         </linearGradient>
-        <linearGradient id="hcTop" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#43EFE6" stop-opacity=".78"/>
-          <stop offset=".52" stop-color="#158CC7" stop-opacity=".60"/>
-          <stop offset="1" stop-color="#092B4D" stop-opacity=".92"/>
+        <linearGradient id="hcPanel" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2ECED2" stop-opacity=".42"/><stop offset=".52" stop-color="#12658D" stop-opacity=".36"/><stop offset="1" stop-color="#071827" stop-opacity=".96"/>
         </linearGradient>
-        <linearGradient id="hcBridge" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#59F2E8" stop-opacity=".72"/>
-          <stop offset=".55" stop-color="#45BDF4" stop-opacity=".62"/>
-          <stop offset="1" stop-color="#3674C7" stop-opacity=".32"/>
+        <linearGradient id="hcBridge" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#6BFFF5" stop-opacity=".98"/><stop offset=".58" stop-color="#4ACBFF" stop-opacity=".82"/><stop offset="1" stop-color="#3275C9" stop-opacity=".55"/>
         </linearGradient>
-        <radialGradient id="hcCoreGlow">
-          <stop offset="0" stop-color="#8EFFF7" stop-opacity=".86"/>
-          <stop offset=".34" stop-color="#2BD4E3" stop-opacity=".40"/>
-          <stop offset="1" stop-color="#19B6D7" stop-opacity="0"/>
-        </radialGradient>
-        <filter id="hcGlow" x="-120%" y="-120%" width="340%" height="340%">
-          <feGaussianBlur stdDeviation="7" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="hcSoft" x="-140%" y="-140%" width="380%" height="380%">
-          <feGaussianBlur stdDeviation="18"/>
-        </filter>
+        <radialGradient id="hcCoreGlow"><stop offset="0" stop-color="#8EFFF7" stop-opacity=".82"/><stop offset=".36" stop-color="#2BD4E3" stop-opacity=".36"/><stop offset="1" stop-color="#19B6D7" stop-opacity="0"/></radialGradient>
+        <filter id="hcGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="hcSoft" x="-140%" y="-140%" width="380%" height="380%"><feGaussianBlur stdDeviation="18"/></filter>
 
-        <path id="hcBridge1" d="M475 255 C425 218 366 188 292 165 L222 145"/>
-        <path id="hcBridge2" d="M448 326 C390 326 332 326 276 326 L194 326"/>
-        <path id="hcBridge3" d="M550 394 C550 432 550 468 550 514"/>
-        <path id="hcBridge4" d="M625 255 C675 218 734 188 808 165 L878 145"/>
-        <path id="hcBridge5" d="M652 326 C710 326 768 326 824 326 L906 326"/>
-
-        <path id="hcPulseWave" d="M-42 0 H-25 L-17 -8 L-9 8 L0 -24 L10 20 L18 -8 L26 0 H42" fill="none" stroke="#E6FFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="hcBridge1" d="M438 252 L290 150"/>
+        <path id="hcBridge2" d="M425 360 L290 405"/>
+        <path id="hcBridge3" d="M550 438 L550 480"/>
+        <path id="hcBridge4" d="M662 252 L810 150"/>
+        <path id="hcBridge5" d="M675 360 L810 405"/>
       </defs>
 
-      <g opacity=".19">
+      <g opacity=".16">
         <path d="M90 112 H1010 M72 216 H1028 M55 320 H1045 M72 424 H1028 M90 528 H1010" stroke="#50DDE0" stroke-width="1" stroke-dasharray="3 13"/>
         <path d="M165 65 V550 M340 50 V566 M550 42 V574 M760 50 V566 M935 65 V550" stroke="#408BC8" stroke-width="1" stroke-dasharray="4 15"/>
       </g>
 
-      <g class="hc-bridges" fill="none" stroke="url(#hcBridge)" stroke-width="5" stroke-linecap="round">
+      <g class="hc-bridges" fill="none" stroke="url(#hcBridge)" stroke-width="6.5" stroke-linecap="round">
         <use href="#hcBridge1"/><use href="#hcBridge2"/><use href="#hcBridge3"/><use href="#hcBridge4"/><use href="#hcBridge5"/>
       </g>
 
-      <g class="hc-main" transform-origin="550px 315px">
-        <ellipse cx="550" cy="512" rx="205" ry="38" fill="#28DAD6" opacity=".08" filter="url(#hcSoft)"/>
-        <ellipse cx="550" cy="508" rx="174" ry="27" fill="none" stroke="#5DF8EF" stroke-opacity=".18" stroke-width="2"/>
-        <circle cx="550" cy="315" r="151" fill="#25D0DF" opacity=".12" filter="url(#hcSoft)"/>
-        <circle cx="550" cy="315" r="140" fill="url(#hcPlatform)" stroke="#76FFF6" stroke-opacity=".80" stroke-width="3"/>
-        <circle cx="550" cy="315" r="123" fill="none" stroke="#79F7F1" stroke-opacity=".22" stroke-width="2" stroke-dasharray="4 10"/>
-        <ellipse cx="550" cy="300" rx="100" ry="82" fill="url(#hcCoreGlow)" opacity=".34"/>
-        <path d="M520 236 H580 V276 H620 V336 H580 V376 H520 V336 H480 V276 H520 Z" fill="#DFFFFC" opacity=".96" filter="url(#hcGlow)"/>
-        <path d="M520 236 H580 V276 H620 V336 H580 V376 H520 V336 H480 V276 H520 Z" fill="#2DDADE" opacity=".48"/>
-        <text x="550" y="414" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="25" font-weight="600">Hospital &amp; Clinic</text>
-        <text x="550" y="445" text-anchor="middle" fill="#A7EEF5" font-family="Space Grotesk, sans-serif" font-size="22" font-weight="600">Management Core</text>
+      <g class="hc-main" transform-origin="550px 310px">
+        <ellipse cx="550" cy="500" rx="190" ry="34" fill="#28DAD6" opacity=".07" filter="url(#hcSoft)"/>
+        <circle cx="550" cy="310" r="139" fill="#25D0DF" opacity=".11" filter="url(#hcSoft)"/>
+        <circle cx="550" cy="310" r="126" fill="url(#hcPlatform)" stroke="#76FFF6" stroke-opacity=".88" stroke-width="3.5"/>
+        <circle cx="550" cy="310" r="108" fill="none" stroke="#79F7F1" stroke-opacity=".26" stroke-width="2" stroke-dasharray="4 9"/>
+        <ellipse cx="550" cy="297" rx="90" ry="76" fill="url(#hcCoreGlow)" opacity=".34"/>
+        <path d="M525 235 H575 V276 H616 V326 H575 V367 H525 V326 H484 V276 H525 Z" fill="#DFFFFC" opacity=".97" filter="url(#hcGlow)"/>
+        <path d="M525 235 H575 V276 H616 V326 H575 V367 H525 V326 H484 V276 H525 Z" fill="#31DADF" opacity=".48"/>
+        <text x="550" y="398" text-anchor="middle" fill="#F0FFFF" font-family="Space Grotesk, sans-serif" font-size="24" font-weight="700">Hospital &amp; Clinic</text>
+        <text x="550" y="426" text-anchor="middle" fill="#B7F6FA" font-family="Space Grotesk, sans-serif" font-size="19" font-weight="600">Management Core</text>
       </g>
 
-      <g class="hc-module hc-module-a" transform="translate(118 70)">
-        <path d="M0 52 92 8 184 52 92 96Z" fill="url(#hcTop)" stroke="#64F2EA" stroke-width="2.5"/>
-        <path d="M0 52 92 96 92 180 0 136Z" fill="url(#hcPlatform)" stroke="#287EAE" stroke-width="2"/>
-        <path d="M184 52 92 96 92 180 184 136Z" fill="#061828" stroke="#236794" stroke-width="2"/>
-        <g transform="translate(50 52)">
-          <rect x="9" y="0" width="66" height="79" rx="7" fill="none" stroke="#E5FFFF" stroke-width="5"/>
-          <line x1="22" y1="21" x2="62" y2="21" stroke="#77FFF5" stroke-width="4"/>
-          <line x1="22" y1="39" x2="62" y2="39" stroke="#77FFF5" stroke-width="4"/>
-          <line x1="22" y1="57" x2="52" y2="57" stroke="#77FFF5" stroke-width="4"/>
+      <g class="hc-module hc-module-a" transform="translate(100 92)">
+        <rect width="190" height="116" rx="20" fill="url(#hcPanel)" stroke="#65EEE8" stroke-width="2.5"/>
+        <g transform="translate(64 18)" fill="none" stroke="#E9FFFF" stroke-width="4.5" stroke-linecap="round">
+          <rect x="0" y="0" width="62" height="62" rx="8"/><line x1="14" y1="18" x2="48" y2="18"/><line x1="14" y1="34" x2="48" y2="34"/><line x1="14" y1="49" x2="38" y2="49" stroke="#77FFF5"/>
         </g>
-        <text x="92" y="204" text-anchor="middle" fill="#BDFBFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="1.5">EMR / RECORDS</text>
+        <text x="95" y="103" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">EMR / RECORDS</text>
       </g>
 
-      <g class="hc-module hc-module-b" transform="translate(102 255)">
-        <path d="M0 45 94 0 188 45 94 90Z" fill="url(#hcTop)" stroke="#64F2EA" stroke-width="2.5"/>
-        <path d="M0 45 94 90 94 174 0 129Z" fill="url(#hcPlatform)" stroke="#287EAE" stroke-width="2"/>
-        <path d="M188 45 94 90 94 174 188 129Z" fill="#061828" stroke="#236794" stroke-width="2"/>
-        <g transform="translate(50 45)" fill="none" stroke="#E5FFFF" stroke-width="5" stroke-linecap="round">
-          <rect x="7" y="7" width="74" height="62" rx="6"/>
-          <line x1="20" y1="0" x2="20" y2="20"/><line x1="68" y1="0" x2="68" y2="20"/>
-          <line x1="21" y1="32" x2="67" y2="32" stroke="#77FFF5"/>
-          <circle cx="31" cy="50" r="4" fill="#77FFF5" stroke="none"/><circle cx="48" cy="50" r="4" fill="#77FFF5" stroke="none"/>
+      <g class="hc-module hc-module-b" transform="translate(100 347)">
+        <rect width="190" height="116" rx="20" fill="url(#hcPanel)" stroke="#65EEE8" stroke-width="2.5"/>
+        <g transform="translate(62 17)" fill="none" stroke="#E9FFFF" stroke-width="4.5" stroke-linecap="round">
+          <rect x="0" y="7" width="66" height="56" rx="7"/><line x1="14" y1="0" x2="14" y2="18"/><line x1="52" y1="0" x2="52" y2="18"/><line x1="14" y1="31" x2="52" y2="31" stroke="#77FFF5"/><circle cx="23" cy="47" r="4" fill="#77FFF5" stroke="none"/><circle cx="39" cy="47" r="4" fill="#77FFF5" stroke="none"/>
         </g>
-        <text x="94" y="199" text-anchor="middle" fill="#BDFBFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="1.4">PATIENT FLOW</text>
+        <text x="95" y="103" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="17" font-weight="700">PATIENT FLOW</text>
       </g>
 
-      <g class="hc-module hc-module-c" transform="translate(456 445)">
-        <path d="M0 36 94 0 188 36 94 72Z" fill="url(#hcTop)" stroke="#64F2EA" stroke-width="2.5"/>
-        <path d="M0 36 94 72 94 143 0 107Z" fill="url(#hcPlatform)" stroke="#287EAE" stroke-width="2"/>
-        <path d="M188 36 94 72 94 143 188 107Z" fill="#061828" stroke="#236794" stroke-width="2"/>
-        <g transform="translate(49 36)" fill="none" stroke="#E5FFFF" stroke-width="5" stroke-linecap="round">
-          <circle cx="45" cy="30" r="25"/>
-          <path d="M45 12 V48 M34 20 C42 14 57 16 57 24 C57 34 34 27 34 38 C34 47 50 49 59 42" stroke="#77FFF5"/>
+      <g class="hc-module hc-module-c" transform="translate(455 480)">
+        <rect width="190" height="116" rx="20" fill="url(#hcPanel)" stroke="#65EEE8" stroke-width="2.5"/>
+        <g transform="translate(65 15)" fill="none" stroke="#E9FFFF" stroke-width="4.5" stroke-linecap="round">
+          <rect x="0" y="4" width="60" height="61" rx="8"/><path d="M13 19 H47 M13 34 H47 M13 49 H36" stroke="#77FFF5"/><circle cx="48" cy="52" r="13"/><path d="M48 44 V60 M43 48 C48 44 55 47 53 51 C51 55 43 52 43 57 C43 61 50 63 55 59" stroke="#E9FFFF" stroke-width="3"/>
         </g>
-        <text x="94" y="166" text-anchor="middle" fill="#BDFBFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="1.2">BILLING / INSURANCE</text>
+        <text x="95" y="103" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">BILLING / INSURANCE</text>
       </g>
 
-      <g class="hc-module hc-module-d" transform="translate(798 70)">
-        <path d="M0 52 92 8 184 52 92 96Z" fill="url(#hcTop)" stroke="#64F2EA" stroke-width="2.5"/>
-        <path d="M0 52 92 96 92 180 0 136Z" fill="url(#hcPlatform)" stroke="#287EAE" stroke-width="2"/>
-        <path d="M184 52 92 96 92 180 184 136Z" fill="#061828" stroke="#236794" stroke-width="2"/>
-        <g transform="translate(50 50)">
-          <circle cx="42" cy="20" r="12" fill="#E5FFFF"/>
-          <circle cx="18" cy="31" r="9" fill="#B8FFF9"/><circle cx="66" cy="31" r="9" fill="#B8FFF9"/>
-          <path d="M17 66 Q42 42 67 66 M2 73 Q18 55 34 73 M50 73 Q66 55 82 73" fill="none" stroke="#E5FFFF" stroke-width="7"/>
+      <g class="hc-module hc-module-d" transform="translate(810 92)">
+        <rect width="190" height="116" rx="20" fill="url(#hcPanel)" stroke="#65EEE8" stroke-width="2.5"/>
+        <g transform="translate(61 18)">
+          <circle cx="34" cy="18" r="11" fill="#E9FFFF"/><circle cx="13" cy="29" r="8" fill="#B8FFF9"/><circle cx="55" cy="29" r="8" fill="#B8FFF9"/>
+          <path d="M12 61 Q34 41 56 61 M0 66 Q13 51 26 66 M42 66 Q55 51 68 66" fill="none" stroke="#E9FFFF" stroke-width="6"/>
         </g>
-        <text x="92" y="204" text-anchor="middle" fill="#BDFBFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="1.4">STAFF / OPERATIONS</text>
+        <text x="95" y="103" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">STAFF / OPERATIONS</text>
       </g>
 
-      <g class="hc-module hc-module-e" transform="translate(810 255)">
-        <path d="M0 45 94 0 188 45 94 90Z" fill="url(#hcTop)" stroke="#64F2EA" stroke-width="2.5"/>
-        <path d="M0 45 94 90 94 174 0 129Z" fill="url(#hcPlatform)" stroke="#287EAE" stroke-width="2"/>
-        <path d="M188 45 94 90 94 174 188 129Z" fill="#061828" stroke="#236794" stroke-width="2"/>
-        <g transform="translate(47 42)" fill="none" stroke="#E5FFFF" stroke-width="5" stroke-linecap="round">
-          <line x1="4" y1="67" x2="4" y2="45"/><line x1="27" y1="67" x2="27" y2="31"/><line x1="50" y1="67" x2="50" y2="18"/><line x1="73" y1="67" x2="73" y2="39"/>
-          <polyline points="4,37 27,24 50,10 73,30" stroke="#77FFF5"/>
+      <g class="hc-module hc-module-e" transform="translate(810 347)">
+        <rect width="190" height="116" rx="20" fill="url(#hcPanel)" stroke="#65EEE8" stroke-width="2.5"/>
+        <g transform="translate(59 17)" fill="none" stroke="#E9FFFF" stroke-width="4.5" stroke-linecap="round">
+          <line x1="2" y1="62" x2="2" y2="42"/><line x1="24" y1="62" x2="24" y2="28"/><line x1="46" y1="62" x2="46" y2="14"/><line x1="68" y1="62" x2="68" y2="36"/><polyline points="2,35 24,23 46,7 68,28" stroke="#77FFF5"/>
         </g>
-        <text x="94" y="199" text-anchor="middle" fill="#BDFBFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="1.2">REPORTS / ANALYTICS</text>
+        <text x="95" y="103" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">REPORTS / ANALYTICS</text>
       </g>
 
-      <g class="hc-ports" fill="#E9FFFF" stroke="#66F8EF" stroke-width="4" filter="url(#hcGlow)">
-        <circle cx="475" cy="255" r="8"/><circle cx="448" cy="326" r="8"/><circle cx="550" cy="394" r="8"/><circle cx="625" cy="255" r="8"/><circle cx="652" cy="326" r="8"/>
+      <g class="hc-ports" fill="#75FFF5" opacity=".72">
+        <circle cx="438" cy="252" r="4"/><circle cx="425" cy="360" r="4"/><circle cx="550" cy="438" r="4"/><circle cx="662" cy="252" r="4"/><circle cx="675" cy="360" r="4"/>
       </g>
 
-      <g class="hc-ecg-flow" filter="url(#hcGlow)">
-        <g opacity="0"><use href="#hcPulseWave"/><animateMotion dur="11.5s" begin="0s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.07;.31;1"><mpath href="#hcBridge1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.29;.34;1" dur="11.5s" repeatCount="indefinite"/></g>
-        <g opacity="0"><use href="#hcPulseWave"/><animateMotion dur="11.5s" begin="1.8s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.07;.31;1"><mpath href="#hcBridge2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.29;.34;1" dur="11.5s" begin="1.8s" repeatCount="indefinite"/></g>
-        <g opacity="0"><use href="#hcPulseWave"/><animateMotion dur="11.5s" begin="3.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.07;.31;1"><mpath href="#hcBridge3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.29;.34;1" dur="11.5s" begin="3.6s" repeatCount="indefinite"/></g>
-        <g opacity="0"><use href="#hcPulseWave"/><animateMotion dur="11.5s" begin="5.4s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.07;.31;1"><mpath href="#hcBridge4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.29;.34;1" dur="11.5s" begin="5.4s" repeatCount="indefinite"/></g>
-        <g opacity="0"><use href="#hcPulseWave"/><animateMotion dur="11.5s" begin="7.2s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.07;.31;1"><mpath href="#hcBridge5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.29;.34;1" dur="11.5s" begin="7.2s" repeatCount="indefinite"/></g>
+      <g class="hc-ecg-flow" fill="none" stroke="#F1FFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#hcGlow)">
+        <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="0s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" repeatCount="indefinite"/></path>
+        <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="1.9s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="1.9s" repeatCount="indefinite"/></path>
+        <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="3.8s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="3.8s" repeatCount="indefinite"/></path>
+        <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="5.7s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="5.7s" repeatCount="indefinite"/></path>
+        <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="7.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="7.6s" repeatCount="indefinite"/></path>
       </g>
 
       <g class="hc-endpoint-flash" fill="none" stroke="#A0FFF7" stroke-width="4" filter="url(#hcGlow)">
-        <circle cx="222" cy="145" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="11.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="11.5s" repeatCount="indefinite"/></circle>
-        <circle cx="194" cy="326" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="1.8s" repeatCount="indefinite"/></circle>
-        <circle cx="550" cy="514" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="3.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="3.6s" repeatCount="indefinite"/></circle>
-        <circle cx="878" cy="145" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="5.4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="5.4s" repeatCount="indefinite"/></circle>
-        <circle cx="906" cy="326" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="7.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="11.5s" begin="7.2s" repeatCount="indefinite"/></circle>
+        <circle cx="290" cy="150" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" repeatCount="indefinite"/></circle>
+        <circle cx="290" cy="405" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="1.9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="1.9s" repeatCount="indefinite"/></circle>
+        <circle cx="550" cy="480" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="3.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="3.8s" repeatCount="indefinite"/></circle>
+        <circle cx="810" cy="150" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="5.7s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="5.7s" repeatCount="indefinite"/></circle>
+        <circle cx="810" cy="405" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="7.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="7.6s" repeatCount="indefinite"/></circle>
       </g>
     </svg>
   </div>
@@ -1129,168 +1094,93 @@
       </a>
     </div>
   </div>
-  <div class="hr-command-visual" role="img" aria-label="Animated HR systems command center connecting talent, payroll, engagement, learning, mobility and workforce analytics">
+  <div class="hr-command-visual" role="img" aria-label="Animated HR systems hub connected through six complete routes to talent, payroll, engagement, learning, mobility and analytics">
     <svg viewBox="0 0 1100 620" aria-hidden="true">
       <defs>
-        <linearGradient id="hrPanel" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#154C78" stop-opacity=".96"/>
-          <stop offset=".48" stop-color="#0A2948" stop-opacity=".97"/>
-          <stop offset="1" stop-color="#061524"/>
-        </linearGradient>
-        <linearGradient id="hrPanelTop" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#46F0E7" stop-opacity=".74"/>
-          <stop offset=".52" stop-color="#168ED0" stop-opacity=".58"/>
-          <stop offset="1" stop-color="#0A2A4E" stop-opacity=".84"/>
-        </linearGradient>
-        <linearGradient id="hrRoute" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#79FFF5" stop-opacity=".96"/>
-          <stop offset=".55" stop-color="#4BC7FF" stop-opacity=".78"/>
-          <stop offset="1" stop-color="#3A78D8" stop-opacity=".25"/>
-        </linearGradient>
-        <radialGradient id="hrCore" cx="42%" cy="34%" r="74%">
-          <stop offset="0" stop-color="#23B8F2" stop-opacity=".98"/>
-          <stop offset=".42" stop-color="#0A5E9F" stop-opacity=".94"/>
-          <stop offset="1" stop-color="#071A30"/>
-        </radialGradient>
-        <filter id="hrGlow" x="-120%" y="-120%" width="340%" height="340%">
-          <feGaussianBlur stdDeviation="7" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
+        <linearGradient id="hrPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1C6686" stop-opacity=".58"/><stop offset=".5" stop-color="#0B3655" stop-opacity=".66"/><stop offset="1" stop-color="#061624" stop-opacity=".97"/></linearGradient>
+        <linearGradient id="hrRoute" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#79FFF5" stop-opacity=".98"/><stop offset=".55" stop-color="#4BC7FF" stop-opacity=".82"/><stop offset="1" stop-color="#3A78D8" stop-opacity=".48"/></linearGradient>
+        <radialGradient id="hrCore" cx="42%" cy="34%" r="74%"><stop offset="0" stop-color="#23B8F2"/><stop offset=".42" stop-color="#0A5E9F"/><stop offset="1" stop-color="#071A30"/></radialGradient>
+        <filter id="hrGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         <filter id="hrSoft" x="-140%" y="-140%" width="380%" height="380%"><feGaussianBlur stdDeviation="18"/></filter>
-        <path id="hrPath1" d="M440 225 C390 200 345 178 290 150 L222 122"/>
-        <path id="hrPath2" d="M405 310 C350 310 302 310 248 310 L190 310"/>
-        <path id="hrPath3" d="M440 395 C390 420 345 442 290 470 L222 498"/>
-        <path id="hrPath4" d="M660 225 C710 200 755 178 810 150 L878 122"/>
-        <path id="hrPath5" d="M695 310 C750 310 798 310 852 310 L910 310"/>
-        <path id="hrPath6" d="M660 395 C710 420 755 442 810 470 L878 498"/>
+        <path id="hrPath1" d="M438 232 L280 136"/>
+        <path id="hrPath2" d="M414 310 L280 310"/>
+        <path id="hrPath3" d="M438 388 L280 484"/>
+        <path id="hrPath4" d="M662 232 L820 136"/>
+        <path id="hrPath5" d="M686 310 L820 310"/>
+        <path id="hrPath6" d="M662 388 L820 484"/>
       </defs>
 
-      <g class="hr-bg-grid" opacity=".18">
-        <path d="M90 122 H1010 M70 222 H1030 M52 322 H1048 M70 422 H1030 M90 522 H1010" stroke="#4AC7E8" stroke-width="1" stroke-dasharray="3 13"/>
-        <path d="M168 70 V548 M332 52 V568 M550 42 V578 M768 52 V568 M932 70 V548" stroke="#4AC7E8" stroke-width="1" stroke-dasharray="4 15"/>
+      <g opacity=".16"><path d="M90 122 H1010 M70 222 H1030 M52 322 H1048 M70 422 H1030 M90 522 H1010" stroke="#4AC7E8" stroke-width="1" stroke-dasharray="3 13"/><path d="M168 70 V548 M332 52 V568 M550 42 V578 M768 52 V568 M932 70 V548" stroke="#4AC7E8" stroke-width="1" stroke-dasharray="4 15"/></g>
+
+      <g class="hr-core-shadow"><ellipse cx="550" cy="505" rx="220" ry="38" fill="#2CD8D0" opacity=".07" filter="url(#hrSoft)"/><ellipse cx="550" cy="501" rx="188" ry="26" fill="none" stroke="#4FEDE6" stroke-opacity=".18" stroke-width="2"/></g>
+      <g class="hr-ring hr-ring-a" transform-origin="550px 310px"><circle cx="550" cy="310" r="178" fill="none" stroke="#4FEDE6" stroke-opacity=".32" stroke-width="4" stroke-dasharray="38 18 8 24"/></g>
+      <g class="hr-ring hr-ring-b" transform-origin="550px 310px"><circle cx="550" cy="310" r="202" fill="none" stroke="#367BDD" stroke-opacity=".20" stroke-width="2" stroke-dasharray="5 12"/><circle cx="550" cy="310" r="155" fill="none" stroke="#8BFFF7" stroke-opacity=".22" stroke-width="3" stroke-dasharray="10 15 44 22"/></g>
+
+      <g class="hr-routes" fill="none" stroke="url(#hrRoute)" stroke-width="6.5" stroke-linecap="round">
+        <use href="#hrPath1"/><use href="#hrPath2"/><use href="#hrPath3"/><use href="#hrPath4"/><use href="#hrPath5"/><use href="#hrPath6"/>
       </g>
 
-      <g class="hr-constellation" opacity=".28" stroke="#5BE6E1" stroke-width="1.5" fill="none">
-        <path d="M742 84 L804 120 L864 92 L922 142 L980 112"/>
-        <path d="M726 534 L782 498 L846 530 L906 482 L968 512"/>
-        <circle cx="742" cy="84" r="5" fill="#79FFF5"/><circle cx="804" cy="120" r="5" fill="#79FFF5"/>
-        <circle cx="864" cy="92" r="5" fill="#79FFF5"/><circle cx="922" cy="142" r="5" fill="#79FFF5"/>
-        <circle cx="980" cy="112" r="5" fill="#79FFF5"/><circle cx="726" cy="534" r="5" fill="#79FFF5"/>
-        <circle cx="782" cy="498" r="5" fill="#79FFF5"/><circle cx="846" cy="530" r="5" fill="#79FFF5"/>
-        <circle cx="906" cy="482" r="5" fill="#79FFF5"/><circle cx="968" cy="512" r="5" fill="#79FFF5"/>
+      <g class="hr-core" transform-origin="550px 310px">
+        <circle cx="550" cy="310" r="145" fill="#24C9DF" opacity=".12" filter="url(#hrSoft)"/>
+        <circle cx="550" cy="310" r="132" fill="url(#hrCore)" stroke="#80FFF7" stroke-opacity=".82" stroke-width="3.5"/>
+        <circle cx="550" cy="310" r="113" fill="none" stroke="#8BFFF7" stroke-opacity=".26" stroke-width="2" stroke-dasharray="4 9"/>
+        <path d="M475 255 C508 221 548 213 588 223 C625 232 649 260 655 296" fill="none" stroke="#7FEFFF" stroke-opacity=".14" stroke-width="14"/>
+        <text x="550" y="293" text-anchor="middle" fill="#F0FFFF" font-family="Space Grotesk, sans-serif" font-size="36" font-weight="700">HR</text>
+        <text x="550" y="337" text-anchor="middle" fill="#C7F8FF" font-family="Space Grotesk, sans-serif" font-size="31" font-weight="700">Systems</text>
+        <text x="550" y="369" text-anchor="middle" fill="#81EAF0" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" letter-spacing="2">WORKFORCE INTELLIGENCE</text>
       </g>
 
-      <g class="hr-routes" fill="none" stroke="url(#hrRoute)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
-        <use href="#hrPath1"/><use href="#hrPath2"/><use href="#hrPath3"/>
-        <use href="#hrPath4"/><use href="#hrPath5"/><use href="#hrPath6"/>
+      <g class="hr-system-card hr-card-a" transform="translate(80 80)">
+        <rect width="200" height="112" rx="20" fill="url(#hrPanel)" stroke="#68F0E9" stroke-width="2.5"/>
+        <g transform="translate(77 15)"><circle cx="23" cy="21" r="13" fill="#E4FFFF"/><path d="M1 55 Q23 34 45 55 V66 H1Z" fill="#A8FFF8"/><path d="M47 8 52 18 63 20 55 28 57 40 47 34 37 40 39 28 31 20 42 18Z" fill="#72EFFF"/></g>
+        <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">TALENT</text>
+      </g>
+      <g class="hr-system-card hr-card-b" transform="translate(80 254)">
+        <rect width="200" height="112" rx="20" fill="url(#hrPanel)" stroke="#68F0E9" stroke-width="2.5"/>
+        <g transform="translate(69 14)" fill="none" stroke="#E7FFFF" stroke-width="5"><circle cx="31" cy="31" r="27"/><path d="M31 14 V49 M20 22 C27 16 43 18 42 26 C41 35 20 29 20 39 C20 48 35 50 44 43" stroke="#78FFF5" stroke-width="4"/></g>
+        <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">PAYROLL</text>
+      </g>
+      <g class="hr-system-card hr-card-c" transform="translate(80 428)">
+        <rect width="200" height="112" rx="20" fill="url(#hrPanel)" stroke="#68F0E9" stroke-width="2.5"/>
+        <g transform="translate(69 14)" fill="none" stroke="#E7FFFF" stroke-width="5" stroke-linecap="round"><path d="M31 58 C8 43 2 28 10 18 C19 7 30 13 31 22 C32 13 44 7 52 18 C61 29 54 44 31 58Z" stroke="#78FFF5"/><path d="M18 32 H27 L31 24 L36 41 L41 32 H49"/></g>
+        <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">ENGAGEMENT</text>
       </g>
 
-      <g class="hr-core-shadow">
-        <ellipse cx="550" cy="512" rx="230" ry="42" fill="#2CD8D0" opacity=".07" filter="url(#hrSoft)"/>
-        <ellipse cx="550" cy="508" rx="196" ry="28" fill="none" stroke="#4FEDE6" stroke-opacity=".18" stroke-width="2"/>
+      <g class="hr-system-card hr-card-d" transform="translate(820 80)">
+        <rect width="200" height="112" rx="20" fill="url(#hrPanel)" stroke="#68F0E9" stroke-width="2.5"/>
+        <g transform="translate(66 16)" fill="none" stroke="#E7FFFF" stroke-width="5" stroke-linejoin="round"><path d="M2 13 Q34 0 66 13 V59 Q34 46 2 59Z"/><path d="M34 7 V53" stroke="#78FFF5"/></g>
+        <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">LEARNING</text>
+      </g>
+      <g class="hr-system-card hr-card-e" transform="translate(820 254)">
+        <rect width="200" height="112" rx="20" fill="url(#hrPanel)" stroke="#68F0E9" stroke-width="2.5"/>
+        <g transform="translate(65 17)" fill="none" stroke="#E7FFFF" stroke-width="5" stroke-linecap="round"><path d="M3 24 H61 M50 13 61 24 50 35 M61 51 H3 M14 40 3 51 14 62" stroke="#78FFF5"/><circle cx="32" cy="38" r="9"/></g>
+        <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">MOBILITY</text>
+      </g>
+      <g class="hr-system-card hr-card-f" transform="translate(820 428)">
+        <rect width="200" height="112" rx="20" fill="url(#hrPanel)" stroke="#68F0E9" stroke-width="2.5"/>
+        <g transform="translate(66 16)" fill="none" stroke="#E7FFFF" stroke-width="5" stroke-linecap="round"><line x1="2" y1="61" x2="2" y2="39"/><line x1="23" y1="61" x2="23" y2="27"/><line x1="44" y1="61" x2="44" y2="13"/><line x1="65" y1="61" x2="65" y2="35"/><polyline points="2,33 23,22 44,7 65,27" stroke="#78FFF5"/></g>
+        <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">ANALYTICS</text>
       </g>
 
-      <g class="hr-ring hr-ring-a" transform-origin="550px 310px">
-        <circle cx="550" cy="310" r="188" fill="none" stroke="#4FEDE6" stroke-opacity=".34" stroke-width="4" stroke-dasharray="38 18 8 24"/>
-        <circle cx="550" cy="310" r="173" fill="none" stroke="#63C8FF" stroke-opacity=".18" stroke-width="12" stroke-dasharray="62 28 18 42"/>
-      </g>
-      <g class="hr-ring hr-ring-b" transform-origin="550px 310px">
-        <circle cx="550" cy="310" r="218" fill="none" stroke="#367BDD" stroke-opacity=".20" stroke-width="2" stroke-dasharray="5 12"/>
-        <circle cx="550" cy="310" r="151" fill="none" stroke="#8BFFF7" stroke-opacity=".34" stroke-width="3" stroke-dasharray="10 15 44 22"/>
+      <g class="hr-endpoints" fill="#D9FFFF" stroke="#62EEE7" stroke-width="3" filter="url(#hrGlow)">
+        <circle cx="280" cy="136" r="7"/><circle cx="280" cy="310" r="7"/><circle cx="280" cy="484" r="7"/><circle cx="820" cy="136" r="7"/><circle cx="820" cy="310" r="7"/><circle cx="820" cy="484" r="7"/>
       </g>
 
-      <g class="hr-people-ring" transform-origin="550px 310px">
-        <g transform="translate(550 118)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(674 156)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(742 260)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(716 390)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(614 485)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(486 485)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(384 390)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(358 260)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
-        <g transform="translate(426 156)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+      <g class="hr-flow" fill="#F0FFFF" filter="url(#hrGlow)">
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="1.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="3s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="4.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="7.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
       </g>
-
-      <g class="hr-core">
-        <circle cx="550" cy="310" r="146" fill="#24C9DF" opacity=".13" filter="url(#hrSoft)"/>
-        <circle cx="550" cy="310" r="137" fill="url(#hrCore)" stroke="#80FFF7" stroke-opacity=".76" stroke-width="3"/>
-        <circle cx="550" cy="310" r="119" fill="none" stroke="#8BFFF7" stroke-opacity=".24" stroke-width="2" stroke-dasharray="4 9"/>
-        <path d="M472 254 C505 220 548 210 589 220 C628 230 653 258 659 296" fill="none" stroke="#7FEFFF" stroke-opacity=".15" stroke-width="15"/>
-        <text x="550" y="291" text-anchor="middle" fill="#E7FFFF" font-family="Space Grotesk, sans-serif" font-size="33" font-weight="600">HR</text>
-        <text x="550" y="332" text-anchor="middle" fill="#B9F3FF" font-family="Space Grotesk, sans-serif" font-size="29" font-weight="600">Systems</text>
-        <text x="550" y="361" text-anchor="middle" fill="#77DBE7" font-family="DM Mono, monospace" font-size="11" letter-spacing="4">WORKFORCE INTELLIGENCE</text>
-      </g>
-
-      <g class="hr-side-card hr-card-a" transform="translate(110 62)">
-        <path d="M0 32 92 0 184 32 92 64Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
-        <path d="M0 32 92 64 92 164 0 132Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
-        <path d="M184 32 92 64 92 164 184 132Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
-        <g transform="translate(54 50)">
-          <rect x="0" y="0" width="76" height="88" rx="6" fill="#E9FFFF" opacity=".08" stroke="#7DFFF6" stroke-opacity=".42"/>
-          <circle cx="38" cy="26" r="13" fill="#D8FFFF"/>
-          <path d="M18 58 Q38 39 58 58 V72 H18Z" fill="#A2FFF7"/>
-          <line x1="16" y1="80" x2="60" y2="80" stroke="#65DFF0" stroke-width="4"/>
-        </g>
-      </g>
-
-      <g class="hr-side-card hr-card-b" transform="translate(110 392)">
-        <path d="M0 30 90 0 180 30 90 60Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
-        <path d="M0 30 90 60 90 150 0 120Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
-        <path d="M180 30 90 60 90 150 180 120Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
-        <g transform="translate(46 48)" fill="none" stroke="#D9FFFF" stroke-width="5" stroke-linecap="round">
-          <line x1="0" y1="55" x2="0" y2="32"/><line x1="22" y1="55" x2="22" y2="20"/><line x1="44" y1="55" x2="44" y2="8"/><line x1="66" y1="55" x2="66" y2="28"/>
-          <polyline points="0,26 22,15 44,2 66,20" stroke="#78FFF5"/>
-        </g>
-      </g>
-
-      <g class="hr-side-card hr-card-c" transform="translate(806 62)">
-        <path d="M0 32 92 0 184 32 92 64Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
-        <path d="M0 32 92 64 92 164 0 132Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
-        <path d="M184 32 92 64 92 164 184 132Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
-        <g transform="translate(48 48)" fill="none" stroke="#D9FFFF" stroke-width="5">
-          <circle cx="44" cy="34" r="24"/><line x1="61" y1="51" x2="79" y2="69"/>
-          <circle cx="44" cy="34" r="8" fill="#9AFFF8" stroke="none"/>
-        </g>
-      </g>
-
-      <g class="hr-side-card hr-card-d" transform="translate(810 392)">
-        <path d="M0 30 90 0 180 30 90 60Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
-        <path d="M0 30 90 60 90 150 0 120Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
-        <path d="M180 30 90 60 90 150 180 120Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
-        <g transform="translate(42 48)">
-          <circle cx="24" cy="30" r="12" fill="#D8FFFF"/>
-          <circle cx="55" cy="30" r="12" fill="#B6FFF9"/>
-          <circle cx="86" cy="30" r="12" fill="#8AFFF5"/>
-          <path d="M8 65 Q24 50 40 65 M39 65 Q55 50 71 65 M70 65 Q86 50 102 65" fill="none" stroke="#D8FFFF" stroke-width="7"/>
-        </g>
-      </g>
-
-      <g class="hr-route-labels" fill="#A9EFFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="2">
-        <text x="226" y="105">TALENT</text><text x="118" y="294">PAYROLL</text><text x="190" y="530">ENGAGEMENT</text>
-        <text x="824" y="105">LEARNING</text><text x="924" y="294">MOBILITY</text><text x="842" y="530">ANALYTICS</text>
-      </g>
-
-      <g class="hr-endpoints" fill="#D9FFFF" stroke="#62EEE7" stroke-width="4" filter="url(#hrGlow)">
-        <circle cx="222" cy="122" r="10"/><circle cx="190" cy="310" r="10"/><circle cx="222" cy="498" r="10"/>
-        <circle cx="878" cy="122" r="10"/><circle cx="910" cy="310" r="10"/><circle cx="878" cy="498" r="10"/>
-      </g>
-
-      <g class="hr-flow" fill="#ECFFFF" filter="url(#hrGlow)">
-        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="1.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="3s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="4.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="7.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
-      </g>
-
       <g class="hr-endpoint-pulse" fill="none" stroke="#9AFFF8" stroke-width="4" filter="url(#hrGlow)">
-        <circle cx="222" cy="122" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" repeatCount="indefinite"/></circle>
-        <circle cx="190" cy="310" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
-        <circle cx="222" cy="498" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
-        <circle cx="878" cy="122" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
-        <circle cx="910" cy="310" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
-        <circle cx="878" cy="498" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
+        <circle cx="280" cy="136" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" repeatCount="indefinite"/></circle>
+        <circle cx="280" cy="310" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle cx="280" cy="484" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
+        <circle cx="820" cy="136" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
+        <circle cx="820" cy="310" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
+        <circle cx="820" cy="484" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
       </g>
     </svg>
   </div>
@@ -1351,15 +1241,15 @@
           <path d="M39 120 V62 H91 V120 M52 78 H78 M52 95 H78" stroke-width="5"/>
           <path d="M5 120 H125" stroke-width="7"/>
         </g>
-        <text x="550" y="361" text-anchor="middle" fill="#F0FFFF" font-family="Space Grotesk, sans-serif" font-size="27" font-weight="700">HOTEL</text>
-        <text x="550" y="393" text-anchor="middle" fill="#BFFBFF" font-family="Space Grotesk, sans-serif" font-size="21" font-weight="600">MANAGEMENT</text>
+        <text x="550" y="361" text-anchor="middle" fill="#F0FFFF" font-family="Space Grotesk, sans-serif" font-size="35" font-weight="700">HOTEL</text>
+        <text x="550" y="393" text-anchor="middle" fill="#BFFBFF" font-family="Space Grotesk, sans-serif" font-size="27" font-weight="700">MANAGEMENT</text>
       </g>
-      <g class="hs-card" transform="translate(108 112)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M28 31 H64 V64 H28Z M34 24 V36 M58 24 V36 M35 47 H57" fill="none" stroke="#E8FFFF" stroke-width="4"/><text x="82" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">RESERVATIONS</text></g>
-      <g class="hs-card" transform="translate(74 245)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><rect x="28" y="27" width="40" height="35" rx="5" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M36 37 H60 M36 47 H54" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">SMART PMS</text></g>
-      <g class="hs-card" transform="translate(108 404)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M28 58 H66 M34 58 V38 H60 V58 M40 38 V28 H54 V38" fill="none" stroke="#E8FFFF" stroke-width="4"/><circle cx="47" cy="25" r="6" fill="#7FFFF6"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">FRONT DESK</text></g>
-      <g class="hs-card" transform="translate(826 112)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M25 55 V32 H63 V55 M25 45 H63 M33 32 V24 M55 32 V24" fill="none" stroke="#E8FFFF" stroke-width="4"/><circle cx="72" cy="34" r="8" fill="none" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">ROOMS &amp; GUESTS</text></g>
-      <g class="hs-card" transform="translate(860 245)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><rect x="27" y="25" width="39" height="40" rx="5" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M36 35 H57 M36 45 H57 M36 55 H50" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">SALES &amp; BILLING</text></g>
-      <g class="hs-card" transform="translate(826 404)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><circle cx="47" cy="43" r="22" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M25 43 H69 M47 21 C36 32 36 54 47 65 M47 21 C58 32 58 54 47 65" fill="none" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">DISTRIBUTION</text></g>
+      <g class="hs-card" transform="translate(108 112)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M28 31 H64 V64 H28Z M34 24 V36 M58 24 V36 M35 47 H57" fill="none" stroke="#E8FFFF" stroke-width="4"/><text x="82" y="80" text-anchor="middle" fill="#E9FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">RESERVATIONS</text></g>
+      <g class="hs-card" transform="translate(74 245)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><rect x="28" y="27" width="40" height="35" rx="5" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M36 37 H60 M36 47 H54" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#E9FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">SMART PMS</text></g>
+      <g class="hs-card" transform="translate(108 404)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M28 58 H66 M34 58 V38 H60 V58 M40 38 V28 H54 V38" fill="none" stroke="#E8FFFF" stroke-width="4"/><circle cx="47" cy="25" r="6" fill="#7FFFF6"/><text x="83" y="80" text-anchor="middle" fill="#E9FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">FRONT DESK</text></g>
+      <g class="hs-card" transform="translate(826 112)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M25 55 V32 H63 V55 M25 45 H63 M33 32 V24 M55 32 V24" fill="none" stroke="#E8FFFF" stroke-width="4"/><circle cx="72" cy="34" r="8" fill="none" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#E9FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">ROOMS &amp; GUESTS</text></g>
+      <g class="hs-card" transform="translate(860 245)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><rect x="27" y="25" width="39" height="40" rx="5" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M36 35 H57 M36 45 H57 M36 55 H50" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#E9FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">SALES &amp; BILLING</text></g>
+      <g class="hs-card" transform="translate(826 404)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><circle cx="47" cy="43" r="22" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M25 43 H69 M47 21 C36 32 36 54 47 65 M47 21 C58 32 58 54 47 65" fill="none" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#E9FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">DISTRIBUTION</text></g>
       <g class="hs-ports" fill="#EDFFFF" stroke="#64F5EC" stroke-width="4" filter="url(#hsGlow)"><circle cx="456" cy="247" r="8"/><circle cx="430" cy="310" r="8"/><circle cx="456" cy="373" r="8"/><circle cx="644" cy="247" r="8"/><circle cx="670" cy="310" r="8"/><circle cx="644" cy="373" r="8"/></g>
       <g class="hs-flow" fill="#F1FFFF" filter="url(#hsGlow)">
         <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" repeatCount="indefinite"/></circle>
@@ -2066,7 +1956,7 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
 
 /* ---------- TECH VISUAL VISIBILITY ---------- */
 (function techVisualVisibility(){
-  document.querySelectorAll('.marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual').forEach(visual=>{
+  document.querySelectorAll('.marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual,.hospitality-hub-visual').forEach(visual=>{
     const svg=visual.querySelector('svg');
     if(!svg)return;
     let visible=false;
