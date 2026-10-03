@@ -558,7 +558,7 @@
 </nav>
 
 <div id="menu-backdrop"></div>
-<div id="mobile-menu" aria-hidden="true">
+<div id="mobile-menu" aria-hidden="true" aria-label="Mobile navigation" inert>
   <ul>
     <li><a href="ecosystem.html">Partners</a></li>
     <li><a href="solutions.html">Solutions</a></li>
@@ -569,10 +569,12 @@
   </ul>
 </div>
 
-<div id="search-overlay">
+<div id="search-overlay" role="dialog" aria-modal="true" aria-labelledby="search-title" aria-hidden="true" inert>
   <button id="search-close" aria-label="Close search">×</button>
   <div class="search-box">
-    <input type="text" id="search-input" placeholder="Search partners, verticals, solutions…" autocomplete="off">
+    <h2 id="search-title" class="sr-only">Search SilkBridge</h2>
+    <label class="sr-only" for="search-input">Search partners, verticals, solutions and insights</label>
+    <input type="search" id="search-input" placeholder="Search partners, verticals, solutions…" autocomplete="off" aria-label="Search SilkBridge">
     <div id="search-results" role="listbox" aria-label="Search results"></div>
   </div>
 </div>
@@ -935,16 +937,19 @@ document.getElementById('year').textContent = new Date().getFullYear();
 const hamburger = document.getElementById('hamburger-toggle');
 const mobileMenu = document.getElementById('mobile-menu');
 const menuBackdrop = document.getElementById('menu-backdrop');
-function toggleMenu(open){
+function toggleMenu(open,{returnFocus=false}={}){
   mobileMenu.classList.toggle('open', open);
   menuBackdrop.classList.toggle('open', open);
   hamburger.setAttribute('aria-expanded', String(open));
   mobileMenu.setAttribute('aria-hidden', String(!open));
+  mobileMenu.inert=!open;
+  if(returnFocus) hamburger.focus();
 }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') toggleMenu(false); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'&&mobileMenu.classList.contains('open')) toggleMenu(false,{returnFocus:true}); });
 hamburger.addEventListener('click', ()=> toggleMenu(!mobileMenu.classList.contains('open')));
-menuBackdrop.addEventListener('click', ()=> toggleMenu(false));
+menuBackdrop.addEventListener('click', ()=> toggleMenu(false,{returnFocus:true}));
 mobileMenu.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> toggleMenu(false)));
+toggleMenu(false);
 
 /* ---------- SEARCH ---------- */
 let searchIndex = [
@@ -983,12 +988,34 @@ let searchIndex = [
 const searchOverlay = document.getElementById('search-overlay');
 const searchInput = document.getElementById('search-input');
 const searchResults = document.getElementById('search-results');
-document.getElementById('search-toggle').addEventListener('click', ()=>{
-  searchOverlay.classList.add('open');
-  setTimeout(()=> searchInput.focus(), 100);
+const searchToggle = document.getElementById('search-toggle');
+const searchClose = document.getElementById('search-close');
+let searchReturnFocus = null;
+
+function setSearchOpen(open){
+  searchOverlay.classList.toggle('open',open);
+  searchOverlay.setAttribute('aria-hidden',String(!open));
+  searchOverlay.inert=!open;
+  if(open){
+    searchReturnFocus=document.activeElement;
+    requestAnimationFrame(()=>searchInput.focus());
+  }else if(searchReturnFocus instanceof HTMLElement){
+    searchReturnFocus.focus();
+    searchReturnFocus=null;
+  }
+}
+searchToggle.addEventListener('click',()=>setSearchOpen(true));
+searchClose.addEventListener('click',()=>setSearchOpen(false));
+searchOverlay.addEventListener('click',e=>{if(e.target===searchOverlay)setSearchOpen(false)});
+searchOverlay.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.preventDefault();setSearchOpen(false);return}
+  if(e.key!=='Tab') return;
+  const focusable=[...searchOverlay.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href]')].filter(el=>el.offsetParent!==null);
+  if(!focusable.length) return;
+  const first=focusable[0],last=focusable[focusable.length-1];
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
 });
-document.getElementById('search-close').addEventListener('click', ()=> searchOverlay.classList.remove('open'));
-searchOverlay.addEventListener('click', (e)=>{ if(e.target === searchOverlay) searchOverlay.classList.remove('open'); });
 searchInput.addEventListener('input', ()=>{
   const q = searchInput.value.trim().toLowerCase();
   searchResults.innerHTML = '';
@@ -1002,13 +1029,17 @@ searchInput.addEventListener('input', ()=>{
     const section = document.createElement('span');
     section.textContent = item.section;
     a.append(title, section);
-    a.addEventListener('click', ()=> searchOverlay.classList.remove('open'));
+    a.addEventListener('click', ()=> setSearchOpen(false));
     searchResults.appendChild(a);
   });
-  if(matches.length === 0){
-    searchResults.innerHTML = '<a style="cursor:default;">No results found<span>Try a partner, solution, industry or insight.</span></a>';
+  if(matches.length===0){
+    const empty=document.createElement('div');
+    empty.style.cssText='padding:14px 18px;color:var(--muted);font-size:.88rem';
+    empty.textContent='No results found.';
+    searchResults.appendChild(empty);
   }
 });
+setSearchOpen(false);
 
 /* ---------- COVERFLOW SLIDER ---------- */
 const cfCards = Array.from(document.querySelectorAll('.cf-card'));
@@ -1016,6 +1047,9 @@ const cfDotsWrap = document.getElementById('cf-dots');
 let cfIndex = 0;
 cfCards.forEach((c,i)=>{
   const dot = document.createElement('button');
+  dot.type='button';
+  dot.setAttribute('aria-label','Show slide '+(i+1)+' of '+cfCards.length);
+  dot.setAttribute('aria-pressed',String(i===0));
   if(i===0) dot.classList.add('active');
   dot.addEventListener('click', ()=> setSlide(i));
   cfDotsWrap.appendChild(dot);
@@ -1029,7 +1063,7 @@ function setSlide(i){
     else if(idx === (cfIndex + 1) % cfCards.length) card.classList.add('next');
     else card.classList.add('hidden-slide');
   });
-  cfDotsWrap.querySelectorAll('button').forEach((d,idx)=> d.classList.toggle('active', idx===cfIndex));
+  cfDotsWrap.querySelectorAll('button').forEach((d,idx)=>{const active=idx===cfIndex;d.classList.toggle('active',active);d.setAttribute('aria-pressed',String(active))});
 }
 cfCards.forEach((card, idx)=>{
   card.addEventListener('click', ()=>{
@@ -1494,7 +1528,7 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
     hit.userData.country=country;
 
     holder.add(pin,ring,pulse,hit);
-    holder.userData={country,ring,pulse};
+    holder.userData={country,ring,pulse,anchor:pin};
     markerGroup.add(holder);
     markers.push(holder);
     hitTargets.push(hit);
@@ -1524,6 +1558,7 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
   function closePanel(){panel.classList.remove('open');backdrop.classList.remove('open')}
   panel.querySelector('.close-btn').addEventListener('click',closePanel);
   backdrop.addEventListener('click',closePanel);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('open'))closePanel()});
   labelEls.forEach((el,i)=>el.addEventListener('click',()=>openPanel(countries[i])));
 
   let rotY=-1.28,rotX=.08;
@@ -1573,7 +1608,7 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
   const cameraVec=new THREE.Vector3();
   function updateLabels(){
     markers.forEach((marker,i)=>{
-      marker.getWorldPosition(tmpVec);
+      marker.userData.anchor.getWorldPosition(tmpVec);
       const screenVec=tmpVec.clone().project(camera);
       const x=(screenVec.x*.5+.5)*wrap.clientWidth;
       const y=(-screenVec.y*.5+.5)*wrap.clientHeight;
@@ -1583,6 +1618,8 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
       const el=labelEls[i];
       el.style.opacity=visible?'1':'0';
       el.style.pointerEvents=visible?'auto':'none';
+      el.tabIndex=visible?0:-1;
+      el.setAttribute('aria-hidden',String(!visible));
       const offset=countries[i].labelOffset||[0,0];
       const mobileScale=isMobile?.55:1;
       el.style.left=(x+offset[0]*mobileScale)+'px';
