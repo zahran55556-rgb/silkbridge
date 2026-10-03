@@ -315,6 +315,32 @@
   .marketing-hub-visual.is-active .hub-core{animation-play-state:running}
   .hub-core{animation-play-state:paused}
   .hub-endpoints>g{transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 7px rgba(84,207,255,.18))}
+  .healthcare-tech-visual{
+    flex:1;min-width:0;height:520px;position:relative;overflow:hidden;border-radius:34px;perspective:1200px;
+    background:
+      radial-gradient(circle at 52% 43%,rgba(37,203,218,.17),transparent 29%),
+      radial-gradient(circle at 50% 75%,rgba(45,124,211,.12),transparent 31%),
+      linear-gradient(145deg,rgba(4,18,33,.42),rgba(3,11,21,.14));
+    box-shadow:inset 0 0 82px rgba(0,8,22,.4);
+  }
+  .healthcare-tech-visual::before{
+    content:"";position:absolute;inset:8%;pointer-events:none;background:radial-gradient(circle at center,rgba(49,222,218,.08),transparent 65%);filter:blur(24px)
+  }
+  .healthcare-tech-visual svg{
+    width:100%;height:100%;display:block;position:relative;z-index:1;
+    transform:perspective(1200px) rotateX(3.2deg) rotateY(1.6deg) scale(.97);
+    transform-origin:center;filter:drop-shadow(0 26px 34px rgba(0,0,0,.28));
+    animation:healthcareSceneFloat 7.8s ease-in-out infinite;animation-play-state:paused;
+  }
+  .healthcare-tech-visual.is-active svg{animation-play-state:running}
+  .hc-main{transform-origin:550px 330px;animation:hcCorePulse 5.8s ease-in-out infinite;animation-play-state:paused}
+  .healthcare-tech-visual.is-active .hc-main{animation-play-state:running}
+  .hc-module{transform-box:fill-box;transform-origin:center;animation:hcModuleFloat 6.6s ease-in-out infinite;animation-play-state:paused}
+  .healthcare-tech-visual.is-active .hc-module{animation-play-state:running}
+  .hc-module-b,.hc-module-d{animation-delay:-2.2s}.hc-module-c{animation-delay:-3.4s}
+  @keyframes healthcareSceneFloat{0%,100%{transform:perspective(1200px) rotateX(3.2deg) rotateY(1.6deg) translateY(0) scale(.97)}50%{transform:perspective(1200px) rotateX(1.6deg) rotateY(-1.3deg) translateY(-7px) scale(.98)}}
+  @keyframes hcCorePulse{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.012)}}
+  @keyframes hcModuleFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
   @keyframes marketingHubFloat{0%,100%{transform:perspective(1100px) rotateX(2.5deg) rotateY(-1.6deg) translateY(0) scale(.98)}50%{transform:perspective(1100px) rotateX(1.2deg) rotateY(1.4deg) translateY(-7px) scale(.99)}}
   @keyframes marketingRotorA{to{transform:rotate(360deg)}}
   @keyframes marketingRotorB{to{transform:rotate(360deg)}}
@@ -325,7 +351,7 @@
   @media(max-width:860px){
     .vertical, .vertical.reverse{ flex-direction:column; padding:80px 6%; gap:36px; }
     .vertical-canvas{ width:100%; height:320px; }
-    .marketing-hub-visual{width:100%;height:360px}
+    .marketing-hub-visual,.healthcare-tech-visual{width:100%;height:360px}
     .vertical-inner{ max-width:100%; }
   }
 
@@ -583,7 +609,7 @@
 
 
   @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}}
+    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}}
     .ticker,.hero-scroll-cue i{animation:none!important}
     .cf-card,.sol-card,.brand-item,.ticker-chip{transition:none!important}
   }
@@ -749,12 +775,12 @@
         <filter id="mktSoftGlow" x="-100%" y="-100%" width="300%" height="300%">
           <feGaussianBlur stdDeviation="13"/>
         </filter>
-        <path id="mktPath1" d="M430 210 L366 210 L330 176 L280 176 L236 134 L204 134"/>
-        <path id="mktPath2" d="M365 310 L300 310 L266 310 L190 310"/>
-        <path id="mktPath3" d="M430 410 L365 410 L326 448 L278 448 L235 486 L207 486"/>
-        <path id="mktPath4" d="M670 210 L734 210 L770 176 L820 176 L864 134 L896 134"/>
-        <path id="mktPath5" d="M735 310 L800 310 L834 310 L910 310"/>
-        <path id="mktPath6" d="M670 410 L735 410 L774 448 L822 448 L865 486 L893 486"/>
+        <path id="mktPath1" d="M424 218 L382 218 L340 176 L280 176 L236 134 L204 134"/>
+        <path id="mktPath2" d="M406 310 L348 310 L292 310 L238 310 L190 310"/>
+        <path id="mktPath3" d="M424 402 L382 402 L340 448 L278 448 L235 486 L207 486"/>
+        <path id="mktPath4" d="M676 218 L718 218 L760 176 L820 176 L864 134 L896 134"/>
+        <path id="mktPath5" d="M694 310 L752 310 L808 310 L862 310 L910 310"/>
+        <path id="mktPath6" d="M676 402 L718 402 L760 448 L822 448 L865 486 L893 486"/>
       </defs>
 
       <g class="hub-ambient">
@@ -764,12 +790,12 @@
       </g>
 
       <g class="hub-branches" fill="none">
-        <use href="#mktPath1" stroke="url(#mktBranch)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath2" stroke="url(#mktBranch)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath3" stroke="url(#mktBranch)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath4" stroke="url(#mktBranch)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath5" stroke="url(#mktBranch)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath6" stroke="url(#mktBranch)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath1" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath2" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath3" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath4" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath5" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <use href="#mktPath6" stroke="url(#mktBranch)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
 
       <g class="hub-rotor hub-rotor-a" transform-origin="550px 310px">
@@ -781,6 +807,10 @@
         <circle cx="550" cy="310" r="166" fill="none" stroke="#8DEAFF" stroke-opacity=".38" stroke-width="3" stroke-dasharray="12 14 46 18"/>
       </g>
 
+      <g class="hub-ports" fill="#D7FBFF" stroke="#55DFFF" stroke-width="4" filter="url(#mktGlow)">
+        <circle cx="424" cy="218" r="8"/><circle cx="406" cy="310" r="8"/><circle cx="424" cy="402" r="8"/>
+        <circle cx="676" cy="218" r="8"/><circle cx="694" cy="310" r="8"/><circle cx="676" cy="402" r="8"/>
+      </g>
       <g class="hub-core">
         <circle cx="550" cy="310" r="152" fill="#1DB9E8" opacity=".18" filter="url(#mktSoftGlow)"/>
         <circle cx="550" cy="310" r="144" fill="url(#mktCore)" stroke="#73EDFF" stroke-opacity=".76" stroke-width="3"/>
@@ -877,7 +907,116 @@
       </a>
     </div>
   </div>
-  <div class="vertical-canvas" data-shape="lattice" aria-label="Animated connected clinical data lattice"></div>
+  <div class="healthcare-tech-visual" role="img" aria-label="Animated medical technology platform connecting clinical data, diagnostics, lab systems and medication workflows">
+    <svg viewBox="0 0 1100 620" aria-hidden="true">
+      <defs>
+        <linearGradient id="hcPlatform" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#174E83"/><stop offset=".48" stop-color="#0A2A50"/><stop offset="1" stop-color="#061425"/>
+        </linearGradient>
+        <linearGradient id="hcTop" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#33DBE2" stop-opacity=".75"/><stop offset=".52" stop-color="#107CC0" stop-opacity=".58"/><stop offset="1" stop-color="#09274A" stop-opacity=".9"/>
+        </linearGradient>
+        <linearGradient id="hcRoute" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#6FF5EF" stop-opacity=".92"/><stop offset=".55" stop-color="#42B9FF" stop-opacity=".72"/><stop offset="1" stop-color="#2B73D8" stop-opacity=".24"/>
+        </linearGradient>
+        <radialGradient id="hcCoreGlow">
+          <stop offset="0" stop-color="#84FFF8" stop-opacity=".86"/><stop offset=".34" stop-color="#28CFE0" stop-opacity=".38"/><stop offset="1" stop-color="#19B6D7" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="hcGlow" x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="hcSoft" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="17"/></filter>
+        <path id="hcPath1" d="M520 292 C455 250 405 216 330 198 C285 187 252 178 214 160"/>
+        <path id="hcPath2" d="M485 338 C425 348 372 360 318 388 C282 407 250 425 218 444"/>
+        <path id="hcPath3" d="M580 292 C645 250 695 216 770 198 C815 187 848 178 886 160"/>
+        <path id="hcPath4" d="M615 338 C675 348 728 360 782 388 C818 407 850 425 882 444"/>
+        <path id="hcPath5" d="M550 362 C550 412 550 457 550 510"/>
+      </defs>
+
+      <g class="hc-grid" opacity=".22">
+        <path d="M112 122 H988 M92 210 H1008 M72 298 H1028 M92 386 H1008 M112 474 H988" stroke="#4FE3E3" stroke-width="1" stroke-dasharray="3 12"/>
+        <path d="M180 74 V536 M340 56 V554 M550 46 V570 M760 56 V554 M920 74 V536" stroke="#4A98D8" stroke-width="1" stroke-dasharray="4 15"/>
+      </g>
+
+      <g class="hc-background-hexes" fill="none" stroke="#55DDE0" stroke-opacity=".19" stroke-width="2">
+        <path d="M102 125 138 104 174 125 174 167 138 188 102 167Z"/>
+        <path d="M904 98 934 81 964 98 964 133 934 150 904 133Z"/>
+        <path d="M858 500 888 483 918 500 918 535 888 552 858 535Z"/>
+        <path d="M174 492 200 477 226 492 226 522 200 537 174 522Z"/>
+      </g>
+
+      <g class="hc-routes" fill="none" stroke="url(#hcRoute)" stroke-width="4" stroke-linecap="round">
+        <use href="#hcPath1"/><use href="#hcPath2"/><use href="#hcPath3"/><use href="#hcPath4"/><use href="#hcPath5"/>
+      </g>
+
+      <g class="hc-platform hc-main">
+        <ellipse cx="550" cy="524" rx="178" ry="35" fill="#24D6DA" opacity=".08" filter="url(#hcSoft)"/>
+        <path d="M442 252 L550 194 L658 252 L550 310 Z" fill="url(#hcTop)" stroke="#7CF8F1" stroke-width="3"/>
+        <path d="M442 252 L550 310 L550 420 L442 360 Z" fill="url(#hcPlatform)" stroke="#2CB9D7" stroke-width="2"/>
+        <path d="M658 252 L550 310 L550 420 L658 360 Z" fill="#071B34" stroke="#2479B7" stroke-width="2"/>
+        <ellipse cx="550" cy="300" rx="104" ry="88" fill="url(#hcCoreGlow)" opacity=".36"/>
+        <path d="M527 236 H573 V274 H611 V320 H573 V358 H527 V320 H489 V274 H527 Z" fill="#D7FFFF" opacity=".95" filter="url(#hcGlow)"/>
+        <path d="M527 236 H573 V274 H611 V320 H573 V358 H527 V320 H489 V274 H527 Z" fill="#32D9DC" opacity=".52"/>
+        <g class="hc-chip-lines" opacity=".48" stroke="#7EF7EE" stroke-width="2">
+          <path d="M480 336 H520"/><path d="M580 336 H620"/><path d="M480 356 H510"/><path d="M590 356 H620"/>
+        </g>
+      </g>
+
+      <g class="hc-module hc-module-a" transform="translate(128 92)">
+        <path d="M0 58 82 16 164 58 82 100Z" fill="url(#hcTop)" stroke="#5FE7E3" stroke-width="2"/>
+        <path d="M0 58 82 100 82 174 0 132Z" fill="url(#hcPlatform)" stroke="#257CB0" stroke-width="2"/>
+        <path d="M164 58 82 100 82 174 164 132Z" fill="#06182D" stroke="#256B9E" stroke-width="2"/>
+        <polyline points="31,81 53,81 62,65 74,104 90,73 102,81 133,81" fill="none" stroke="#D8FFFF" stroke-width="5" stroke-linejoin="round"/>
+      </g>
+      <g class="hc-module hc-module-b" transform="translate(132 374)">
+        <path d="M0 44 76 6 152 44 76 82Z" fill="url(#hcTop)" stroke="#5FE7E3" stroke-width="2"/>
+        <path d="M0 44 76 82 76 146 0 108Z" fill="url(#hcPlatform)" stroke="#257CB0" stroke-width="2"/>
+        <path d="M152 44 76 82 76 146 152 108Z" fill="#06182D" stroke="#256B9E" stroke-width="2"/>
+        <path d="M58 49 C58 30 94 30 94 49 V57 H101 V95 H51 V57 H58Z" fill="none" stroke="#D8FFFF" stroke-width="5"/>
+        <path d="M66 34 V20 M86 34 V20" stroke="#81FFF2" stroke-width="4"/>
+      </g>
+      <g class="hc-module hc-module-c" transform="translate(806 92)">
+        <path d="M0 58 82 16 164 58 82 100Z" fill="url(#hcTop)" stroke="#5FE7E3" stroke-width="2"/>
+        <path d="M0 58 82 100 82 174 0 132Z" fill="url(#hcPlatform)" stroke="#257CB0" stroke-width="2"/>
+        <path d="M164 58 82 100 82 174 164 132Z" fill="#06182D" stroke="#256B9E" stroke-width="2"/>
+        <path d="M57 44 V70 L40 103 H124 L107 70 V44" fill="none" stroke="#D8FFFF" stroke-width="5"/>
+        <path d="M52 84 H112" stroke="#6FF5EF" stroke-width="5"/>
+      </g>
+      <g class="hc-module hc-module-d" transform="translate(816 374)">
+        <path d="M0 44 76 6 152 44 76 82Z" fill="url(#hcTop)" stroke="#5FE7E3" stroke-width="2"/>
+        <path d="M0 44 76 82 76 146 0 108Z" fill="url(#hcPlatform)" stroke="#257CB0" stroke-width="2"/>
+        <path d="M152 44 76 82 76 146 152 108Z" fill="#06182D" stroke="#256B9E" stroke-width="2"/>
+        <g transform="translate(46 32) rotate(-12 32 32)">
+          <rect x="7" y="18" width="52" height="28" rx="14" fill="none" stroke="#D8FFFF" stroke-width="5"/>
+          <line x1="33" y1="19" x2="33" y2="45" stroke="#6FF5EF" stroke-width="4"/>
+        </g>
+      </g>
+
+      <g class="hc-lower-node" transform="translate(500 494)">
+        <path d="M0 34 50 5 100 34 50 63Z" fill="#103A64" stroke="#57D9E0" stroke-width="2"/>
+        <path d="M0 34 50 63 50 109 0 80Z" fill="#071A30" stroke="#26779F" stroke-width="2"/>
+        <path d="M100 34 50 63 50 109 100 80Z" fill="#061426" stroke="#1B5C8E" stroke-width="2"/>
+        <circle cx="50" cy="43" r="15" fill="none" stroke="#D8FFFF" stroke-width="4"/>
+        <path d="M35 43 H65 M50 28 V58" stroke="#75F3EA" stroke-width="4"/>
+      </g>
+
+      <g class="hc-flow" fill="#E6FFFF" filter="url(#hcGlow)">
+        <circle r="7" opacity="0"><animateMotion dur="9.6s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.31;1"><mpath href="#hcPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.29;.34;1" dur="9.6s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9.6s" begin="1.55s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.31;1"><mpath href="#hcPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.29;.34;1" dur="9.6s" begin="1.55s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9.6s" begin="3.1s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.31;1"><mpath href="#hcPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.29;.34;1" dur="9.6s" begin="3.1s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9.6s" begin="4.65s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.31;1"><mpath href="#hcPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.29;.34;1" dur="9.6s" begin="4.65s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9.6s" begin="6.2s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.31;1"><mpath href="#hcPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.29;.34;1" dur="9.6s" begin="6.2s" repeatCount="indefinite"/></circle>
+      </g>
+
+      <g class="hc-endpoint-flash" fill="none" stroke="#91FFF3" stroke-width="4" filter="url(#hcGlow)">
+        <circle cx="214" cy="160" r="12"><animate attributeName="r" values="12;12;24;12;12" keyTimes="0;.28;.34;.45;1" dur="9.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.28;.34;.45;1" dur="9.6s" repeatCount="indefinite"/></circle>
+        <circle cx="218" cy="444" r="12"><animate attributeName="r" values="12;12;24;12;12" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="1.55s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="1.55s" repeatCount="indefinite"/></circle>
+        <circle cx="886" cy="160" r="12"><animate attributeName="r" values="12;12;24;12;12" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="3.1s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="3.1s" repeatCount="indefinite"/></circle>
+        <circle cx="882" cy="444" r="12"><animate attributeName="r" values="12;12;24;12;12" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="4.65s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="4.65s" repeatCount="indefinite"/></circle>
+        <circle cx="550" cy="510" r="12"><animate attributeName="r" values="12;12;24;12;12" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="6.2s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.28;.34;.45;1" dur="9.6s" begin="6.2s" repeatCount="indefinite"/></circle>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <section class="vertical" id="hr">
@@ -1561,23 +1700,24 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
   document.querySelectorAll('.vertical-canvas').forEach(el=>{el.style.display='none'});
 }
 
-/* ---------- MARKETING HUB VISIBILITY ---------- */
-(function marketingHubVisibility(){
-  const hub=document.querySelector('.marketing-hub-visual');
-  const svg=hub?.querySelector('svg');
-  if(!hub||!svg)return;
-  let visible=false;
-  const sync=()=>{
-    const active=visible&&!document.hidden&&!reduceMotion;
-    hub.classList.toggle('is-active',active);
-    if(typeof svg.pauseAnimations==='function'){
-      if(active)svg.unpauseAnimations();else svg.pauseAnimations();
-    }
-  };
-  const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync()},{rootMargin:'140px 0px'});
-  observer.observe(hub);
-  document.addEventListener('visibilitychange',sync);
-  sync();
+/* ---------- TECH VISUAL VISIBILITY ---------- */
+(function techVisualVisibility(){
+  document.querySelectorAll('.marketing-hub-visual,.healthcare-tech-visual').forEach(visual=>{
+    const svg=visual.querySelector('svg');
+    if(!svg)return;
+    let visible=false;
+    const sync=()=>{
+      const active=visible&&!document.hidden&&!reduceMotion;
+      visual.classList.toggle('is-active',active);
+      if(typeof svg.pauseAnimations==='function'){
+        if(active)svg.unpauseAnimations();else svg.pauseAnimations();
+      }
+    };
+    const observer=new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync()},{rootMargin:'140px 0px'});
+    observer.observe(visual);
+    document.addEventListener('visibilitychange',sync);
+    sync();
+  });
 })();
 
 /* ---------- VIDEO PIN + ZOOM ---------- */
