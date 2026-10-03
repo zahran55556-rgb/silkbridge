@@ -374,6 +374,12 @@
   @keyframes hrPeopleOrbit{to{transform:rotate(360deg)}}
   @keyframes hrCoreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
   @keyframes hrCardFloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
+  .hospitality-hub-visual{flex:1;min-width:0;height:540px;position:relative;overflow:hidden;border-radius:36px;perspective:1300px;background:radial-gradient(circle at 50% 44%,rgba(29,173,190,.18),transparent 32%),radial-gradient(circle at 50% 80%,rgba(201,162,39,.07),transparent 28%),linear-gradient(145deg,rgba(3,17,30,.44),rgba(3,10,19,.12));box-shadow:inset 0 0 90px rgba(0,7,24,.42)}
+  .hospitality-hub-visual svg{width:100%;height:100%;display:block;transform:perspective(1300px) rotateX(2.5deg) scale(.97);transform-origin:center;filter:drop-shadow(0 28px 38px rgba(0,0,0,.28));animation:hsSceneFloat 8.8s ease-in-out infinite;animation-play-state:paused}
+  .hospitality-hub-visual .hs-core,.hospitality-hub-visual .hs-card{animation-play-state:paused}
+  .hospitality-hub-visual.is-active svg,.hospitality-hub-visual.is-active .hs-core,.hospitality-hub-visual.is-active .hs-card{animation-play-state:running}
+  .hs-core{animation:hsCoreBreath 6s ease-in-out infinite}.hs-card{animation:hsCardFloat 6.6s ease-in-out infinite}.hs-card:nth-of-type(even){animation-delay:-2.4s}
+  @keyframes hsSceneFloat{0%,100%{transform:perspective(1300px) rotateX(2.5deg) translateY(0) scale(.97)}50%{transform:perspective(1300px) rotateX(1deg) translateY(-7px) scale(.98)}}@keyframes hsCoreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}@keyframes hsCardFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
   .cyber-shield-visual{flex:1;min-width:0;height:540px;position:relative;overflow:hidden;border-radius:36px;perspective:1300px;background:radial-gradient(circle at 50% 44%,rgba(20,133,239,.22),transparent 31%),radial-gradient(circle at 50% 78%,rgba(63,225,215,.10),transparent 32%),linear-gradient(145deg,rgba(3,15,31,.46),rgba(2,9,18,.12));box-shadow:inset 0 0 92px rgba(0,7,24,.46)}
   .cyber-shield-visual::before{content:"";position:absolute;inset:7%;pointer-events:none;background:radial-gradient(circle,rgba(66,188,255,.11),transparent 62%);filter:blur(28px)}
   .cyber-shield-visual svg{width:100%;height:100%;display:block;position:relative;z-index:1;transform:perspective(1300px) rotateX(3deg) rotateY(1.5deg) scale(.97);transform-origin:center;filter:drop-shadow(0 30px 40px rgba(0,0,0,.32));animation:cySceneFloat 8s ease-in-out infinite;animation-play-state:paused}
@@ -393,7 +399,7 @@
   @media(max-width:860px){
     .vertical, .vertical.reverse{ flex-direction:column; padding:80px 6%; gap:36px; }
     .vertical-canvas{ width:100%; height:320px; }
-    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual,.cyber-shield-visual,.cyber-shield-visual{width:100%;height:380px}
+    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual,.hospitality-hub-visual,.cyber-shield-visual,.cyber-shield-visual{width:100%;height:380px}
     .vertical-inner{ max-width:100%; }
   }
 
@@ -651,7 +657,7 @@
 
 
   @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-ecg-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}.cyber-shield-visual svg,.cyber-shield-visual .cy-ring,.cyber-shield-visual .cy-shield{animation:none!important}.cyber-shield-visual .cy-flow,.cyber-shield-visual .cy-endpoint-pulse{display:none!important}}
+    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-ecg-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}.hospitality-hub-visual svg,.hospitality-hub-visual .hs-core,.hospitality-hub-visual .hs-card{animation:none!important}.hospitality-hub-visual .hs-flow,.hospitality-hub-visual .hs-endpoint-pulse{display:none!important}.cyber-shield-visual svg,.cyber-shield-visual .cy-ring,.cyber-shield-visual .cy-shield{animation:none!important}.cyber-shield-visual .cy-flow,.cyber-shield-visual .cy-endpoint-pulse{display:none!important}}
     .ticker,.hero-scroll-cue i{animation:none!important}
     .cf-card,.sol-card,.brand-item,.ticker-chip{transition:none!important}
   }
@@ -1311,7 +1317,63 @@
       </a>
     </div>
   </div>
-  <div class="vertical-canvas" data-shape="journey"></div>
+  <div class="hospitality-hub-visual" role="img" aria-label="Animated smart hotel management hub connecting reservations, PMS, front desk, rooms, billing and distribution">
+    <svg viewBox="0 0 1100 620" aria-hidden="true">
+      <defs>
+        <radialGradient id="hsCore" cx="45%" cy="30%" r="78%"><stop offset="0" stop-color="#36E6DF"/><stop offset=".34" stop-color="#137FB1"/><stop offset="1" stop-color="#06182B"/></radialGradient>
+        <linearGradient id="hsGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6CFFF4" stop-opacity=".32"/><stop offset=".48" stop-color="#167DA9" stop-opacity=".24"/><stop offset="1" stop-color="#07192A" stop-opacity=".88"/></linearGradient>
+        <linearGradient id="hsLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#62F7EE" stop-opacity=".95"/><stop offset=".55" stop-color="#4BC8FF" stop-opacity=".72"/><stop offset="1" stop-color="#3975C8" stop-opacity=".25"/></linearGradient>
+        <filter id="hsGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="hsSoft" x="-140%" y="-140%" width="380%" height="380%"><feGaussianBlur stdDeviation="18"/></filter>
+        <path id="hsPath1" d="M456 247 H392 L350 205 H292 L252 170 H190"/>
+        <path id="hsPath2" d="M430 310 H350 L305 310 H238 L205 280 H160"/>
+        <path id="hsPath3" d="M456 373 H392 L350 415 H292 L252 452 H190"/>
+        <path id="hsPath4" d="M644 247 H708 L750 205 H808 L848 170 H910"/>
+        <path id="hsPath5" d="M670 310 H750 L795 310 H862 L895 280 H940"/>
+        <path id="hsPath6" d="M644 373 H708 L750 415 H808 L848 452 H910"/>
+      </defs>
+      <g opacity=".17"><path d="M88 112 H1012 M68 214 H1032 M50 316 H1050 M68 418 H1032 M88 520 H1012" stroke="#45C6D8" stroke-dasharray="3 13"/><path d="M168 66 V552 M344 50 V566 M550 42 V576 M756 50 V566 M932 66 V552" stroke="#428FC1" stroke-dasharray="4 15"/></g>
+      <g class="hs-architecture" fill="none" stroke="#53D9E0" stroke-opacity=".13" stroke-width="2">
+        <path d="M340 484 V198 L550 105 L760 198 V484"/><path d="M388 484 V220 M458 484 V190 M642 484 V190 M712 484 V220"/><path d="M340 245 H760 M340 330 H760 M340 415 H760"/>
+      </g>
+      <g class="hs-routes" fill="none" stroke="url(#hsLine)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><use href="#hsPath1"/><use href="#hsPath2"/><use href="#hsPath3"/><use href="#hsPath4"/><use href="#hsPath5"/><use href="#hsPath6"/></g>
+      <g class="hs-platform">
+        <ellipse cx="550" cy="510" rx="245" ry="44" fill="#2BE7DF" opacity=".07" filter="url(#hsSoft)"/>
+        <ellipse cx="550" cy="502" rx="215" ry="34" fill="none" stroke="#65F8EE" stroke-opacity=".25" stroke-width="3"/>
+        <ellipse cx="550" cy="502" rx="172" ry="25" fill="none" stroke="#4FBFFF" stroke-opacity=".32" stroke-width="2" stroke-dasharray="12 9"/>
+      </g>
+      <g class="hs-core" transform-origin="550px 315px">
+        <ellipse cx="550" cy="314" rx="160" ry="166" fill="#28C9E0" opacity=".12" filter="url(#hsSoft)"/>
+        <path d="M550 152 688 221 688 389 550 458 412 389 412 221Z" fill="url(#hsCore)" stroke="#84FFF7" stroke-width="4" filter="url(#hsGlow)"/>
+        <path d="M550 177 662 233 662 377 550 433 438 377 438 233Z" fill="none" stroke="#87FDF5" stroke-opacity=".28" stroke-width="2" stroke-dasharray="5 9"/>
+        <g class="hs-hotel" transform="translate(485 205)" fill="none" stroke="#E8FFFF" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 120 V39 L65 8 113 39 V120" stroke-width="7"/>
+          <path d="M39 120 V62 H91 V120 M52 78 H78 M52 95 H78" stroke-width="5"/>
+          <path d="M5 120 H125" stroke-width="7"/>
+        </g>
+        <text x="550" y="361" text-anchor="middle" fill="#F0FFFF" font-family="Space Grotesk, sans-serif" font-size="27" font-weight="700">HOTEL</text>
+        <text x="550" y="393" text-anchor="middle" fill="#BFFBFF" font-family="Space Grotesk, sans-serif" font-size="21" font-weight="600">MANAGEMENT</text>
+      </g>
+      <g class="hs-card" transform="translate(108 112)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M28 31 H64 V64 H28Z M34 24 V36 M58 24 V36 M35 47 H57" fill="none" stroke="#E8FFFF" stroke-width="4"/><text x="82" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">RESERVATIONS</text></g>
+      <g class="hs-card" transform="translate(74 245)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><rect x="28" y="27" width="40" height="35" rx="5" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M36 37 H60 M36 47 H54" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">SMART PMS</text></g>
+      <g class="hs-card" transform="translate(108 404)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M28 58 H66 M34 58 V38 H60 V58 M40 38 V28 H54 V38" fill="none" stroke="#E8FFFF" stroke-width="4"/><circle cx="47" cy="25" r="6" fill="#7FFFF6"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">FRONT DESK</text></g>
+      <g class="hs-card" transform="translate(826 112)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><path d="M25 55 V32 H63 V55 M25 45 H63 M33 32 V24 M55 32 V24" fill="none" stroke="#E8FFFF" stroke-width="4"/><circle cx="72" cy="34" r="8" fill="none" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">ROOMS &amp; GUESTS</text></g>
+      <g class="hs-card" transform="translate(860 245)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><rect x="27" y="25" width="39" height="40" rx="5" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M36 35 H57 M36 45 H57 M36 55 H50" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">SALES &amp; BILLING</text></g>
+      <g class="hs-card" transform="translate(826 404)"><rect width="166" height="102" rx="18" fill="url(#hsGlass)" stroke="#65EEE8" stroke-width="2"/><circle cx="47" cy="43" r="22" fill="none" stroke="#E8FFFF" stroke-width="4"/><path d="M25 43 H69 M47 21 C36 32 36 54 47 65 M47 21 C58 32 58 54 47 65" fill="none" stroke="#7FFFF6" stroke-width="3"/><text x="83" y="80" text-anchor="middle" fill="#C7FCFF" font-family="DM Mono, monospace" font-size="12">DISTRIBUTION</text></g>
+      <g class="hs-ports" fill="#EDFFFF" stroke="#64F5EC" stroke-width="4" filter="url(#hsGlow)"><circle cx="456" cy="247" r="8"/><circle cx="430" cy="310" r="8"/><circle cx="456" cy="373" r="8"/><circle cx="644" cy="247" r="8"/><circle cx="670" cy="310" r="8"/><circle cx="644" cy="373" r="8"/></g>
+      <g class="hs-flow" fill="#F1FFFF" filter="url(#hsGlow)">
+        <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="1.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="3s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="3s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="4.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="4.5s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="6s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="7.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="7.5s" repeatCount="indefinite"/></circle>
+      </g>
+      <g class="hs-endpoint-pulse" fill="none" stroke="#A6FFF8" stroke-width="4" filter="url(#hsGlow)">
+        <circle cx="190" cy="170" r="13"/><circle cx="160" cy="280" r="13"/><circle cx="190" cy="452" r="13"/><circle cx="910" cy="170" r="13"/><circle cx="940" cy="280" r="13"/><circle cx="910" cy="452" r="13"/>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <section class="vertical" id="cyber">
