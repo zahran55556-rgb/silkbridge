@@ -268,10 +268,12 @@
   .brand-item .brand-text strong{ display:block; font-size:0.92rem; margin-bottom:4px; font-family:'Space Grotesk',sans-serif; }
   .brand-item .brand-text span{ color:var(--muted); font-size:0.76rem; line-height:1.5; }
   .vertical-canvas{
-    flex:1; height:460px; position:relative; isolation:isolate; overflow:hidden; border-radius:34px;
+    flex:1; height:500px; position:relative; isolation:isolate; overflow:hidden; border-radius:34px;
     background:
-      radial-gradient(circle at 50% 46%,rgba(63,208,201,.10),transparent 31%),
-      radial-gradient(circle at 70% 30%,rgba(201,162,39,.055),transparent 22%);
+      radial-gradient(circle at 48% 43%,rgba(63,208,201,.15),transparent 26%),
+      radial-gradient(circle at 69% 30%,rgba(201,162,39,.085),transparent 19%),
+      radial-gradient(circle at 50% 78%,rgba(9,17,29,.82),transparent 42%);
+    box-shadow:inset 0 0 70px rgba(3,9,16,.38);
   }
   .vertical-canvas::before{
     content:"";position:absolute;inset:10%;z-index:0;pointer-events:none;border-radius:50%;
@@ -289,7 +291,7 @@
   .thread{display:none!important}
   @media(max-width:860px){
     .vertical, .vertical.reverse{ flex-direction:column; padding:80px 6%; gap:36px; }
-    .vertical-canvas{ width:100%; height:300px; }
+    .vertical-canvas{ width:100%; height:320px; }
     .vertical-inner{ max-width:100%; }
   }
 
@@ -1160,130 +1162,194 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 100);
-  camera.position.z = 5.0;
+  camera.position.set(0,0,5.4);
+
+  const ambientLight=new THREE.AmbientLight(0xffffff,.68);
+  const keyLight=new THREE.DirectionalLight(0xffffff,1.05);
+  keyLight.position.set(4.5,3.4,5.6);
+  const tealLight=new THREE.PointLight(0x3FD0C9,1.8,12);
+  tealLight.position.set(-3.2,1.4,3.8);
+  const goldLight=new THREE.PointLight(0xC9A227,1.25,10);
+  goldLight.position.set(2.5,-1.4,3.2);
+  scene.add(ambientLight,keyLight,tealLight,goldLight);
 
   let mesh;
-  const extraSpin=[],pulseNodes=[];
-  const teal=0x3FD0C9,gold=0xC9A227,muted=0x8291AA;
-  const basic=(color,opacity=1)=>new THREE.MeshBasicMaterial({color,transparent:opacity<1,opacity});
-  const lineMat=(color=teal,opacity=.36)=>new THREE.LineBasicMaterial({color,transparent:true,opacity});
-  function addNode(group,pos,r=.075,color=teal,phase=0){
-    const node=new THREE.Mesh(new THREE.SphereGeometry(r,16,16),basic(color,.96));
+  const extraSpin=[],pulseNodes=[],floatParts=[];
+  const teal=0x3FD0C9,gold=0xC9A227,navy=0x132238,soft=0x9DB1C5,deep=0x09111D;
+  const quality=isMobile?18:32;
+  const phong=(color,{opacity=1,emissive=0x000000,emissiveIntensity=.18,shininess=70,specular=0x8fb9c2,side=THREE.FrontSide}={})=>
+    new THREE.MeshPhongMaterial({color,transparent:opacity<1,opacity,emissive,emissiveIntensity,shininess,specular,side});
+  const glass=(color=teal,opacity=.14)=>phong(color,{opacity,emissive:color,emissiveIntensity:.16,shininess:95,specular:0xffffff,side:THREE.DoubleSide});
+  const lineMat=(color=teal,opacity=.34)=>new THREE.LineBasicMaterial({color,transparent:true,opacity});
+
+  function addSolidSphere(group,pos,r,color=teal,phase=0){
+    const node=new THREE.Mesh(new THREE.SphereGeometry(r,quality,quality),phong(color,{emissive:color,emissiveIntensity:.16,shininess:95,specular:0xffffff}));
     node.position.copy(pos);group.add(node);
-    const halo=new THREE.Mesh(new THREE.SphereGeometry(r*2.5,14,14),basic(color,.10));
-    halo.position.copy(pos);group.add(halo);pulseNodes.push({obj:halo,phase});
+    const halo=new THREE.Mesh(new THREE.SphereGeometry(r*1.58,quality,quality),glass(color,.075));
+    halo.position.copy(pos);group.add(halo);pulseNodes.push({obj:halo,phase,base:1});
     return node;
   }
-  function addSegments(group,pairs,color=teal,opacity=.28){
-    const pts=[];pairs.forEach(([a,b])=>pts.push(a,b));
-    const g=new THREE.BufferGeometry().setFromPoints(pts);
-    group.add(new THREE.LineSegments(g,lineMat(color,opacity)));
+  function addCylinderBetween(group,a,b,r=.025,color=teal,opacity=.72){
+    const mid=a.clone().add(b).multiplyScalar(.5);
+    const len=a.distanceTo(b);
+    const geo=new THREE.CylinderGeometry(r,r,len,isMobile?8:14,1,false);
+    const mat=phong(color,{opacity,emissive:color,emissiveIntensity:.12,shininess:75,specular:0x9edbd8});
+    const m=new THREE.Mesh(geo,mat);m.position.copy(mid);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),b.clone().sub(a).normalize());
+    group.add(m);return m;
   }
-  function addRing(group,radius,color=teal,opacity=.35,rot=[Math.PI/2,0,0]){
-    const ring=new THREE.Mesh(new THREE.TorusGeometry(radius,.012,8,isMobile?54:96),basic(color,opacity));
+  function addRing(group,radius,tube=.035,color=teal,opacity=.74,rot=[Math.PI/2,0,0]){
+    const ring=new THREE.Mesh(new THREE.TorusGeometry(radius,tube,isMobile?8:14,isMobile?54:100),phong(color,{opacity,emissive:color,emissiveIntensity:.15,shininess:85,specular:0xb9eeeb}));
     ring.rotation.set(...rot);group.add(ring);return ring;
+  }
+  function addPedestal(group,color=teal){
+    const disc=new THREE.Mesh(new THREE.CylinderGeometry(1.68,1.92,.18,isMobile?36:64,1,false),phong(navy,{opacity:.78,emissive:color,emissiveIntensity:.05,shininess:55,specular:0x385068}));
+    disc.position.y=-1.72;disc.scale.z=.58;group.add(disc);
+    const glow=new THREE.Mesh(new THREE.CylinderGeometry(1.2,1.45,.028,isMobile?36:64,1,false),glass(color,.10));
+    glow.position.y=-1.60;glow.scale.z=.58;group.add(glow);
+  }
+  function addGlassShell(group,r=1.55,color=teal,opacity=.075){
+    const shell=new THREE.Mesh(new THREE.SphereGeometry(r,isMobile?28:46,isMobile?20:34),glass(color,opacity));
+    group.add(shell);return shell;
+  }
+  function makeRoundedBox(w,h,d,radiusColor=teal,opacity=.92){
+    const box=new THREE.Mesh(new THREE.BoxGeometry(w,h,d,2,2,2),phong(navy,{opacity,emissive:radiusColor,emissiveIntensity:.06,shininess:88,specular:0x9eb3c4}));
+    const edges=new THREE.LineSegments(new THREE.EdgesGeometry(box.geometry),lineMat(radiusColor,.36));
+    box.add(edges);return box;
   }
 
   switch(shapeName){
     case 'network': {
       mesh=new THREE.Group();
-      const core=addNode(mesh,new THREE.Vector3(0,0,0),.18,gold,.2);
-      const ringA=addRing(mesh,1.05,teal,.48,[1.2,.2,.25]);
-      const ringB=addRing(mesh,1.65,gold,.22,[.45,.65,-.3]);
-      extraSpin.push({obj:ringA,speed:.003,axis:'z'},{obj:ringB,speed:-.002,axis:'y'});
-      const pairs=[];
-      const count=isMobile?8:12;
+      addPedestal(mesh,teal);
+      const core=addSolidSphere(mesh,new THREE.Vector3(0,0,0),.54,gold,.2);
+      const innerShell=addGlassShell(mesh,.78,gold,.055);
+      const ringA=addRing(mesh,1.08,.055,teal,.82,[1.12,.18,.32]);
+      const ringB=addRing(mesh,1.52,.042,gold,.58,[.52,.82,-.28]);
+      const ringC=addRing(mesh,1.78,.025,teal,.24,[1.54,-.18,.15]);
+      extraSpin.push({obj:ringA,speed:.0026,axis:'z'},{obj:ringB,speed:-.002,axis:'y'},{obj:ringC,speed:.0016,axis:'x'});
+      const count=isMobile?7:10,points=[];
       for(let i=0;i<count;i++){
         const a=(i/count)*Math.PI*2;
-        const radius=i%3===0?1.62:1.08;
-        const p=new THREE.Vector3(Math.cos(a)*radius,Math.sin(a)*radius*.64,Math.sin(a*1.7)*.38);
-        addNode(mesh,p,i%3===0?.075:.06,i%4===0?gold:teal,i*.35);
-        pairs.push([new THREE.Vector3(0,0,0),p]);
+        const radius=i%2?1.25:1.62;
+        const p=new THREE.Vector3(Math.cos(a)*radius,Math.sin(a)*radius*.66,Math.sin(a*1.8)*.46);
+        points.push(p);addSolidSphere(mesh,p,i%3===0?.13:.10,i%4===0?gold:teal,i*.43);
+        addCylinderBetween(mesh,new THREE.Vector3(0,0,0),p,.018,i%4===0?gold:teal,.38);
       }
-      addSegments(mesh,pairs,teal,.22);
-      mesh.rotation.x=.12;mesh.userData.spinY=.0018;mesh.userData.spinX=.0004;
+      points.forEach((p,i)=>{const q=points[(i+1)%points.length];if(i%2===0)addCylinderBetween(mesh,p,q,.012,soft,.22)});
+      const dataShell=addGlassShell(mesh,2.03,teal,.035);dataShell.scale.y=.76;
+      mesh.rotation.set(.08,-.25,.02);mesh.userData.spinY=.00145;mesh.userData.spinX=.00028;mesh.userData.float=.035;
+      floatParts.push({obj:core,amp:.035,speed:1.1,phase:0});
       break;
     }
     case 'lattice': {
       mesh=new THREE.Group();
-      const pts=[],pairs=[];
-      const coords=[-.9,0,.9],layers=isMobile?[-.38,.38]:[-.55,0,.55];
-      layers.forEach((z,zi)=>coords.forEach((y,yi)=>coords.forEach((x,xi)=>{
-        const p=new THREE.Vector3(x,y*.76,z);pts.push({p,xi,yi,zi});
-        addNode(mesh,p,.045,(xi===1&&yi===1)?gold:teal,(xi+yi+zi)*.4);
-      })));
-      pts.forEach(a=>pts.forEach(b=>{
-        const d=Math.abs(a.xi-b.xi)+Math.abs(a.yi-b.yi)+Math.abs(a.zi-b.zi);
-        if(d===1 && (a.xi+a.yi+a.zi)<(b.xi+b.yi+b.zi))pairs.push([a.p,b.p]);
-      }));
-      addSegments(mesh,pairs,muted,.22);
-      addRing(mesh,1.55,teal,.18,[Math.PI/2.3,.15,.25]);
-      mesh.rotation.set(.4,-.5,.08);mesh.userData.spinY=.0015;mesh.userData.spinX=.00035;
+      addPedestal(mesh,teal);
+      const core=addSolidSphere(mesh,new THREE.Vector3(0,0,0),.38,gold,.12);
+      const modules=[];
+      const modulePositions=[
+        [-1.18,.72,-.35],[0,1.05,.2],[1.18,.72,-.28],
+        [-1.28,-.35,.2],[0,-.58,-.18],[1.28,-.35,.28]
+      ];
+      modulePositions.forEach((arr,i)=>{
+        const p=new THREE.Vector3(...arr);
+        const cell=new THREE.Mesh(new THREE.CylinderGeometry(.34,.34,.42,6,1,false),phong(i===4?gold:teal,{opacity:.94,emissive:i===4?gold:teal,emissiveIntensity:.10,shininess:90,specular:0xffffff}));
+        cell.rotation.x=Math.PI/2;cell.rotation.z=i*.32;cell.position.copy(p);mesh.add(cell);modules.push(p);
+        const cap=new THREE.Mesh(new THREE.CylinderGeometry(.38,.38,.16,6,1,false),glass(i===4?gold:teal,.12));
+        cap.rotation.x=Math.PI/2;cap.position.copy(p);cap.position.z+=.25;mesh.add(cap);pulseNodes.push({obj:cap,phase:i*.55,base:1});
+        addCylinderBetween(mesh,new THREE.Vector3(0,0,0),p,.028,i===4?gold:teal,.54);
+      });
+      for(let i=0;i<modules.length-1;i++)addCylinderBetween(mesh,modules[i],modules[i+1],.015,soft,.24);
+      const shell=addGlassShell(mesh,1.85,teal,.045);shell.scale.set(1,.82,.78);
+      const clinicalRing=addRing(mesh,1.48,.028,teal,.34,[Math.PI/2.2,.18,.15]);
+      extraSpin.push({obj:clinicalRing,speed:.0019,axis:'z'});
+      mesh.rotation.set(.28,-.42,.08);mesh.userData.spinY=.0012;mesh.userData.spinX=.00022;mesh.userData.float=.028;
+      floatParts.push({obj:core,amp:.025,speed:1.3,phase:.4});
       break;
     }
     case 'workforce': {
       mesh=new THREE.Group();
-      addNode(mesh,new THREE.Vector3(0,0,0),.20,gold,.1);
-      const pairs=[],count=isMobile?7:10;
-      const ring=addRing(mesh,1.45,teal,.42,[Math.PI/2,0,0]);
-      extraSpin.push({obj:ring,speed:.0024,axis:'z'});
+      addPedestal(mesh,gold);
+      const core=addSolidSphere(mesh,new THREE.Vector3(0,.05,0),.50,gold,.1);
+      const crown=new THREE.Mesh(new THREE.TorusGeometry(.70,.11,isMobile?10:16,isMobile?48:86),phong(teal,{opacity:.86,emissive:teal,emissiveIntensity:.10,shininess:90,specular:0xffffff}));
+      crown.rotation.x=Math.PI/2;crown.position.y=.05;mesh.add(crown);
+      const people=[],count=isMobile?6:8;
       for(let i=0;i<count;i++){
         const a=(i/count)*Math.PI*2;
-        const p=new THREE.Vector3(Math.cos(a)*1.45,Math.sin(a)*.72,Math.sin(a)*.22);
-        addNode(mesh,p,.065,teal,i*.5);pairs.push([new THREE.Vector3(0,0,0),p]);
-        if(i%3===0){
-          const outer=p.clone().multiplyScalar(1.34);outer.z+=(i%2?.22:-.22);
-          addNode(mesh,outer,.05,gold,i*.65);pairs.push([p,outer]);
-        }
+        const p=new THREE.Vector3(Math.cos(a)*1.58,Math.sin(a)*.82,Math.sin(a)*.26);
+        people.push(p);
+        const person=new THREE.Group();
+        const head=new THREE.Mesh(new THREE.SphereGeometry(.12,quality,quality),phong(teal,{emissive:teal,emissiveIntensity:.11,shininess:85,specular:0xffffff}));
+        head.position.y=.22;person.add(head);
+        const body=new THREE.Mesh(new THREE.CylinderGeometry(.09,.12,.30,isMobile?10:14),phong(navy,{emissive:teal,emissiveIntensity:.08,shininess:80,specular:0x9ac9c6}));
+        body.position.y=-.05;person.add(body);
+        const lower=new THREE.Mesh(new THREE.SphereGeometry(.105,isMobile?10:14,isMobile?10:14),phong(navy,{emissive:teal,emissiveIntensity:.07,shininess:78,specular:0x9ac9c6}));
+        lower.scale.y=.62;lower.position.y=-.20;person.add(lower);
+        person.position.copy(p);person.rotation.z=-a*.18;mesh.add(person);floatParts.push({obj:person,amp:.025,speed:1.15,phase:i*.6});
+        addCylinderBetween(mesh,new THREE.Vector3(0,.05,0),p,.02,teal,.34);
       }
-      addSegments(mesh,pairs,teal,.25);
-      mesh.rotation.x=.18;mesh.userData.spinY=.0017;mesh.userData.spinX=.00025;
+      const ring=addRing(mesh,1.63,.045,teal,.56,[Math.PI/2,0,0]);
+      ring.scale.y=.72;extraSpin.push({obj:ring,speed:.0019,axis:'z'});
+      const outer=addRing(mesh,1.94,.018,gold,.22,[1.18,.35,.2]);extraSpin.push({obj:outer,speed:-.0015,axis:'y'});
+      mesh.rotation.set(.12,-.18,0);mesh.userData.spinY=.00125;mesh.userData.spinX=.00018;mesh.userData.float=.026;
+      floatParts.push({obj:core,amp:.032,speed:1.0,phase:.2});
       break;
     }
     case 'journey': {
       mesh=new THREE.Group();
-      const curve=new THREE.CatmullRomCurve3([
-        new THREE.Vector3(-1.8,-.75,.15),new THREE.Vector3(-1.1,.15,-.25),
-        new THREE.Vector3(-.35,.65,.2),new THREE.Vector3(.45,.15,-.2),
-        new THREE.Vector3(1.1,-.25,.25),new THREE.Vector3(1.75,.65,0)
+      addPedestal(mesh,teal);
+      const baseCurve=new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-1.75,-.72,.25),new THREE.Vector3(-1.15,.18,-.35),
+        new THREE.Vector3(-.35,.72,.18),new THREE.Vector3(.52,.18,-.22),
+        new THREE.Vector3(1.18,-.30,.30),new THREE.Vector3(1.72,.66,.08)
       ]);
-      const tube=new THREE.Mesh(new THREE.TubeGeometry(curve,isMobile?50:90,.025,8,false),basic(teal,.72));
-      mesh.add(tube);
-      const samples=curve.getSpacedPoints(5);
-      samples.forEach((p,i)=>addNode(mesh,p,i===0||i===samples.length-1?.09:.065,i===2||i===5?gold:teal,i*.55));
-      const upper=curve.getSpacedPoints(26).map(p=>p.clone().add(new THREE.Vector3(0,.38,.22)));
-      mesh.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(upper),lineMat(gold,.20)));
-      [-1.2,0,1.2].forEach((x,i)=>{
-        const box=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(.65,.48,.42)),lineMat(i===1?gold:teal,.20));
-        box.position.set(x,i===1?.1:-.25,-.45);box.rotation.y=.45;mesh.add(box);
+      const ribbonA=new THREE.Mesh(new THREE.TubeGeometry(baseCurve,isMobile?58:100,.10,isMobile?8:14,false),phong(teal,{opacity:.92,emissive:teal,emissiveIntensity:.12,shininess:95,specular:0xffffff}));
+      mesh.add(ribbonA);
+      const curve2=new THREE.CatmullRomCurve3(baseCurve.points.map((p,i)=>p.clone().add(new THREE.Vector3(0,.34, i%2?.34:-.24))));
+      const ribbonB=new THREE.Mesh(new THREE.TubeGeometry(curve2,isMobile?58:100,.055,isMobile?8:14,false),phong(gold,{opacity:.78,emissive:gold,emissiveIntensity:.10,shininess:90,specular:0xffffff}));
+      mesh.add(ribbonB);
+      const samples=baseCurve.getSpacedPoints(5);
+      samples.forEach((p,i)=>{
+        const pod=makeRoundedBox(i===2?.72:.58,i===2?.48:.38,.46,i===2?gold:teal,.92);
+        pod.position.copy(p);pod.rotation.y=.45+(i*.18);pod.rotation.x=.08;mesh.add(pod);
+        addSolidSphere(mesh,p.clone().add(new THREE.Vector3(0,.34,.18)),i===2?.11:.085,i===2?gold:teal,i*.5);
       });
-      mesh.rotation.x=.12;mesh.userData.spinY=.0008;mesh.userData.spinX=.00015;
+      const shell=addGlassShell(mesh,2.02,teal,.035);shell.scale.set(1,.72,.64);
+      mesh.rotation.set(.10,-.20,.02);mesh.userData.spinY=.00068;mesh.userData.spinX=.00012;mesh.userData.float=.022;
+      extraSpin.push({obj:ribbonB,speed:.0008,axis:'z'});
       break;
     }
     case 'shield': {
       mesh=new THREE.Group();
-      const outline=[
-        new THREE.Vector3(0,1.75,0),new THREE.Vector3(1.25,1.15,0),new THREE.Vector3(1.05,-.45,0),
-        new THREE.Vector3(.55,-1.35,0),new THREE.Vector3(0,-1.8,0),new THREE.Vector3(-.55,-1.35,0),
-        new THREE.Vector3(-1.05,-.45,0),new THREE.Vector3(-1.25,1.15,0)
-      ];
-      const loop=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(outline),lineMat(teal,.72));mesh.add(loop);
-      const inner=outline.map(p=>p.clone().multiplyScalar(.72));
-      mesh.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(inner),lineMat(gold,.34)));
-      addNode(mesh,new THREE.Vector3(0,0,0),.16,gold,.15);
-      const spokes=inner.filter((_,i)=>i%2===0).map(p=>[new THREE.Vector3(0,0,0),p]);
-      addSegments(mesh,spokes,teal,.23);
-      inner.filter((_,i)=>i%2===0).forEach((p,i)=>addNode(mesh,p,.05,teal,i*.7));
-      const scan=addRing(mesh,1.42,teal,.30,[Math.PI/2,0,0]);
-      scan.scale.y=.62;extraSpin.push({obj:scan,speed:.006,axis:'z'});
-      mesh.rotation.set(.08,-.18,0);mesh.userData.spinY=.0007;mesh.userData.spinX=.00012;
+      addPedestal(mesh,teal);
+      const shape=new THREE.Shape();
+      shape.moveTo(0,1.72);
+      shape.bezierCurveTo(.62,1.48,1.15,1.30,1.34,1.12);
+      shape.lineTo(1.12,-.40);
+      shape.bezierCurveTo(.96,-1.15,.48,-1.62,0,-1.90);
+      shape.bezierCurveTo(-.48,-1.62,-.96,-1.15,-1.12,-.40);
+      shape.lineTo(-1.34,1.12);
+      shape.bezierCurveTo(-1.15,1.30,-.62,1.48,0,1.72);
+      const body=new THREE.Mesh(new THREE.ExtrudeGeometry(shape,{depth:.36,bevelEnabled:true,bevelSegments:isMobile?2:4,steps:1,bevelSize:.08,bevelThickness:.08,curveSegments:isMobile?18:30}),phong(navy,{opacity:.96,emissive:teal,emissiveIntensity:.08,shininess:105,specular:0xc7ffff}));
+      body.position.z=-.18;mesh.add(body);
+      const face=new THREE.Mesh(new THREE.ShapeGeometry(shape,isMobile?18:30),glass(teal,.18));face.position.z=.205;mesh.add(face);
+      const innerShape=shape.clone();
+      const core=addSolidSphere(mesh,new THREE.Vector3(0,0,.44),.30,gold,.25);
+      const lockRing=addRing(mesh,.62,.075,teal,.88,[Math.PI/2,0,0]);lockRing.position.z=.38;
+      const scan=addRing(mesh,1.62,.025,teal,.34,[Math.PI/2,0,0]);scan.scale.y=.74;scan.position.z=.10;
+      extraSpin.push({obj:scan,speed:.0038,axis:'z'},{obj:lockRing,speed:-.0015,axis:'z'});
+      const shell=addGlassShell(mesh,2.02,teal,.028);shell.scale.set(.88,1,.70);
+      mesh.rotation.set(.02,-.22,0);mesh.userData.spinY=.00062;mesh.userData.spinX=.00008;mesh.userData.float=.018;
+      floatParts.push({obj:core,amp:.028,speed:1.25,phase:.3});
       break;
     }
     default: {
       mesh=new THREE.Group();
-      addNode(mesh,new THREE.Vector3(0,0,0),.18,teal,0);
-      addRing(mesh,1.4,teal,.36,[1.1,.4,.2]);
-      mesh.userData.spinY=.0015;mesh.userData.spinX=.0003;
+      addPedestal(mesh,teal);
+      addSolidSphere(mesh,new THREE.Vector3(0,0,0),.58,teal,0);
+      addRing(mesh,1.35,.055,teal,.7,[1.1,.4,.2]);
+      addGlassShell(mesh,1.72,teal,.04);
+      mesh.userData.spinY=.0011;mesh.userData.spinX=.0002;mesh.userData.float=.02;
     }
   }
   mesh.scale.set(0,0,0);
@@ -1304,12 +1370,15 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
       const t=performance.now()*.001;
       mesh.rotation.y+=mesh.userData.spinY||.0012;
       mesh.rotation.x+=mesh.userData.spinX||.0002;
+      mesh.position.y=Math.sin(t*.78)*(mesh.userData.float||.02);
       extraSpin.forEach(s=>{s.obj.rotation[s.axis||'z']+=s.speed});
       pulseNodes.forEach((p,i)=>{
-        const scale=1+((Math.sin(t*1.8+p.phase)+1)/2)*.42;
+        const pulse=(Math.sin(t*1.7+p.phase)+1)/2;
+        const scale=(p.base||1)*(1+pulse*.18);
         p.obj.scale.setScalar(scale);
-        p.obj.material.opacity=.055+((Math.sin(t*1.8+p.phase)+1)/2)*.07;
+        p.obj.material.opacity=.045+pulse*.065;
       });
+      floatParts.forEach(p=>{const next=Math.sin(t*p.speed+p.phase)*p.amp;const prev=p.obj.userData._floatY||0;p.obj.position.y+=next-prev;p.obj.userData._floatY=next});
     }
     renderer.render(scene,camera);
     if(!reduceMotion)verticalRaf=requestAnimationFrame(renderVerticalFrame);
