@@ -663,6 +663,13 @@
   }
   @media(max-width:760px){#video-pin{height:120vh}}
   .motion-fallback .sol-card,.motion-fallback .model-card{opacity:1!important;transform:none!important}
+
+  .marketing-figma-v2 .m2-rings,.marketing-figma-v2 .m2-core,.marketing-figma-v2 .m2-card{animation-play-state:paused}
+  .marketing-figma-v2.is-active .m2-rings,.marketing-figma-v2.is-active .m2-core,.marketing-figma-v2.is-active .m2-card{animation-play-state:running}
+  .marketing-figma-v2 .m2-rings{animation:marketingRotorA 24s linear infinite}
+  .marketing-figma-v2 .m2-core{animation:marketingCoreBreath 5.6s ease-in-out infinite}
+  .marketing-figma-v2 .m2-card{transform-box:fill-box;transform-origin:center;animation:hrCardFloat 7s ease-in-out infinite}
+  .marketing-figma-v2 .m2-card:nth-of-type(even){animation-delay:-2.4s}
 </style>
 </head>
 <body>
@@ -799,121 +806,54 @@
       </a>
     </div>
   </div>
-  <div class="marketing-hub-visual" role="img" aria-label="Animated customer experience hub connected to six customer journey touchpoints">
-    <svg viewBox="0 0 1100 620" aria-hidden="true">
+  <div class="marketing-hub-visual marketing-figma-v2" role="img" aria-label="Customer Experience orchestration hub connecting audience, engagement, insights, channels, commerce and feedback">
+    <svg viewBox="0 0 1200 700" aria-hidden="true">
       <defs>
-        <radialGradient id="mktCore" cx="42%" cy="34%" r="72%">
-          <stop offset="0" stop-color="#1c8bff" stop-opacity=".98"/>
-          <stop offset=".42" stop-color="#0b4da5" stop-opacity=".96"/>
-          <stop offset="1" stop-color="#07182f" stop-opacity="1"/>
-        </radialGradient>
-        <linearGradient id="mktBranch" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#3FD0C9" stop-opacity=".38"/>
-          <stop offset=".48" stop-color="#54CFFF" stop-opacity=".9"/>
-          <stop offset="1" stop-color="#62A8FF" stop-opacity=".42"/>
-        </linearGradient>
-        <linearGradient id="mktHex" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#173e79" stop-opacity=".94"/>
-          <stop offset="1" stop-color="#07162b" stop-opacity=".98"/>
-        </linearGradient>
-        <filter id="mktGlow" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="7" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="mktSoftGlow" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="13"/>
-        </filter>
-        <path id="mktPath1" d="M430 229 L385 229 L342 180 L300 180 L250 134 L248 134"/>
-        <path id="mktPath2" d="M406 310 H240"/>
-        <path id="mktPath3" d="M430 391 L385 391 L342 444 L300 444 L250 486 L253 486"/>
-        <path id="mktPath4" d="M670 229 L715 229 L758 180 L800 180 L850 134 L857 134"/>
-        <path id="mktPath5" d="M694 310 H860"/>
-        <path id="mktPath6" d="M670 391 L715 391 L758 444 L800 444 L850 486 L847 486"/>
+        <radialGradient id="m2Core"><stop offset="0" stop-color="#157be0"/><stop offset=".58" stop-color="#0a4f9f"/><stop offset="1" stop-color="#06162f"/></radialGradient>
+        <linearGradient id="m2Card" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b2947"/><stop offset="1" stop-color="#061727"/></linearGradient>
+        <linearGradient id="m2Rail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3fd0c9"/><stop offset=".5" stop-color="#55d7f5"/><stop offset="1" stop-color="#5599ff"/></linearGradient>
+        <filter id="m2Glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <path id="m2p1" d="M474 270 L360 145 H290"/>
+        <path id="m2p2" d="M450 350 H290"/>
+        <path id="m2p3" d="M474 430 L360 555 H290"/>
+        <path id="m2p4" d="M726 270 L840 145 H910"/>
+        <path id="m2p5" d="M750 350 H910"/>
+        <path id="m2p6" d="M726 430 L840 555 H910"/>
       </defs>
-
-      <g class="hub-ambient">
-        <ellipse cx="550" cy="534" rx="252" ry="44" fill="#3FD0C9" opacity=".05" filter="url(#mktSoftGlow)"/>
-        <ellipse cx="550" cy="528" rx="218" ry="30" fill="none" stroke="#3FD0C9" stroke-opacity=".18" stroke-width="2"/>
-        <ellipse cx="550" cy="528" rx="166" ry="20" fill="none" stroke="#5BBEFF" stroke-opacity=".3" stroke-width="2" stroke-dasharray="8 10"/>
+      <rect x="1" y="1" width="1198" height="698" rx="36" fill="#061121" fill-opacity=".36"/>
+      <g opacity=".16"><path d="M65 145 H1135 M65 350 H1135 M65 555 H1135" stroke="#42b8d8" stroke-dasharray="3 14"/><path d="M190 40 V660 M600 30 V670 M1010 40 V660" stroke="#42b8d8" stroke-dasharray="3 15"/></g>
+      <g class="m2-rings" transform-origin="600px 350px">
+        <circle cx="600" cy="350" r="285" fill="none" stroke="#3b8ee6" stroke-opacity=".14" stroke-width="2" stroke-dasharray="5 12"/>
+        <circle cx="600" cy="350" r="245" fill="none" stroke="#3fd0c9" stroke-opacity=".25" stroke-width="4" stroke-dasharray="28 18 8 24"/>
+        <circle cx="600" cy="350" r="205" fill="none" stroke="#6ce5ff" stroke-opacity=".28" stroke-width="3" stroke-dasharray="8 14 42 20"/>
       </g>
-
-      
-
-      <g class="hub-rotor hub-rotor-a" transform-origin="550px 310px">
-        <circle cx="550" cy="310" r="198" fill="none" stroke="#3FD0C9" stroke-opacity=".35" stroke-width="4" stroke-dasharray="42 18 9 24"/>
-        <circle cx="550" cy="310" r="184" fill="none" stroke="#54CFFF" stroke-opacity=".16" stroke-width="12" stroke-dasharray="70 24 18 45"/>
+      <g class="m2-rails" fill="none" stroke="url(#m2Rail)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+        <use href="#m2p1"/><use href="#m2p2"/><use href="#m2p3"/><use href="#m2p4"/><use href="#m2p5"/><use href="#m2p6"/>
       </g>
-      <g class="hub-rotor hub-rotor-b" transform-origin="550px 310px">
-        <circle cx="550" cy="310" r="219" fill="none" stroke="#347CF4" stroke-opacity=".2" stroke-width="2" stroke-dasharray="5 12"/>
-        <circle cx="550" cy="310" r="166" fill="none" stroke="#8DEAFF" stroke-opacity=".38" stroke-width="3" stroke-dasharray="12 14 46 18"/>
+      <g class="m2-core" transform-origin="600px 350px">
+        <circle cx="600" cy="350" r="170" fill="#148bd8" opacity=".13" filter="url(#m2Glow)"/>
+        <circle cx="600" cy="350" r="150" fill="url(#m2Core)" stroke="#63e5ff" stroke-width="4"/>
+        <circle cx="600" cy="350" r="132" fill="none" stroke="#70dcff" stroke-opacity=".3" stroke-width="2" stroke-dasharray="4 10"/>
+        <path d="M505 315 C545 250 625 240 681 282" fill="none" stroke="#8cecff" stroke-opacity=".13" stroke-width="18"/>
+        <text x="600" y="340" text-anchor="middle" fill="#e0f5ff" font-family="Space Grotesk, sans-serif" font-size="36" font-weight="700">Customer</text>
+        <text x="600" y="385" text-anchor="middle" fill="#ade8ff" font-family="Space Grotesk, sans-serif" font-size="36" font-weight="700">Experience</text>
       </g>
-
-      <g class="hub-branches hub-branches-top" fill="none">
-        <use href="#mktPath1" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath2" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath3" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath4" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath5" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <use href="#mktPath6" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <g class="m2-card" transform="translate(90 70)"><rect width="200" height="150" rx="24" fill="url(#m2Card)" stroke="#40dbeb" stroke-width="3"/><g transform="translate(66 26)" fill="#c9fbff"><circle cx="34" cy="20" r="13"/><circle cx="14" cy="34" r="10" fill="#8eeeff"/><circle cx="54" cy="34" r="10" fill="#8eeeff"/><path d="M6 67 Q34 43 62 67" fill="none" stroke="#d9fdff" stroke-width="8"/></g><text x="100" y="128" text-anchor="middle" fill="#d1faff" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">AUDIENCE</text></g>
+      <g class="m2-card" transform="translate(90 275)"><rect width="200" height="150" rx="24" fill="url(#m2Card)" stroke="#40dbeb" stroke-width="3"/><g transform="translate(57 27)" fill="none" stroke="#d9fdff" stroke-width="6" stroke-linecap="round"><polyline points="4,69 27,45 47,54 75,19 88,29"/><line x1="10" y1="76" x2="10" y2="59" stroke="#79f5f0" stroke-width="10"/><line x1="36" y1="76" x2="36" y2="47" stroke="#79f5f0" stroke-width="10"/><line x1="62" y1="76" x2="62" y2="34" stroke="#79f5f0" stroke-width="10"/></g><text x="100" y="128" text-anchor="middle" fill="#d1faff" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">ENGAGEMENT</text></g>
+      <g class="m2-card" transform="translate(90 480)"><rect width="200" height="150" rx="24" fill="url(#m2Card)" stroke="#40dbeb" stroke-width="3"/><circle cx="92" cy="61" r="27" fill="none" stroke="#d9fdff" stroke-width="7"/><line x1="111" y1="80" x2="132" y2="101" stroke="#8ef5ff" stroke-width="8" stroke-linecap="round"/><text x="100" y="128" text-anchor="middle" fill="#d1faff" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">INSIGHTS</text></g>
+      <g class="m2-card" transform="translate(910 70)"><rect width="200" height="150" rx="24" fill="url(#m2Card)" stroke="#40dbeb" stroke-width="3"/><g transform="translate(67 28)" fill="none" stroke="#d9fdff" stroke-width="5"><circle cx="33" cy="35" r="30"/><ellipse cx="33" cy="35" rx="14" ry="30"/><line x1="3" y1="35" x2="63" y2="35"/></g><text x="100" y="128" text-anchor="middle" fill="#d1faff" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">CHANNELS</text></g>
+      <g class="m2-card" transform="translate(910 275)"><rect width="200" height="150" rx="24" fill="url(#m2Card)" stroke="#40dbeb" stroke-width="3"/><g transform="translate(59 28)" fill="none" stroke="#d9fdff" stroke-width="6" stroke-linecap="round"><path d="M3 15 H16 L25 58 H68 L80 28 H23"/><circle cx="34" cy="72" r="5" fill="#8ef5ff"/><circle cx="66" cy="72" r="5" fill="#8ef5ff"/></g><text x="100" y="128" text-anchor="middle" fill="#d1faff" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">COMMERCE</text></g>
+      <g class="m2-card" transform="translate(910 480)"><rect width="200" height="150" rx="24" fill="url(#m2Card)" stroke="#40dbeb" stroke-width="3"/><g transform="translate(67 27)" fill="none" stroke="#d9fdff" stroke-width="5"><rect x="4" y="3" width="60" height="78" rx="7"/><polyline points="15,24 23,32 37,17" stroke="#7cf3ef"/><line x1="42" y1="26" x2="55" y2="26"/><polyline points="15,53 23,61 37,46" stroke="#7cf3ef"/><line x1="42" y1="55" x2="55" y2="55"/></g><text x="100" y="128" text-anchor="middle" fill="#d1faff" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">FEEDBACK</text></g>
+      <g class="m2-flow" fill="#e7ffff" filter="url(#m2Glow)">
+        <circle r="7" opacity="0"><animateMotion dur="9s" begin="0s" repeatCount="indefinite"><mpath href="#m2p1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.28;.34;1" dur="9s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9s" begin="1.3s" repeatCount="indefinite"><mpath href="#m2p2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.28;.34;1" dur="9s" begin="1.3s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9s" begin="2.6s" repeatCount="indefinite"><mpath href="#m2p3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.28;.34;1" dur="9s" begin="2.6s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9s" begin="3.9s" repeatCount="indefinite"><mpath href="#m2p4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.28;.34;1" dur="9s" begin="3.9s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9s" begin="5.2s" repeatCount="indefinite"><mpath href="#m2p5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.28;.34;1" dur="9s" begin="5.2s" repeatCount="indefinite"/></circle>
+        <circle r="7" opacity="0"><animateMotion dur="9s" begin="6.5s" repeatCount="indefinite"><mpath href="#m2p6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.28;.34;1" dur="9s" begin="6.5s" repeatCount="indefinite"/></circle>
       </g>
-      <g class="hub-core">
-        <circle cx="550" cy="310" r="152" fill="#1DB9E8" opacity=".18" filter="url(#mktSoftGlow)"/>
-        <circle cx="550" cy="310" r="144" fill="url(#mktCore)" stroke="#73EDFF" stroke-opacity=".76" stroke-width="3"/>
-        <circle cx="550" cy="310" r="129" fill="none" stroke="#74DCFF" stroke-opacity=".28" stroke-width="2" stroke-dasharray="3 9"/>
-        <path d="M455 282 C485 236 525 218 567 224 C619 231 651 270 653 310 C654 350 627 390 579 404 C532 418 480 399 451 358" fill="none" stroke="#8FDFFF" stroke-opacity=".12" stroke-width="16"/>
-        <text x="550" y="292" text-anchor="middle" fill="#E8F7FF" font-family="Space Grotesk, sans-serif" font-size="34" font-weight="600">Customer</text>
-        <text x="550" y="335" text-anchor="middle" fill="#BDEBFF" font-family="Space Grotesk, sans-serif" font-size="34" font-weight="600">Experience</text>
-        <line x1="514" y1="360" x2="586" y2="360" stroke="#58DFFF" stroke-width="4" stroke-linecap="round" filter="url(#mktGlow)"/>
-      </g>
-
-      <g class="hub-endpoints" stroke-linecap="round" stroke-linejoin="round">
-        <g transform="translate(145 77)">
-          <path d="M55 0 L103 28 L103 84 L55 112 L7 84 L7 28 Z" fill="url(#mktHex)" stroke="#56DFFF" stroke-width="3"/>
-          <circle cx="55" cy="47" r="13" fill="#CFF8FF"/>
-          <circle cx="37" cy="58" r="10" fill="#9CEFFF"/><circle cx="73" cy="58" r="10" fill="#9CEFFF"/>
-          <path d="M28 87 Q55 65 82 87" fill="none" stroke="#DDFBFF" stroke-width="9"/>
-        </g>
-        <g transform="translate(130 253)">
-          <path d="M55 0 L103 28 L103 84 L55 112 L7 84 L7 28 Z" fill="url(#mktHex)" stroke="#56DFFF" stroke-width="3"/>
-          <polyline points="27,81 43,64 57,69 76,43 86,49" fill="none" stroke="#DDFBFF" stroke-width="6"/>
-          <line x1="30" y1="88" x2="30" y2="70" stroke="#9CEFFF" stroke-width="8"/>
-          <line x1="49" y1="88" x2="49" y2="60" stroke="#9CEFFF" stroke-width="8"/>
-          <line x1="68" y1="88" x2="68" y2="51" stroke="#9CEFFF" stroke-width="8"/>
-        </g>
-        <g transform="translate(150 429)">
-          <path d="M55 0 L103 28 L103 84 L55 112 L7 84 L7 28 Z" fill="url(#mktHex)" stroke="#56DFFF" stroke-width="3"/>
-          <circle cx="50" cy="51" r="20" fill="none" stroke="#DDFBFF" stroke-width="6"/>
-          <line x1="65" y1="66" x2="84" y2="85" stroke="#DDFBFF" stroke-width="7"/>
-        </g>
-        <g transform="translate(850 77)">
-          <path d="M55 0 L103 28 L103 84 L55 112 L7 84 L7 28 Z" fill="url(#mktHex)" stroke="#56DFFF" stroke-width="3"/>
-          <circle cx="55" cy="56" r="27" fill="none" stroke="#DDFBFF" stroke-width="5"/>
-          <ellipse cx="55" cy="56" rx="13" ry="27" fill="none" stroke="#DDFBFF" stroke-width="4"/>
-          <line x1="28" y1="56" x2="82" y2="56" stroke="#DDFBFF" stroke-width="4"/>
-        </g>
-        <g transform="translate(855 253)">
-          <path d="M55 0 L103 28 L103 84 L55 112 L7 84 L7 28 Z" fill="url(#mktHex)" stroke="#56DFFF" stroke-width="3"/>
-          <path d="M27 39 H37 L44 72 H77 L86 48 H42" fill="none" stroke="#DDFBFF" stroke-width="6"/>
-          <circle cx="51" cy="83" r="5" fill="#DDFBFF"/><circle cx="76" cy="83" r="5" fill="#DDFBFF"/>
-        </g>
-        <g transform="translate(840 429)">
-          <path d="M55 0 L103 28 L103 84 L55 112 L7 84 L7 28 Z" fill="url(#mktHex)" stroke="#56DFFF" stroke-width="3"/>
-          <rect x="34" y="31" width="43" height="55" rx="5" fill="none" stroke="#DDFBFF" stroke-width="5"/>
-          <polyline points="42,47 48,53 58,42" fill="none" stroke="#9CEFFF" stroke-width="4"/>
-          <line x1="61" y1="49" x2="70" y2="49" stroke="#DDFBFF" stroke-width="4"/>
-          <polyline points="42,65 48,71 58,60" fill="none" stroke="#9CEFFF" stroke-width="4"/>
-          <line x1="61" y1="67" x2="70" y2="67" stroke="#DDFBFF" stroke-width="4"/>
-        </g>
-      </g>
-
-      <g class="flow-pulses" fill="#D7FBFF" filter="url(#mktGlow)">
-        <circle r="8" opacity="0"><animateMotion dur="8.4s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.32;1"><mpath href="#mktPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.3;.34;1" dur="8.4s" begin="0s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="8.4s" begin="1.2s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.32;1"><mpath href="#mktPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.3;.34;1" dur="8.4s" begin="1.2s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="8.4s" begin="2.4s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.32;1"><mpath href="#mktPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.3;.34;1" dur="8.4s" begin="2.4s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="8.4s" begin="3.6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.32;1"><mpath href="#mktPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.3;.34;1" dur="8.4s" begin="3.6s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="8.4s" begin="4.8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.32;1"><mpath href="#mktPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.3;.34;1" dur="8.4s" begin="4.8s" repeatCount="indefinite"/></circle>
-        <circle r="8" opacity="0"><animateMotion dur="8.4s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.32;1"><mpath href="#mktPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.3;.34;1" dur="8.4s" begin="6s" repeatCount="indefinite"/></circle>
-      </g>
+      <text x="600" y="615" text-anchor="middle" fill="#40d1c9" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" letter-spacing="2.2">CUSTOMER EXPERIENCE ORCHESTRATION</text>
+      <text x="600" y="646" text-anchor="middle" fill="#7aa3c7" font-family="IBM Plex Sans, sans-serif" font-size="14">Audience  •  Engagement  •  Insights  •  Channels  •  Commerce  •  Feedback</text>
     </svg>
   </div>
 </section>
