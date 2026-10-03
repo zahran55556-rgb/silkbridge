@@ -341,6 +341,39 @@
   @keyframes healthcareSceneFloat{0%,100%{transform:perspective(1200px) rotateX(3.2deg) rotateY(1.6deg) translateY(0) scale(.97)}50%{transform:perspective(1200px) rotateX(1.6deg) rotateY(-1.3deg) translateY(-7px) scale(.98)}}
   @keyframes hcCorePulse{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.012)}}
   @keyframes hcModuleFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
+  .hr-command-visual{
+    flex:1;min-width:0;height:540px;position:relative;overflow:hidden;border-radius:36px;perspective:1300px;
+    background:
+      radial-gradient(circle at 50% 45%,rgba(31,181,231,.20),transparent 31%),
+      radial-gradient(circle at 50% 78%,rgba(56,226,215,.11),transparent 31%),
+      linear-gradient(145deg,rgba(4,17,32,.44),rgba(2,9,18,.12));
+    box-shadow:inset 0 0 90px rgba(0,8,22,.42),0 24px 60px rgba(0,0,0,.12);
+  }
+  .hr-command-visual::before{
+    content:"";position:absolute;inset:7%;pointer-events:none;
+    background:radial-gradient(circle at 50% 48%,rgba(86,237,231,.10),transparent 63%);filter:blur(28px)
+  }
+  .hr-command-visual svg{
+    width:100%;height:100%;display:block;position:relative;z-index:1;
+    transform:perspective(1300px) rotateX(3.4deg) rotateY(-1.4deg) scale(.97);
+    transform-origin:center;filter:drop-shadow(0 30px 38px rgba(0,0,0,.30));
+    animation:hrSceneFloat 8.2s ease-in-out infinite;animation-play-state:paused;
+  }
+  .hr-command-visual.is-active svg{animation-play-state:running}
+  .hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation-play-state:paused}
+  .hr-command-visual.is-active .hr-ring,.hr-command-visual.is-active .hr-people-ring,.hr-command-visual.is-active .hr-core,.hr-command-visual.is-active .hr-side-card{animation-play-state:running}
+  .hr-ring-a{animation:hrRingSpinA 19s linear infinite}
+  .hr-ring-b{animation:hrRingSpinB 28s linear infinite reverse}
+  .hr-people-ring{animation:hrPeopleOrbit 34s linear infinite}
+  .hr-core{transform-origin:550px 310px;animation:hrCoreBreath 5.8s ease-in-out infinite}
+  .hr-side-card{transform-box:fill-box;transform-origin:center;animation:hrCardFloat 6.4s ease-in-out infinite}
+  .hr-card-b,.hr-card-d{animation-delay:-2.3s}.hr-card-c{animation-delay:-3.8s}
+  @keyframes hrSceneFloat{0%,100%{transform:perspective(1300px) rotateX(3.4deg) rotateY(-1.4deg) translateY(0) scale(.97)}50%{transform:perspective(1300px) rotateX(1.7deg) rotateY(1.3deg) translateY(-8px) scale(.982)}}
+  @keyframes hrRingSpinA{to{transform:rotate(360deg)}}
+  @keyframes hrRingSpinB{to{transform:rotate(360deg)}}
+  @keyframes hrPeopleOrbit{to{transform:rotate(360deg)}}
+  @keyframes hrCoreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
+  @keyframes hrCardFloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
   @keyframes marketingHubFloat{0%,100%{transform:perspective(1100px) rotateX(2.5deg) rotateY(-1.6deg) translateY(0) scale(.98)}50%{transform:perspective(1100px) rotateX(1.2deg) rotateY(1.4deg) translateY(-7px) scale(.99)}}
   @keyframes marketingRotorA{to{transform:rotate(360deg)}}
   @keyframes marketingRotorB{to{transform:rotate(360deg)}}
@@ -351,7 +384,7 @@
   @media(max-width:860px){
     .vertical, .vertical.reverse{ flex-direction:column; padding:80px 6%; gap:36px; }
     .vertical-canvas{ width:100%; height:320px; }
-    .marketing-hub-visual,.healthcare-tech-visual{width:100%;height:360px}
+    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual{width:100%;height:380px}
     .vertical-inner{ max-width:100%; }
   }
 
@@ -609,7 +642,7 @@
 
 
   @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}}
+    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}}
     .ticker,.hero-scroll-cue i{animation:none!important}
     .cf-card,.sol-card,.brand-item,.ticker-chip{transition:none!important}
   }
@@ -1048,7 +1081,171 @@
       </a>
     </div>
   </div>
-  <div class="vertical-canvas" data-shape="workforce"></div>
+  <div class="hr-command-visual" role="img" aria-label="Animated HR systems command center connecting talent, payroll, engagement, learning, mobility and workforce analytics">
+    <svg viewBox="0 0 1100 620" aria-hidden="true">
+      <defs>
+        <linearGradient id="hrPanel" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#154C78" stop-opacity=".96"/>
+          <stop offset=".48" stop-color="#0A2948" stop-opacity=".97"/>
+          <stop offset="1" stop-color="#061524"/>
+        </linearGradient>
+        <linearGradient id="hrPanelTop" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#46F0E7" stop-opacity=".74"/>
+          <stop offset=".52" stop-color="#168ED0" stop-opacity=".58"/>
+          <stop offset="1" stop-color="#0A2A4E" stop-opacity=".84"/>
+        </linearGradient>
+        <linearGradient id="hrRoute" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#79FFF5" stop-opacity=".96"/>
+          <stop offset=".55" stop-color="#4BC7FF" stop-opacity=".78"/>
+          <stop offset="1" stop-color="#3A78D8" stop-opacity=".25"/>
+        </linearGradient>
+        <radialGradient id="hrCore" cx="42%" cy="34%" r="74%">
+          <stop offset="0" stop-color="#23B8F2" stop-opacity=".98"/>
+          <stop offset=".42" stop-color="#0A5E9F" stop-opacity=".94"/>
+          <stop offset="1" stop-color="#071A30"/>
+        </radialGradient>
+        <filter id="hrGlow" x="-120%" y="-120%" width="340%" height="340%">
+          <feGaussianBlur stdDeviation="7" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="hrSoft" x="-140%" y="-140%" width="380%" height="380%"><feGaussianBlur stdDeviation="18"/></filter>
+        <path id="hrPath1" d="M440 225 C390 200 345 178 290 150 L222 122"/>
+        <path id="hrPath2" d="M405 310 C350 310 302 310 248 310 L190 310"/>
+        <path id="hrPath3" d="M440 395 C390 420 345 442 290 470 L222 498"/>
+        <path id="hrPath4" d="M660 225 C710 200 755 178 810 150 L878 122"/>
+        <path id="hrPath5" d="M695 310 C750 310 798 310 852 310 L910 310"/>
+        <path id="hrPath6" d="M660 395 C710 420 755 442 810 470 L878 498"/>
+      </defs>
+
+      <g class="hr-bg-grid" opacity=".18">
+        <path d="M90 122 H1010 M70 222 H1030 M52 322 H1048 M70 422 H1030 M90 522 H1010" stroke="#4AC7E8" stroke-width="1" stroke-dasharray="3 13"/>
+        <path d="M168 70 V548 M332 52 V568 M550 42 V578 M768 52 V568 M932 70 V548" stroke="#4AC7E8" stroke-width="1" stroke-dasharray="4 15"/>
+      </g>
+
+      <g class="hr-constellation" opacity=".28" stroke="#5BE6E1" stroke-width="1.5" fill="none">
+        <path d="M742 84 L804 120 L864 92 L922 142 L980 112"/>
+        <path d="M726 534 L782 498 L846 530 L906 482 L968 512"/>
+        <circle cx="742" cy="84" r="5" fill="#79FFF5"/><circle cx="804" cy="120" r="5" fill="#79FFF5"/>
+        <circle cx="864" cy="92" r="5" fill="#79FFF5"/><circle cx="922" cy="142" r="5" fill="#79FFF5"/>
+        <circle cx="980" cy="112" r="5" fill="#79FFF5"/><circle cx="726" cy="534" r="5" fill="#79FFF5"/>
+        <circle cx="782" cy="498" r="5" fill="#79FFF5"/><circle cx="846" cy="530" r="5" fill="#79FFF5"/>
+        <circle cx="906" cy="482" r="5" fill="#79FFF5"/><circle cx="968" cy="512" r="5" fill="#79FFF5"/>
+      </g>
+
+      <g class="hr-routes" fill="none" stroke="url(#hrRoute)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+        <use href="#hrPath1"/><use href="#hrPath2"/><use href="#hrPath3"/>
+        <use href="#hrPath4"/><use href="#hrPath5"/><use href="#hrPath6"/>
+      </g>
+
+      <g class="hr-core-shadow">
+        <ellipse cx="550" cy="512" rx="230" ry="42" fill="#2CD8D0" opacity=".07" filter="url(#hrSoft)"/>
+        <ellipse cx="550" cy="508" rx="196" ry="28" fill="none" stroke="#4FEDE6" stroke-opacity=".18" stroke-width="2"/>
+      </g>
+
+      <g class="hr-ring hr-ring-a" transform-origin="550px 310px">
+        <circle cx="550" cy="310" r="188" fill="none" stroke="#4FEDE6" stroke-opacity=".34" stroke-width="4" stroke-dasharray="38 18 8 24"/>
+        <circle cx="550" cy="310" r="173" fill="none" stroke="#63C8FF" stroke-opacity=".18" stroke-width="12" stroke-dasharray="62 28 18 42"/>
+      </g>
+      <g class="hr-ring hr-ring-b" transform-origin="550px 310px">
+        <circle cx="550" cy="310" r="218" fill="none" stroke="#367BDD" stroke-opacity=".20" stroke-width="2" stroke-dasharray="5 12"/>
+        <circle cx="550" cy="310" r="151" fill="none" stroke="#8BFFF7" stroke-opacity=".34" stroke-width="3" stroke-dasharray="10 15 44 22"/>
+      </g>
+
+      <g class="hr-people-ring" transform-origin="550px 310px">
+        <g transform="translate(550 118)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(674 156)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(742 260)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(716 390)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(614 485)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(486 485)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(384 390)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(358 260)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+        <g transform="translate(426 156)"><circle r="21" fill="#0B3658" stroke="#77FFF7" stroke-width="2"/><circle cy="-5" r="7" fill="#D8FFFF"/><path d="M-11 10 Q0-2 11 10" fill="#A7FFF9"/></g>
+      </g>
+
+      <g class="hr-core">
+        <circle cx="550" cy="310" r="146" fill="#24C9DF" opacity=".13" filter="url(#hrSoft)"/>
+        <circle cx="550" cy="310" r="137" fill="url(#hrCore)" stroke="#80FFF7" stroke-opacity=".76" stroke-width="3"/>
+        <circle cx="550" cy="310" r="119" fill="none" stroke="#8BFFF7" stroke-opacity=".24" stroke-width="2" stroke-dasharray="4 9"/>
+        <path d="M472 254 C505 220 548 210 589 220 C628 230 653 258 659 296" fill="none" stroke="#7FEFFF" stroke-opacity=".15" stroke-width="15"/>
+        <text x="550" y="291" text-anchor="middle" fill="#E7FFFF" font-family="Space Grotesk, sans-serif" font-size="33" font-weight="600">HR</text>
+        <text x="550" y="332" text-anchor="middle" fill="#B9F3FF" font-family="Space Grotesk, sans-serif" font-size="29" font-weight="600">Systems</text>
+        <text x="550" y="361" text-anchor="middle" fill="#77DBE7" font-family="DM Mono, monospace" font-size="11" letter-spacing="4">WORKFORCE INTELLIGENCE</text>
+      </g>
+
+      <g class="hr-side-card hr-card-a" transform="translate(110 62)">
+        <path d="M0 32 92 0 184 32 92 64Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
+        <path d="M0 32 92 64 92 164 0 132Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
+        <path d="M184 32 92 64 92 164 184 132Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
+        <g transform="translate(54 50)">
+          <rect x="0" y="0" width="76" height="88" rx="6" fill="#E9FFFF" opacity=".08" stroke="#7DFFF6" stroke-opacity=".42"/>
+          <circle cx="38" cy="26" r="13" fill="#D8FFFF"/>
+          <path d="M18 58 Q38 39 58 58 V72 H18Z" fill="#A2FFF7"/>
+          <line x1="16" y1="80" x2="60" y2="80" stroke="#65DFF0" stroke-width="4"/>
+        </g>
+      </g>
+
+      <g class="hr-side-card hr-card-b" transform="translate(110 392)">
+        <path d="M0 30 90 0 180 30 90 60Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
+        <path d="M0 30 90 60 90 150 0 120Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
+        <path d="M180 30 90 60 90 150 180 120Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
+        <g transform="translate(46 48)" fill="none" stroke="#D9FFFF" stroke-width="5" stroke-linecap="round">
+          <line x1="0" y1="55" x2="0" y2="32"/><line x1="22" y1="55" x2="22" y2="20"/><line x1="44" y1="55" x2="44" y2="8"/><line x1="66" y1="55" x2="66" y2="28"/>
+          <polyline points="0,26 22,15 44,2 66,20" stroke="#78FFF5"/>
+        </g>
+      </g>
+
+      <g class="hr-side-card hr-card-c" transform="translate(806 62)">
+        <path d="M0 32 92 0 184 32 92 64Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
+        <path d="M0 32 92 64 92 164 0 132Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
+        <path d="M184 32 92 64 92 164 184 132Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
+        <g transform="translate(48 48)" fill="none" stroke="#D9FFFF" stroke-width="5">
+          <circle cx="44" cy="34" r="24"/><line x1="61" y1="51" x2="79" y2="69"/>
+          <circle cx="44" cy="34" r="8" fill="#9AFFF8" stroke="none"/>
+        </g>
+      </g>
+
+      <g class="hr-side-card hr-card-d" transform="translate(810 392)">
+        <path d="M0 30 90 0 180 30 90 60Z" fill="url(#hrPanelTop)" stroke="#5FE9E3" stroke-width="2"/>
+        <path d="M0 30 90 60 90 150 0 120Z" fill="url(#hrPanel)" stroke="#287EAF" stroke-width="2"/>
+        <path d="M180 30 90 60 90 150 180 120Z" fill="#06172A" stroke="#236695" stroke-width="2"/>
+        <g transform="translate(42 48)">
+          <circle cx="24" cy="30" r="12" fill="#D8FFFF"/>
+          <circle cx="55" cy="30" r="12" fill="#B6FFF9"/>
+          <circle cx="86" cy="30" r="12" fill="#8AFFF5"/>
+          <path d="M8 65 Q24 50 40 65 M39 65 Q55 50 71 65 M70 65 Q86 50 102 65" fill="none" stroke="#D8FFFF" stroke-width="7"/>
+        </g>
+      </g>
+
+      <g class="hr-route-labels" fill="#A9EFFF" font-family="DM Mono, monospace" font-size="12" letter-spacing="2">
+        <text x="226" y="105">TALENT</text><text x="118" y="294">PAYROLL</text><text x="190" y="530">ENGAGEMENT</text>
+        <text x="824" y="105">LEARNING</text><text x="924" y="294">MOBILITY</text><text x="842" y="530">ANALYTICS</text>
+      </g>
+
+      <g class="hr-endpoints" fill="#D9FFFF" stroke="#62EEE7" stroke-width="4" filter="url(#hrGlow)">
+        <circle cx="222" cy="122" r="10"/><circle cx="190" cy="310" r="10"/><circle cx="222" cy="498" r="10"/>
+        <circle cx="878" cy="122" r="10"/><circle cx="910" cy="310" r="10"/><circle cx="878" cy="498" r="10"/>
+      </g>
+
+      <g class="hr-flow" fill="#ECFFFF" filter="url(#hrGlow)">
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="1.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="3s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="4.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="7.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.08;.30;1"><mpath href="#hrPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.08;.28;.34;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
+      </g>
+
+      <g class="hr-endpoint-pulse" fill="none" stroke="#9AFFF8" stroke-width="4" filter="url(#hrGlow)">
+        <circle cx="222" cy="122" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" repeatCount="indefinite"/></circle>
+        <circle cx="190" cy="310" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
+        <circle cx="222" cy="498" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
+        <circle cx="878" cy="122" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
+        <circle cx="910" cy="310" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
+        <circle cx="878" cy="498" r="14"><animate attributeName="r" values="14;14;25;14;14" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <section class="vertical reverse" id="hospitality">
@@ -1702,7 +1899,7 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
 
 /* ---------- TECH VISUAL VISIBILITY ---------- */
 (function techVisualVisibility(){
-  document.querySelectorAll('.marketing-hub-visual,.healthcare-tech-visual').forEach(visual=>{
+  document.querySelectorAll('.marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual').forEach(visual=>{
     const svg=visual.querySelector('svg');
     if(!svg)return;
     let visible=false;
