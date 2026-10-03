@@ -1417,13 +1417,13 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
     .catch(err=>console.warn('[SilkBridge] Globe geography fallback active',err));
 
   const countries=[
-    {name:'United Arab Emirates',flag:'🇦🇪',color:0x3FD0C9,lat:25.2048,lon:55.2708,
+    {name:'United Arab Emirates',flag:'🇦🇪',color:0x3FD0C9,lat:25.2048,lon:55.2708,labelOffset:[72,-26],
       brief:'Dubai is the operating hub for SilkBridge — the core point for partner onboarding, regional coordination and commercial execution across the Gulf.'},
-    {name:'Saudi Arabia',flag:'🇸🇦',color:0xC9A227,lat:24.7136,lon:46.6753,
+    {name:'Saudi Arabia',flag:'🇸🇦',color:0xC9A227,lat:24.7136,lon:46.6753,labelOffset:[-78,30],
       brief:'Saudi Arabia is a priority expansion market with active business development, local opportunity mapping and strong relevance for enterprise and channel growth.'},
-    {name:'Qatar',flag:'🇶🇦',color:0xE0774A,lat:25.2854,lon:51.5310,
+    {name:'Qatar',flag:'🇶🇦',color:0xE0774A,lat:25.2854,lon:51.5310,labelOffset:[76,28],
       brief:'Qatar is part of SilkBridge’s GCC footprint, with partner and client opportunities supported through the same regional operating model.'},
-    {name:'Egypt',flag:'🇪🇬',color:0x8AB4F8,lat:30.0444,lon:31.2357,
+    {name:'Egypt',flag:'🇪🇬',color:0x8AB4F8,lat:30.0444,lon:31.2357,labelOffset:[-72,-20],
       brief:'Egypt supports SilkBridge’s wider regional operations through business development, marketing execution and operational support.'}
   ];
 
@@ -1583,8 +1583,10 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
       const el=labelEls[i];
       el.style.opacity=visible?'1':'0';
       el.style.pointerEvents=visible?'auto':'none';
-      el.style.left=x+'px';
-      el.style.top=y+'px';
+      const offset=countries[i].labelOffset||[0,0];
+      const mobileScale=isMobile?.55:1;
+      el.style.left=(x+offset[0]*mobileScale)+'px';
+      el.style.top=(y+offset[1]*mobileScale)+'px';
     });
   }
 
