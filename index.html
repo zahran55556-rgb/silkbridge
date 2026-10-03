@@ -374,6 +374,15 @@
   @keyframes hrPeopleOrbit{to{transform:rotate(360deg)}}
   @keyframes hrCoreBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
   @keyframes hrCardFloat{0%,100%{translate:0 0}50%{translate:0 -6px}}
+  .cyber-shield-visual{flex:1;min-width:0;height:540px;position:relative;overflow:hidden;border-radius:36px;perspective:1300px;background:radial-gradient(circle at 50% 44%,rgba(20,133,239,.22),transparent 31%),radial-gradient(circle at 50% 78%,rgba(63,225,215,.10),transparent 32%),linear-gradient(145deg,rgba(3,15,31,.46),rgba(2,9,18,.12));box-shadow:inset 0 0 92px rgba(0,7,24,.46)}
+  .cyber-shield-visual::before{content:"";position:absolute;inset:7%;pointer-events:none;background:radial-gradient(circle,rgba(66,188,255,.11),transparent 62%);filter:blur(28px)}
+  .cyber-shield-visual svg{width:100%;height:100%;display:block;position:relative;z-index:1;transform:perspective(1300px) rotateX(3deg) rotateY(1.5deg) scale(.97);transform-origin:center;filter:drop-shadow(0 30px 40px rgba(0,0,0,.32));animation:cySceneFloat 8s ease-in-out infinite;animation-play-state:paused}
+  .cyber-shield-visual.is-active svg{animation-play-state:running}
+  .cyber-shield-visual .cy-ring,.cyber-shield-visual .cy-shield{animation-play-state:paused}
+  .cyber-shield-visual.is-active .cy-ring,.cyber-shield-visual.is-active .cy-shield{animation-play-state:running}
+  .cy-ring-a{animation:cyRingA 19s linear infinite}.cy-ring-b{animation:cyRingB 28s linear infinite reverse}.cy-shield{animation:cyShieldBreath 5.8s ease-in-out infinite}
+  @keyframes cySceneFloat{0%,100%{transform:perspective(1300px) rotateX(3deg) rotateY(1.5deg) translateY(0) scale(.97)}50%{transform:perspective(1300px) rotateX(1.4deg) rotateY(-1.3deg) translateY(-8px) scale(.982)}}
+  @keyframes cyRingA{to{transform:rotate(360deg)}}@keyframes cyRingB{to{transform:rotate(360deg)}}@keyframes cyShieldBreath{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-5px) scale(1.018)}}
   @keyframes marketingHubFloat{0%,100%{transform:perspective(1100px) rotateX(2.5deg) rotateY(-1.6deg) translateY(0) scale(.98)}50%{transform:perspective(1100px) rotateX(1.2deg) rotateY(1.4deg) translateY(-7px) scale(.99)}}
   @keyframes marketingRotorA{to{transform:rotate(360deg)}}
   @keyframes marketingRotorB{to{transform:rotate(360deg)}}
@@ -384,7 +393,7 @@
   @media(max-width:860px){
     .vertical, .vertical.reverse{ flex-direction:column; padding:80px 6%; gap:36px; }
     .vertical-canvas{ width:100%; height:320px; }
-    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual{width:100%;height:380px}
+    .marketing-hub-visual,.healthcare-tech-visual,.hr-command-visual,.cyber-shield-visual,.cyber-shield-visual{width:100%;height:380px}
     .vertical-inner{ max-width:100%; }
   }
 
@@ -642,7 +651,7 @@
 
 
   @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-ecg-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}}
+    html{scroll-behavior:auto.marketing-hub-visual svg,.marketing-hub-visual .hub-rotor,.marketing-hub-visual .hub-core{animation:none!important}.marketing-hub-visual .flow-pulses,.marketing-hub-visual .endpoint-pulses{display:none!important}.healthcare-tech-visual svg,.healthcare-tech-visual .hc-main,.healthcare-tech-visual .hc-module{animation:none!important}.healthcare-tech-visual .hc-flow,.healthcare-tech-visual .hc-ecg-flow,.healthcare-tech-visual .hc-endpoint-flash{display:none!important}.hr-command-visual svg,.hr-command-visual .hr-ring,.hr-command-visual .hr-people-ring,.hr-command-visual .hr-core,.hr-command-visual .hr-side-card{animation:none!important}.hr-command-visual .hr-flow,.hr-command-visual .hr-endpoint-pulse{display:none!important}.cyber-shield-visual svg,.cyber-shield-visual .cy-ring,.cyber-shield-visual .cy-shield{animation:none!important}.cyber-shield-visual .cy-flow,.cyber-shield-visual .cy-endpoint-pulse{display:none!important}}
     .ticker,.hero-scroll-cue i{animation:none!important}
     .cf-card,.sol-card,.brand-item,.ticker-chip{transition:none!important}
   }
@@ -1319,7 +1328,70 @@
       </a>
     </div>
   </div>
-  <div class="vertical-canvas" data-shape="shield"></div>
+  <div class="cyber-shield-visual" role="img" aria-label="Animated three dimensional cybersecurity shield distributing protected data through a secure circuit network">
+    <svg viewBox="0 0 1100 620" aria-hidden="true">
+      <defs>
+        <radialGradient id="cyCore" cx="43%" cy="32%" r="72%"><stop offset="0" stop-color="#1E9FFF"/><stop offset=".42" stop-color="#0A5AAE"/><stop offset="1" stop-color="#06172D"/></radialGradient>
+        <linearGradient id="cyShield" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#78F7FF"/><stop offset=".18" stop-color="#168EEA"/><stop offset=".58" stop-color="#0B438D"/><stop offset="1" stop-color="#061B3B"/></linearGradient>
+        <linearGradient id="cyCircuit" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5DF4EC" stop-opacity=".95"/><stop offset=".52" stop-color="#49BFFF" stop-opacity=".72"/><stop offset="1" stop-color="#3678DA" stop-opacity=".25"/></linearGradient>
+        <filter id="cyGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="cySoft" x="-140%" y="-140%" width="380%" height="380%"><feGaussianBlur stdDeviation="18"/></filter>
+        <path id="cyPath1" d="M458 245 H400 L365 210 H310 L275 172 H208"/>
+        <path id="cyPath2" d="M430 305 H365 L330 305 H260 L220 270 H175"/>
+        <path id="cyPath3" d="M458 365 H400 L365 402 H310 L275 448 H208"/>
+        <path id="cyPath4" d="M642 245 H700 L735 210 H790 L825 172 H892"/>
+        <path id="cyPath5" d="M670 305 H735 L770 305 H840 L880 270 H925"/>
+        <path id="cyPath6" d="M642 365 H700 L735 402 H790 L825 448 H892"/>
+      </defs>
+      <g opacity=".16"><path d="M90 116 H1010 M68 214 H1032 M50 312 H1050 M68 410 H1032 M90 508 H1010" stroke="#3E9FE2" stroke-dasharray="3 13"/><path d="M170 68 V548 M345 50 V566 M550 42 V576 M755 50 V566 M930 68 V548" stroke="#3E9FE2" stroke-dasharray="4 15"/></g>
+      <g class="cy-circuits" fill="none" stroke="url(#cyCircuit)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><use href="#cyPath1"/><use href="#cyPath2"/><use href="#cyPath3"/><use href="#cyPath4"/><use href="#cyPath5"/><use href="#cyPath6"/></g>
+      <g class="cy-platform">
+        <ellipse cx="550" cy="507" rx="260" ry="46" fill="#2BE7DF" opacity=".07" filter="url(#cySoft)"/>
+        <ellipse cx="550" cy="500" rx="224" ry="35" fill="none" stroke="#56EEE7" stroke-opacity=".22" stroke-width="3"/>
+        <ellipse cx="550" cy="500" rx="184" ry="26" fill="none" stroke="#55BFFF" stroke-opacity=".34" stroke-width="3" stroke-dasharray="14 10"/>
+        <ellipse cx="550" cy="500" rx="136" ry="18" fill="none" stroke="#7DFFF7" stroke-opacity=".28" stroke-width="2"/>
+      </g>
+      <g class="cy-ring cy-ring-a" transform-origin="550px 310px"><circle cx="550" cy="310" r="184" fill="none" stroke="#50EDE6" stroke-opacity=".25" stroke-width="3" stroke-dasharray="38 18 8 26"/></g>
+      <g class="cy-ring cy-ring-b" transform-origin="550px 310px"><circle cx="550" cy="310" r="207" fill="none" stroke="#438DEB" stroke-opacity=".18" stroke-width="2" stroke-dasharray="5 13"/></g>
+      <g class="cy-shield" transform-origin="550px 310px">
+        <ellipse cx="550" cy="310" rx="145" ry="156" fill="#27A8EF" opacity=".14" filter="url(#cySoft)"/>
+        <path d="M550 135 C600 169 649 177 694 183 V296 C694 388 639 446 550 480 C461 446 406 388 406 296 V183 C451 177 500 169 550 135Z" fill="url(#cyShield)" stroke="#91FBFF" stroke-width="4" filter="url(#cyGlow)"/>
+        <path d="M550 158 C593 184 630 191 669 197 V294 C669 367 627 415 550 448 C473 415 431 367 431 294 V197 C470 191 507 184 550 158Z" fill="url(#cyCore)" stroke="#4EC8FF" stroke-opacity=".72" stroke-width="2"/>
+        <path d="M550 177 C580 195 611 202 641 207 V291 C641 350 609 389 550 418 C491 389 459 350 459 291 V207 C489 202 520 195 550 177Z" fill="none" stroke="#82EFFF" stroke-opacity=".25" stroke-width="2" stroke-dasharray="4 9"/>
+        <g transform="translate(500 238)">
+          <path d="M21 50 V31 C21 -7 79 -7 79 31 V50" fill="none" stroke="#E8FFFF" stroke-width="13" stroke-linecap="round"/>
+          <rect x="6" y="46" width="88" height="83" rx="15" fill="#DFFFFF" opacity=".96"/>
+          <circle cx="50" cy="82" r="12" fill="#0A5EAC"/><path d="M50 91 V109" stroke="#0A5EAC" stroke-width="9" stroke-linecap="round"/>
+        </g>
+        <path d="M478 215 C508 190 551 181 588 193 C621 203 646 226 656 254" fill="none" stroke="#C4FFFF" stroke-opacity=".19" stroke-width="15"/>
+      </g>
+      <g class="cy-ports" fill="#E9FFFF" stroke="#65F6EF" stroke-width="4" filter="url(#cyGlow)"><circle cx="458" cy="245" r="8"/><circle cx="430" cy="305" r="8"/><circle cx="458" cy="365" r="8"/><circle cx="642" cy="245" r="8"/><circle cx="670" cy="305" r="8"/><circle cx="642" cy="365" r="8"/></g>
+      <g class="cy-nodes" stroke="#66EDE9" stroke-width="3">
+        <g transform="translate(164 128)"><path d="M44 0 82 22 82 66 44 88 6 66 6 22Z" fill="#092743"/><path d="M28 45 39 56 62 30" fill="none" stroke="#DFFFFF" stroke-width="7"/></g>
+        <g transform="translate(131 226)"><path d="M44 0 82 22 82 66 44 88 6 66 6 22Z" fill="#092743"/><rect x="26" y="29" width="36" height="31" rx="4" fill="none" stroke="#DFFFFF" stroke-width="5"/><path d="M33 29 V21 C33 8 55 8 55 21 V29" fill="none" stroke="#DFFFFF" stroke-width="5"/></g>
+        <g transform="translate(164 404)"><path d="M44 0 82 22 82 66 44 88 6 66 6 22Z" fill="#092743"/><circle cx="44" cy="43" r="20" fill="none" stroke="#DFFFFF" stroke-width="5"/><path d="M44 28 V44 L56 51" fill="none" stroke="#DFFFFF" stroke-width="5"/></g>
+        <g transform="translate(854 128)"><path d="M44 0 82 22 82 66 44 88 6 66 6 22Z" fill="#092743"/><circle cx="44" cy="44" r="22" fill="none" stroke="#DFFFFF" stroke-width="5"/><path d="M22 44 H66 M44 22 C33 34 33 54 44 66 M44 22 C55 34 55 54 44 66" fill="none" stroke="#DFFFFF" stroke-width="4"/></g>
+        <g transform="translate(881 226)"><path d="M44 0 82 22 82 66 44 88 6 66 6 22Z" fill="#092743"/><path d="M26 56 36 45 45 50 61 31" fill="none" stroke="#DFFFFF" stroke-width="6"/><circle cx="26" cy="56" r="4" fill="#DFFFFF"/><circle cx="61" cy="31" r="4" fill="#DFFFFF"/></g>
+        <g transform="translate(854 404)"><path d="M44 0 82 22 82 66 44 88 6 66 6 22Z" fill="#092743"/><path d="M25 31 H63 V59 H25Z" fill="none" stroke="#DFFFFF" stroke-width="5"/><path d="M31 37 44 48 57 37" fill="none" stroke="#DFFFFF" stroke-width="4"/></g>
+      </g>
+      <g class="cy-flow" fill="#F1FFFF" filter="url(#cyGlow)">
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#cyPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="10.8s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="1.45s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#cyPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="10.8s" begin="1.45s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="2.9s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#cyPath3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="10.8s" begin="2.9s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="4.35s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#cyPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="10.8s" begin="4.35s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="5.8s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#cyPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="10.8s" begin="5.8s" repeatCount="indefinite"/></circle>
+        <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="7.25s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#cyPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="10.8s" begin="7.25s" repeatCount="indefinite"/></circle>
+      </g>
+      <g class="cy-endpoint-pulse" fill="none" stroke="#A3FFF8" stroke-width="4" filter="url(#cyGlow)">
+        <circle cx="208" cy="172" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="10.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" repeatCount="indefinite"/></circle>
+        <circle cx="175" cy="270" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="1.45s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="1.45s" repeatCount="indefinite"/></circle>
+        <circle cx="208" cy="448" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="2.9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="2.9s" repeatCount="indefinite"/></circle>
+        <circle cx="892" cy="172" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="4.35s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="4.35s" repeatCount="indefinite"/></circle>
+        <circle cx="925" cy="270" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="5.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="5.8s" repeatCount="indefinite"/></circle>
+        <circle cx="892" cy="448" r="13"><animate attributeName="r" values="13;13;25;13;13" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="7.25s" repeatCount="indefinite"/><animate attributeName="opacity" values=".08;.08;.9;.08;.08" keyTimes="0;.27;.34;.45;1" dur="10.8s" begin="7.25s" repeatCount="indefinite"/></circle>
+      </g>
+    </svg>
+  </div>
 </section>
 
 <section id="video-pin">
