@@ -1,3 +1,4 @@
+import { silkBridge } from "./ecosystem-data.js";
 function renderNav(){
   const path=location.pathname.split("/").pop()||"index.html";
   const links=[["ecosystem.html","Partners"],["solutions.html","Solutions"],["industries.html","Industries"],["about.html","About"],["insights.html","Insights"],["contact.html","Contact"]];
