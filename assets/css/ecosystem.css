@@ -182,3 +182,5 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 .eco-filter:focus-visible,.mobile-eco-head:focus-visible,.eco-menu:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
 @media(max-width:900px){.solution-model-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.solution-model-grid{grid-template-columns:1fr}}
+
+.eco-footer-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.eco-footer-links a:hover,.eco-footer-links a:focus-visible{color:var(--text)}.eco-form-privacy{margin:0!important;color:var(--muted)!important;font-size:.74rem!important;line-height:1.55!important}.eco-form-privacy a{color:var(--text)}

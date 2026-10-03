@@ -33,21 +33,24 @@ function renderNav(){
   syncNavMode();
 }
 function enhanceSEO(){
-  const absolute=new URL(location.href);
-  absolute.hash="";
-  const canonical=absolute.href;
-  const title=document.title;
-  const description=document.querySelector('meta[name="description"]')?.content||"SilkBridge connects global technology with regional opportunities across the GCC.";
+  const absolute=new URL(location.href);absolute.hash="";
+  const page=absolute.pathname.split("/").pop()||"index.html",slug=absolute.searchParams.get("slug");
+  absolute.search="";if(slug&&["partner.html","solution.html","insight.html"].includes(page))absolute.searchParams.set("slug",slug);
+  const canonical=absolute.href,title=document.title,description=document.querySelector('meta[name="description"]')?.content||"SilkBridge connects global technology with regional opportunities across the GCC.",socialImage="https://silkbridge.eu/assets/photos/10-worldmap-meeting.jpg";
   const add=(name,content)=>{let el=document.querySelector('meta[name="'+name+'"]');if(!el){el=document.createElement("meta");el.name=name;document.head.appendChild(el)}el.content=content};
   const addProp=(property,content)=>{let el=document.querySelector('meta[property="'+property+'"]');if(!el){el=document.createElement("meta");el.setAttribute("property",property);document.head.appendChild(el)}el.content=content};
   let link=document.querySelector('link[rel="canonical"]');if(!link){link=document.createElement("link");link.rel="canonical";document.head.appendChild(link)}link.href=canonical;
-  add("theme-color","#0B1220");addProp("og:title",title);addProp("og:description",description);addProp("og:type","website");addProp("og:url",canonical);
-  add("twitter:card","summary");add("twitter:title",title);add("twitter:description",description);
-  if(!document.getElementById("silkbridge-schema")){const s=document.createElement("script");s.id="silkbridge-schema";s.type="application/ld+json";s.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"SilkBridge","url":"https://silkbridge.eu/","email":"sales@silkbridge.eu","description":"GCC-focused B2B technology distributor connecting global technology brands with regional opportunities."});document.head.appendChild(s)}
+  add("theme-color","#0B1220");addProp("og:title",title);addProp("og:description",description);addProp("og:type",page==="insight.html"?"article":"website");addProp("og:url",canonical);addProp("og:site_name","SilkBridge");addProp("og:image",socialImage);addProp("og:image:alt","SilkBridge technology distribution and GCC market access");
+  add("twitter:card","summary_large_image");add("twitter:title",title);add("twitter:description",description);add("twitter:image",socialImage);
+  let s=document.getElementById("silkbridge-schema");if(!s){s=document.createElement("script");s.id="silkbridge-schema";s.type="application/ld+json";document.head.appendChild(s)}
+  const org={"@type":"Organization","@id":"https://silkbridge.eu/#organization","name":"SilkBridge","url":"https://silkbridge.eu/","email":"sales@silkbridge.eu"};
+  const pageSchema={"@type":page==="insight.html"?"Article":"WebPage","@id":canonical+"#webpage","url":canonical,"name":title,"description":description,"isPartOf":{"@id":"https://silkbridge.eu/#website"},"about":{"@id":"https://silkbridge.eu/#organization"}};
+  if(page==="insight.html")pageSchema.headline=title.replace(/ \| SilkBridge$/,"");
+  s.textContent=JSON.stringify({"@context":"https://schema.org","@graph":[org,{"@type":"WebSite","@id":"https://silkbridge.eu/#website","url":"https://silkbridge.eu/","name":"SilkBridge","publisher":{"@id":"https://silkbridge.eu/#organization"}},pageSchema]});
 }
 function renderFooter(){
   enhanceSEO();
-  document.querySelector(".eco-page")?.insertAdjacentHTML("beforeend",'<footer class="eco-footer"><div class="eco-shell"><div class="eco-footer-main"><div><span>© 2026 SilkBridge</span><span>The bridge between technology and the GCC.</span></div><a href="contact.html">Start a conversation</a></div><div class="eco-sister"><div class="eco-sister-logo"><img src="assets/brand/getbuilder-logo.svg" alt="Get Builder"></div><p>Customer service has been handled by Silk Bridge for our Get Builder sister company.</p></div></div></footer>');
+  document.querySelector(".eco-page")?.insertAdjacentHTML("beforeend",'<footer class="eco-footer"><div class="eco-shell"><div class="eco-footer-main"><div><span>© 2026 SilkBridge</span><span>The bridge between technology and the GCC.</span></div><div class="eco-footer-links"><a href="contact.html">Start a conversation</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div></div><div class="eco-sister"><div class="eco-sister-logo"><img src="assets/brand/getbuilder-logo.svg" alt="Get Builder"></div><p>Customer service has been handled by Silk Bridge for our Get Builder sister company.</p></div></div></footer>');
 }
 function verticalById(id){return silkBridge.verticals.find(v=>v.id===id)}
 function partnerBySlug(slug){return silkBridge.partners.find(p=>p.slug===slug)}
