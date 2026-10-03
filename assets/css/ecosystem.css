@@ -174,3 +174,11 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
   .spotlight-grid{grid-template-columns:1fr}
   .eco-empty{padding:42px 18px}
 }
+
+
+/* QA launch fixes */
+.solution-model-grid{margin-top:32px;grid-template-columns:repeat(5,minmax(0,1fr))}
+.graph-node:focus-visible .node-ring,.graph-node:focus-visible .partner-dot{stroke-width:3;filter:drop-shadow(0 0 8px currentColor)}
+.eco-filter:focus-visible,.mobile-eco-head:focus-visible,.eco-menu:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+@media(max-width:900px){.solution-model-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.solution-model-grid{grid-template-columns:1fr}}

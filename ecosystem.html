@@ -139,10 +139,15 @@ function renderMobileEcosystem(){
   const mobile=document.getElementById("mobileEcosystem");
   mobile.innerHTML=silkBridge.verticals.map(v=>{
     const partners=silkBridge.partners.filter(p=>p.vertical===v.id);
-    return '<section class="mobile-eco-group"><button type="button" class="mobile-eco-head"><span>'+esc(v.index)+'</span><strong>'+esc(v.title)+'</strong><b>+</b></button><div class="mobile-eco-partners">'+partners.map(p=>'<a href="partner.html?slug='+encodeURIComponent(p.slug)+'">'+esc(p.name)+' <span>↗</span></a>').join("")+'</div></section>';
+    const id='mobile-eco-'+v.id;return '<section class="mobile-eco-group"><button type="button" class="mobile-eco-head" aria-expanded="false" aria-controls="'+id+'"><span>'+esc(v.index)+'</span><strong>'+esc(v.title)+'</strong><b aria-hidden="true">+</b></button><div class="mobile-eco-partners" id="'+id+'">'+partners.map(p=>'<a href="partner.html?slug='+encodeURIComponent(p.slug)+'">'+esc(p.name)+' <span>↗</span></a>').join("")+'</div></section>';
   }).join("");
-  mobile.querySelector(".mobile-eco-group")?.classList.add("open");
-  mobile.querySelectorAll(".mobile-eco-head").forEach(btn=>btn.addEventListener("click",()=>btn.closest(".mobile-eco-group").classList.toggle("open")));
+  const first=mobile.querySelector(".mobile-eco-group");
+  if(first){first.classList.add("open");first.querySelector(".mobile-eco-head")?.setAttribute("aria-expanded","true")}
+  mobile.querySelectorAll(".mobile-eco-head").forEach(btn=>btn.addEventListener("click",()=>{
+    const group=btn.closest(".mobile-eco-group");
+    const open=group.classList.toggle("open");
+    btn.setAttribute("aria-expanded",String(open));
+  }));
 }
 renderMobileEcosystem();
 
@@ -159,10 +164,10 @@ function paint(){
  document.querySelectorAll(".ecosystem-card").forEach((el,i)=>requestAnimationFrame(()=>el.style.setProperty("--i",i)));
 }
 const filters=[["all","All"],...silkBridge.verticals.map(v=>[v.id,v.title])];
-document.getElementById("filters").innerHTML=filters.map(f=>'<button class="eco-filter '+(f[0]==="all"?"active":"")+'" data-filter="'+f[0]+'">'+esc(f[1])+'</button>').join("");
+document.getElementById("filters").innerHTML=filters.map(f=>'<button class="eco-filter '+(f[0]==="all"?"active":"")+'" data-filter="'+f[0]+'" aria-pressed="'+(f[0]==="all"?"true":"false")+'">'+esc(f[1])+'</button>').join("");
 function setFilter(value){
  active=value;
- document.querySelectorAll(".eco-filter").forEach(x=>x.classList.toggle("active",x.dataset.filter===active));
+ document.querySelectorAll(".eco-filter").forEach(x=>{const selected=x.dataset.filter===active;x.classList.toggle("active",selected);x.setAttribute("aria-pressed",String(selected))});
  document.querySelectorAll(".graph-connector,.partner-connector,.graph-node").forEach(el=>el.classList.toggle("dimmed",active!=="all"&&el.dataset.vertical&&el.dataset.vertical!==active));
  paint();
  track("partner_filter",{vertical:active});
