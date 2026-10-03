@@ -316,25 +316,56 @@
   #footprint .footprint-header{ text-align:center; max-width:600px; margin:0 auto 20px; }
   #footprint .footprint-header h2{ font-size:clamp(1.8rem,3.2vw,2.4rem); margin-bottom:14px; }
   #footprint .footprint-header p{ color:var(--muted); line-height:1.7; }
-  .globe-wrap{ position:relative; height:420px; margin-top:30px; touch-action:none; cursor:grab; }
+  .globe-wrap{
+    position:relative; height:560px; margin:34px auto 0; touch-action:none; cursor:grab;
+    border:1px solid rgba(232,237,245,.10); border-radius:24px; overflow:hidden;
+    background:
+      radial-gradient(circle at 28% 34%, rgba(63,208,201,.12), transparent 28%),
+      radial-gradient(circle at 72% 26%, rgba(201,162,39,.07), transparent 24%),
+      linear-gradient(145deg, rgba(15,24,40,.98), rgba(6,11,20,.99));
+    box-shadow:0 28px 70px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.018);
+  }
+  .globe-wrap::before{
+    content:''; position:absolute; inset:-22%; pointer-events:none;
+    background:radial-gradient(circle at 50% 50%, rgba(63,208,201,.075), transparent 44%);
+    filter:blur(22px);
+  }
+  .globe-wrap::after{
+    content:'DRAG TO ROTATE  ·  SELECT A MARKET'; position:absolute; left:22px; bottom:18px; z-index:3;
+    color:rgba(232,237,245,.44); font:500 .58rem 'DM Mono','Space Grotesk',sans-serif;
+    letter-spacing:.14em; pointer-events:none;
+  }
   .globe-wrap:active{ cursor:grabbing; }
-  @media(max-width:760px){ .globe-wrap{ height:320px; } }
-  #globe-canvas{ width:100%; height:100%; }
-  #globe-labels{ position:absolute; inset:0; pointer-events:none; }
+  @media(max-width:760px){
+    .globe-wrap{ height:390px; border-radius:18px; margin-top:24px; }
+    .globe-wrap::after{ left:14px; bottom:12px; font-size:.5rem; letter-spacing:.1em; }
+  }
+  #globe-canvas{ width:100%; height:100%; display:block; position:relative; z-index:1; }
+  #globe-labels{ position:absolute; inset:0; z-index:2; pointer-events:none; }
 
   /* ---------- COUNTRY MARKERS ---------- */
   .country-marker{
     position:absolute; transform:translate(-50%,-50%);
     display:flex; align-items:center; gap:8px;
-    pointer-events:auto; cursor:pointer; transition:opacity .2s;
+    pointer-events:auto; cursor:pointer; transition:opacity .2s, transform .2s;
+    appearance:none; border:0; background:transparent; padding:0; color:inherit;
   }
-  .country-marker .dot{ width:10px; height:10px; border-radius:50%; box-shadow:0 0 0 4px rgba(255,255,255,0.06); }
+  .country-marker:hover{ transform:translate(-50%,-50%) scale(1.04); }
+  .country-marker .dot{
+    width:9px; height:9px; border-radius:50%; flex:0 0 auto;
+    box-shadow:0 0 0 4px rgba(255,255,255,.06), 0 0 18px currentColor;
+  }
   .country-marker .label{
-    font-family:'Space Grotesk', sans-serif; font-size:0.78rem; letter-spacing:0.03em; color:var(--text);
-    background:rgba(11,18,32,0.55); backdrop-filter:blur(4px);
-    padding:3px 9px; border-radius:2px; border:1px solid var(--line); white-space:nowrap;
+    font-family:'Space Grotesk', sans-serif; font-size:0.76rem; letter-spacing:0.025em; color:var(--text);
+    background:rgba(8,14,25,.78); backdrop-filter:blur(10px);
+    padding:6px 9px; border-radius:999px; border:1px solid rgba(232,237,245,.11); white-space:nowrap;
+    box-shadow:0 8px 28px rgba(0,0,0,.22);
   }
-  .country-marker:hover .label{ border-color:currentColor; }
+  .country-marker:hover .label,.country-marker:focus-visible .label{ border-color:rgba(63,208,201,.55); }
+  @media(max-width:700px){
+    .country-marker .label{ font-size:.64rem; padding:5px 7px; max-width:116px; white-space:normal; line-height:1.2; }
+    .country-marker{ max-width:145px; }
+  }
 
   #country-panel{
     position:fixed; top:0; right:0; height:100vh; width:min(380px, 88vw);
@@ -1241,142 +1272,344 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
 
 /* ---------- FOOTPRINT GLOBE ---------- */
 (function footprintGlobe(){
-  const canvas = document.getElementById('globe-canvas');
-  const wrap = document.querySelector('.globe-wrap');
-  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:!isMobile});
-  renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio,2));
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, wrap.clientWidth/wrap.clientHeight, 0.1, 100);
-  camera.position.z = 4.4;
+  const canvas=document.getElementById('globe-canvas');
+  const wrap=document.querySelector('.globe-wrap');
+  if(!canvas||!wrap||typeof THREE==='undefined') return;
+
+  const prefersReduced=typeof reduceMotion!=='undefined'
+    ? reduceMotion
+    : window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:!isMobile});
+  renderer.setPixelRatio(isMobile?1:Math.min(window.devicePixelRatio,1.8));
+  renderer.setSize(wrap.clientWidth,wrap.clientHeight);
+  renderer.outputEncoding=THREE.sRGBEncoding;
+
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(42,wrap.clientWidth/wrap.clientHeight,.1,100);
+  camera.position.set(0,0,6.1);
+
+  const globeGroup=new THREE.Group();
+  globeGroup.rotation.set(.08,-1.28,0);
+  scene.add(globeGroup);
+
+  const ambient=new THREE.AmbientLight(0xffffff,.72);
+  const key=new THREE.DirectionalLight(0xffffff,1.05);
+  key.position.set(4,2,6);
+  const rim=new THREE.PointLight(0x3FD0C9,1.35,16);
+  rim.position.set(-4,1,4);
+  scene.add(ambient,key,rim);
+
+  const earthGeo=new THREE.SphereGeometry(1.78,isMobile?52:80,isMobile?40:64);
+  const earthMat=new THREE.MeshPhongMaterial({
+    color:0x122033,
+    shininess:14,
+    specular:0x294d5c,
+    emissive:0x07101a,
+    emissiveIntensity:.42
+  });
+  const earth=new THREE.Mesh(earthGeo,earthMat);
+  globeGroup.add(earth);
+
+  const atmosphere=new THREE.Mesh(
+    new THREE.SphereGeometry(1.91,56,44),
+    new THREE.MeshBasicMaterial({
+      color:0x4ed7cf,transparent:true,opacity:.08,
+      side:THREE.BackSide,blending:THREE.AdditiveBlending
+    })
+  );
+  globeGroup.add(atmosphere);
+
+  const shell=new THREE.Mesh(
+    new THREE.SphereGeometry(1.805,40,28),
+    new THREE.MeshBasicMaterial({
+      color:0xffffff,wireframe:true,transparent:true,opacity:.028
+    })
+  );
+  globeGroup.add(shell);
 
   function resize(){
-    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
-    camera.aspect = wrap.clientWidth/wrap.clientHeight;
+    renderer.setSize(wrap.clientWidth,wrap.clientHeight);
+    camera.aspect=wrap.clientWidth/wrap.clientHeight;
     camera.updateProjectionMatrix();
   }
-  resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize',resize);
 
-  const geo = new THREE.IcosahedronGeometry(1.5, isMobile?1:2);
-  const wireMat = new THREE.MeshBasicMaterial({color:0x3FD0C9, wireframe:true, transparent:true, opacity:0.35});
-  const wireMesh = new THREE.Mesh(geo, wireMat);
-  scene.add(wireMesh);
-  const pointsMat = new THREE.PointsMaterial({color:0xC9A227, size:0.045});
-  const points = new THREE.Points(geo, pointsMat);
-  scene.add(points);
+  function drawWorldTexture(world){
+    const c=document.createElement('canvas');
+    c.width=isMobile?1024:2048;
+    c.height=c.width/2;
+    const ctx=c.getContext('2d');
+    const W=c.width,H=c.height;
 
-  const countries = [
-    { name:'United Arab Emirates', flag:'🇦🇪', color:0x3FD0C9,
-      brief:'Our headquarters and primary distribution hub — every brand partnership we run across the Gulf is coordinated from Dubai.' },
-    { name:'Saudi Arabia', flag:'🇸🇦', color:0xC9A227,
-      brief:'Active reseller network across the Kingdom, with a dedicated local line for partner and client enquiries.' },
-    { name:'Qatar', flag:'🇶🇦', color:0xE0774A,
-      brief:'Growing partner coverage in Qatar as part of our GCC-wide distribution strategy.' },
-    { name:'Egypt', flag:'🇪🇬', color:0x8AB4F8,
-      brief:'Sales and marketing operations supporting our wider regional distribution network.' }
+    const ocean=ctx.createLinearGradient(0,0,W,H);
+    ocean.addColorStop(0,'#0c1624');
+    ocean.addColorStop(.55,'#101d2e');
+    ocean.addColorStop(1,'#08111d');
+    ctx.fillStyle=ocean;
+    ctx.fillRect(0,0,W,H);
+
+    ctx.strokeStyle='rgba(232,237,245,.045)';
+    ctx.lineWidth=Math.max(1,W/2048);
+    for(let lon=-150;lon<=150;lon+=30){
+      const x=(lon+180)/360*W;
+      ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+    }
+    for(let lat=-60;lat<=60;lat+=30){
+      const y=(90-lat)/180*H;
+      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+    }
+
+    const project=coord=>[(coord[0]+180)/360*W,(90-coord[1])/180*H];
+
+    function traceRing(ring){
+      if(!ring||ring.length<2) return;
+      let prev=null;
+      ring.forEach((coord,i)=>{
+        const [x,y]=project(coord);
+        if(i===0||!prev||Math.abs(x-prev[0])>W*.5) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+        prev=[x,y];
+      });
+      ctx.closePath();
+    }
+
+    world.features.forEach(feature=>{
+      const g=feature.geometry;
+      if(!g) return;
+      const polygons=g.type==='Polygon'?[g.coordinates]:g.type==='MultiPolygon'?g.coordinates:[];
+      polygons.forEach(poly=>{
+        ctx.beginPath();
+        poly.forEach(traceRing);
+        const land=ctx.createLinearGradient(0,0,W,H);
+        land.addColorStop(0,'#c6d0d9');
+        land.addColorStop(.52,'#9eafbd');
+        land.addColorStop(1,'#778b9b');
+        ctx.fillStyle=land;
+        try{ctx.fill('evenodd')}catch{ctx.fill()}
+        ctx.strokeStyle='rgba(7,14,24,.48)';
+        ctx.lineWidth=Math.max(.7,W/2500);
+        ctx.stroke();
+      });
+    });
+
+    const sheen=ctx.createRadialGradient(W*.46,H*.34,10,W*.46,H*.34,W*.33);
+    sheen.addColorStop(0,'rgba(255,255,255,.14)');
+    sheen.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=sheen;
+    ctx.fillRect(0,0,W,H);
+
+    const texture=new THREE.CanvasTexture(c);
+    texture.encoding=THREE.sRGBEncoding;
+    texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+    texture.needsUpdate=true;
+    return texture;
+  }
+
+  fetch('assets/data/world.geojson',{cache:'force-cache'})
+    .then(r=>{if(!r.ok) throw new Error('World geometry failed to load');return r.json()})
+    .then(world=>{
+      earthMat.map=drawWorldTexture(world);
+      earthMat.color.set(0xffffff);
+      earthMat.needsUpdate=true;
+      wrap.classList.add('globe-ready');
+    })
+    .catch(err=>console.warn('[SilkBridge] Globe geography fallback active',err));
+
+  const countries=[
+    {name:'United Arab Emirates',flag:'🇦🇪',color:0x3FD0C9,lat:25.2048,lon:55.2708,
+      brief:'Dubai is the operating hub for SilkBridge — the core point for partner onboarding, regional coordination and commercial execution across the Gulf.'},
+    {name:'Saudi Arabia',flag:'🇸🇦',color:0xC9A227,lat:24.7136,lon:46.6753,
+      brief:'Saudi Arabia is a priority expansion market with active business development, local opportunity mapping and strong relevance for enterprise and channel growth.'},
+    {name:'Qatar',flag:'🇶🇦',color:0xE0774A,lat:25.2854,lon:51.5310,
+      brief:'Qatar is part of SilkBridge’s GCC footprint, with partner and client opportunities supported through the same regional operating model.'},
+    {name:'Egypt',flag:'🇪🇬',color:0x8AB4F8,lat:30.0444,lon:31.2357,
+      brief:'Egypt supports SilkBridge’s wider regional operations through business development, marketing execution and operational support.'}
   ];
-  const markerLatLon = [
-    {lat:25.2048,lon:55.2708},
-    {lat:24.7136,lon:46.6753},
-    {lat:25.2854,lon:51.5310},
-    {lat:30.0444,lon:31.2357}
-  ];
-  function latLonToVector3(lat, lon, radius){
-    const phi = (90 - lat) * (Math.PI/180);
-    const theta = (lon + 180) * (Math.PI/180);
+
+  function latLonToVector3(lat,lon,radius){
+    const phi=(90-lat)*(Math.PI/180);
+    const theta=(lon+180)*(Math.PI/180);
     return new THREE.Vector3(
-      -radius * Math.sin(phi) * Math.cos(theta),
-       radius * Math.cos(phi),
-       radius * Math.sin(phi) * Math.sin(theta)
+      -radius*Math.sin(phi)*Math.cos(theta),
+       radius*Math.cos(phi),
+       radius*Math.sin(phi)*Math.sin(theta)
     );
   }
-  const markerGroup = new THREE.Group();
-  scene.add(markerGroup);
-  const markerMeshes = [];
-  countries.forEach((c,i)=>{
-    const pos = latLonToVector3(markerLatLon[i].lat, markerLatLon[i].lon, 1.54);
-    const m = new THREE.Mesh(new THREE.SphereGeometry(0.09,16,16), new THREE.MeshBasicMaterial({color:c.color}));
-    m.position.copy(pos); m.userData = c;
-    markerGroup.add(m); markerMeshes.push(m);
+
+  function makeArc(a,b,color){
+    const A=latLonToVector3(a.lat,a.lon,1.81);
+    const B=latLonToVector3(b.lat,b.lon,1.81);
+    const points=[];
+    for(let i=0;i<=34;i++){
+      const t=i/34;
+      const p=A.clone().lerp(B,t).normalize();
+      const altitude=1.81+Math.sin(Math.PI*t)*.14;
+      points.push(p.multiplyScalar(altitude));
+    }
+    const geo=new THREE.BufferGeometry().setFromPoints(points);
+    const line=new THREE.Line(
+      geo,
+      new THREE.LineBasicMaterial({color,transparent:true,opacity:.28})
+    );
+    globeGroup.add(line);
+  }
+
+  countries.slice(1).forEach((country,i)=>makeArc(countries[0],country,i===0?0xC9A227:0x3FD0C9));
+
+  const markerGroup=new THREE.Group();
+  globeGroup.add(markerGroup);
+  const markers=[];
+  const hitTargets=[];
+
+  countries.forEach((country,i)=>{
+    const pos=latLonToVector3(country.lat,country.lon,1.835);
+    const holder=new THREE.Group();
+
+    const pin=new THREE.Mesh(
+      new THREE.SphereGeometry(.052,18,18),
+      new THREE.MeshBasicMaterial({color:country.color})
+    );
+    pin.position.copy(pos);
+
+    const ring=new THREE.Mesh(
+      new THREE.RingGeometry(.08,.135,42),
+      new THREE.MeshBasicMaterial({color:country.color,transparent:true,opacity:.74,side:THREE.DoubleSide})
+    );
+    ring.position.copy(pos.clone().multiplyScalar(1.002));
+    ring.lookAt(pos.clone().multiplyScalar(2));
+
+    const pulse=new THREE.Mesh(
+      new THREE.RingGeometry(.09,.16,42),
+      new THREE.MeshBasicMaterial({color:country.color,transparent:true,opacity:.12,side:THREE.DoubleSide})
+    );
+    pulse.position.copy(ring.position);
+    pulse.quaternion.copy(ring.quaternion);
+
+    const hit=new THREE.Mesh(
+      new THREE.SphereGeometry(.145,12,12),
+      new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false})
+    );
+    hit.position.copy(pos);
+    hit.userData.country=country;
+
+    holder.add(pin,ring,pulse,hit);
+    holder.userData={country,ring,pulse};
+    markerGroup.add(holder);
+    markers.push(holder);
+    hitTargets.push(hit);
   });
 
-  const labelContainer = document.getElementById('globe-labels');
-  const labelEls = countries.map(c=>{
-    const el = document.createElement('div');
-    el.className = 'country-marker';
-    el.innerHTML = `<span class="dot" style="background:#${c.color.toString(16).padStart(6,'0')}"></span><span class="label">${c.flag} ${c.name}</span>`;
+  const labelContainer=document.getElementById('globe-labels');
+  const labelEls=countries.map(c=>{
+    const el=document.createElement('button');
+    el.type='button';
+    el.className='country-marker';
+    el.style.color='#'+c.color.toString(16).padStart(6,'0');
+    el.innerHTML=`<span class="dot" style="background:#${c.color.toString(16).padStart(6,'0')}"></span><span class="label">${c.flag} ${c.name}</span>`;
+    el.setAttribute('aria-label','View '+c.name+' presence');
     labelContainer.appendChild(el);
     return el;
   });
-  const panel = document.getElementById('country-panel');
-  const backdrop = document.getElementById('panel-backdrop');
-  function openPanel(c){
-    document.getElementById('panel-flag').textContent = c.flag;
-    document.getElementById('panel-name').textContent = c.name;
-    document.getElementById('panel-brief').textContent = c.brief;
-    panel.classList.add('open'); backdrop.classList.add('open');
-  }
-  function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); }
-  panel.querySelector('.close-btn').addEventListener('click', closePanel);
-  backdrop.addEventListener('click', closePanel);
-  labelEls.forEach((el,i)=> el.addEventListener('click', ()=> openPanel(countries[i])));
 
-  let rotY = 0, rotX = 0.15;
-  let isDragging = false, autoRotate = true, lastX = 0, lastY = 0, resumeTimer = null;
+  const panel=document.getElementById('country-panel');
+  const backdrop=document.getElementById('panel-backdrop');
+  function openPanel(c){
+    document.getElementById('panel-flag').textContent=c.flag;
+    document.getElementById('panel-name').textContent=c.name;
+    document.getElementById('panel-brief').textContent=c.brief;
+    panel.classList.add('open');
+    backdrop.classList.add('open');
+  }
+  function closePanel(){panel.classList.remove('open');backdrop.classList.remove('open')}
+  panel.querySelector('.close-btn').addEventListener('click',closePanel);
+  backdrop.addEventListener('click',closePanel);
+  labelEls.forEach((el,i)=>el.addEventListener('click',()=>openPanel(countries[i])));
+
+  let rotY=-1.28,rotX=.08;
+  let isDragging=false,dragMoved=false,autoRotate=true,lastX=0,lastY=0,resumeTimer=null;
+
   function pointerDown(e){
-    isDragging = true; autoRotate = false;
-    const p = e.touches ? e.touches[0] : e;
-    lastX = p.clientX; lastY = p.clientY;
+    isDragging=true;dragMoved=false;autoRotate=false;
+    const p=e.touches?e.touches[0]:e;
+    lastX=p.clientX;lastY=p.clientY;
     if(resumeTimer) clearTimeout(resumeTimer);
   }
   function pointerMove(e){
     if(!isDragging) return;
-    const p = e.touches ? e.touches[0] : e;
-    const dx = p.clientX - lastX, dy = p.clientY - lastY;
-    lastX = p.clientX; lastY = p.clientY;
-    rotY += dx * 0.006;
-    rotX = Math.max(-1.1, Math.min(1.1, rotX + dy * 0.006));
+    const p=e.touches?e.touches[0]:e;
+    const dx=p.clientX-lastX,dy=p.clientY-lastY;
+    if(Math.abs(dx)+Math.abs(dy)>2) dragMoved=true;
+    lastX=p.clientX;lastY=p.clientY;
+    rotY+=dx*.006;
+    rotX=Math.max(-.72,Math.min(.72,rotX+dy*.005));
     e.preventDefault();
   }
   function pointerUp(){
-    isDragging = false;
-    resumeTimer = setTimeout(()=> autoRotate = true, 2200);
+    isDragging=false;
+    resumeTimer=setTimeout(()=>autoRotate=true,2400);
   }
-  wrap.addEventListener('mousedown', pointerDown);
-  wrap.addEventListener('mousemove', pointerMove);
-  window.addEventListener('mouseup', pointerUp);
-  wrap.addEventListener('touchstart', pointerDown, {passive:true});
-  wrap.addEventListener('touchmove', pointerMove, {passive:false});
-  wrap.addEventListener('touchend', pointerUp);
 
-  const tmpVec = new THREE.Vector3();
+  wrap.addEventListener('mousedown',pointerDown);
+  wrap.addEventListener('mousemove',pointerMove);
+  window.addEventListener('mouseup',pointerUp);
+  wrap.addEventListener('touchstart',pointerDown,{passive:true});
+  wrap.addEventListener('touchmove',pointerMove,{passive:false});
+  wrap.addEventListener('touchend',pointerUp);
+
+  const raycaster=new THREE.Raycaster();
+  const pointer=new THREE.Vector2();
+  canvas.addEventListener('click',e=>{
+    if(dragMoved) return;
+    const rect=canvas.getBoundingClientRect();
+    pointer.x=((e.clientX-rect.left)/rect.width)*2-1;
+    pointer.y=-((e.clientY-rect.top)/rect.height)*2+1;
+    raycaster.setFromCamera(pointer,camera);
+    const hits=raycaster.intersectObjects(hitTargets,false);
+    if(hits[0]?.object?.userData?.country) openPanel(hits[0].object.userData.country);
+  });
+
+  const tmpVec=new THREE.Vector3();
+  const cameraVec=new THREE.Vector3();
   function updateLabels(){
-    markerMeshes.forEach((marker,i)=>{
+    markers.forEach((marker,i)=>{
       marker.getWorldPosition(tmpVec);
-      const screenVec = tmpVec.clone().project(camera);
-      const x = (screenVec.x*0.5+0.5) * wrap.clientWidth;
-      const y = (-screenVec.y*0.5+0.5) * wrap.clientHeight;
-      const facingCamera = tmpVec.clone().sub(camera.position).normalize().dot(tmpVec.clone().normalize()) < 0.2;
-      const el = labelEls[i];
-      el.style.opacity = (facingCamera && screenVec.z < 1) ? '1' : '0';
-      el.style.pointerEvents = (facingCamera && screenVec.z < 1) ? 'auto' : 'none';
-      el.style.left = x+'px'; el.style.top = y+'px';
+      const screenVec=tmpVec.clone().project(camera);
+      const x=(screenVec.x*.5+.5)*wrap.clientWidth;
+      const y=(-screenVec.y*.5+.5)*wrap.clientHeight;
+      const normal=tmpVec.clone().normalize();
+      cameraVec.copy(camera.position).sub(tmpVec).normalize();
+      const visible=normal.dot(cameraVec)>.12&&screenVec.z<1;
+      const el=labelEls[i];
+      el.style.opacity=visible?'1':'0';
+      el.style.pointerEvents=visible?'auto':'none';
+      el.style.left=x+'px';
+      el.style.top=y+'px';
     });
   }
+
+  const clock=new THREE.Clock();
   function animate(){
     requestAnimationFrame(animate);
-    if(!reduceMotion && autoRotate && !isDragging){ rotY += 0.0018; }
-    wireMesh.rotation.set(rotX, rotY, 0);
-    points.rotation.copy(wireMesh.rotation); markerGroup.rotation.copy(wireMesh.rotation);
-    camera.lookAt(0,0,0);
+    const t=clock.getElapsedTime();
+    if(!prefersReduced&&autoRotate&&!isDragging) rotY+=.00155;
+    globeGroup.rotation.set(rotX,rotY,0);
+
+    markers.forEach((marker,i)=>{
+      const pulseScale=1.05+((Math.sin(t*2+i*.8)+1)/2)*.46;
+      marker.userData.pulse.scale.set(pulseScale,pulseScale,pulseScale);
+      marker.userData.pulse.material.opacity=.06+((Math.sin(t*2+i*.8)+1)/2)*.12;
+      marker.userData.ring.material.opacity=.5+((Math.sin(t*2.35+i*.55)+1)/2)*.28;
+    });
+
     updateLabels();
-    renderer.render(scene, camera);
+    renderer.render(scene,camera);
   }
   animate();
 
-  gsap.to(wireMesh.scale, {
-    x:1.15, y:1.15, z:1.15,
-    scrollTrigger:{ trigger:'#footprint', start:'top 60%', end:'top 10%', scrub:true }
+  gsap.fromTo(globeGroup.scale,{x:.9,y:.9,z:.9},{
+    x:1,y:1,z:1,duration:1.1,ease:'power2.out',
+    scrollTrigger:{trigger:'#footprint',start:'top 76%',once:true}
   });
 })();
 
