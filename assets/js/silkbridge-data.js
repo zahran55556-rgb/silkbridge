@@ -1,6 +1,6 @@
 export const silkBridgeData = {
   positioning: {
-    title: "Marketing, Healthcare, HR, Hospitality & Cybersecurity — Unified & Simplified.",
+    title: "Marketing, Healthcare, HR, Hospitality & Cybersecurity. Unified & Simplified.",
     concept: "The bridge between technology and the GCC.",
     eyebrow: "GCC Technology Distribution · Dubai",
   },
