@@ -47,3 +47,17 @@ export const silkBridge = {
   ],
   contact:{uae:"+971 4 871 4140",whatsapp:"+971 52 893 8137",saudi:"+966 54 473 9960",email:"sales@silkbridge.eu"}
 };
+function silkBridgeHomepageAccessibilityPass(){
+  const hero=document.getElementById("hero"),footer=document.querySelector("footer");
+  if(hero&&footer&&!document.getElementById("main-content")){
+    const skip=document.createElement("a");skip.className="skip-link";skip.href="#main-content";skip.textContent="Skip to main content";document.body.insertBefore(skip,document.body.firstChild);
+    const main=document.createElement("main");main.id="main-content";hero.parentNode.insertBefore(main,hero);
+    let node=hero;while(node&&node!==footer){const next=node.nextSibling;main.appendChild(node);node=next}
+  }
+  if(document.getElementById("cf-dots")&&!document.getElementById("homepage-accessibility-style")){
+    const style=document.createElement("style");style.id="homepage-accessibility-style";
+    style.textContent='.skip-link{position:fixed;left:14px;top:14px;z-index:500;transform:translateY(-140%);background:#3FD0C9;color:#08111d;padding:10px 14px;border-radius:8px;text-decoration:none;font:600 .8rem "Space Grotesk",sans-serif}.skip-link:focus{transform:translateY(0)}.cf-dots button{min-width:44px!important;min-height:44px!important}.cf-dots button:focus-visible{outline:2px solid #3FD0C9;outline-offset:2px}';
+    document.head.appendChild(style);
+  }
+}
+if(typeof document!=="undefined"){if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",silkBridgeHomepageAccessibilityPass,{once:true});else silkBridgeHomepageAccessibilityPass()}
