@@ -856,11 +856,6 @@
         <use href="#mktPath5" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
         <use href="#mktPath6" stroke="url(#mktBranch)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
       </g>
-
-      <g class="hub-ports" fill="#D7FBFF" stroke="#55DFFF" stroke-width="4" filter="url(#mktGlow)">
-        <circle cx="430" cy="229" r="8"/><circle cx="406" cy="310" r="8"/><circle cx="430" cy="391" r="8"/>
-        <circle cx="670" cy="229" r="8"/><circle cx="694" cy="310" r="8"/><circle cx="670" cy="391" r="8"/>
-      </g>
       <g class="hub-core">
         <circle cx="550" cy="310" r="152" fill="#1DB9E8" opacity=".18" filter="url(#mktSoftGlow)"/>
         <circle cx="550" cy="310" r="144" fill="url(#mktCore)" stroke="#73EDFF" stroke-opacity=".76" stroke-width="3"/>
@@ -909,15 +904,6 @@
           <polyline points="42,65 48,71 58,60" fill="none" stroke="#9CEFFF" stroke-width="4"/>
           <line x1="61" y1="67" x2="70" y2="67" stroke="#DDFBFF" stroke-width="4"/>
         </g>
-      </g>
-
-      <g class="endpoint-pulses" fill="none" stroke="#A4F5FF" stroke-width="4" filter="url(#mktGlow)">
-        <circle cx="204" cy="134" r="15" opacity=".08"><animate attributeName="opacity" values=".08;.08;.88;.08;.08" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="0s" repeatCount="indefinite"/><animate attributeName="r" values="14;14;24;14;14" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="0s" repeatCount="indefinite"/></circle>
-        <circle cx="233" cy="310" r="15" opacity=".08"><animate attributeName="opacity" values=".08;.08;.88;.08;.08" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="1.2s" repeatCount="indefinite"/><animate attributeName="r" values="14;14;24;14;14" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="1.2s" repeatCount="indefinite"/></circle>
-        <circle cx="207" cy="486" r="15" opacity=".08"><animate attributeName="opacity" values=".08;.08;.88;.08;.08" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="2.4s" repeatCount="indefinite"/><animate attributeName="r" values="14;14;24;14;14" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="2.4s" repeatCount="indefinite"/></circle>
-        <circle cx="896" cy="134" r="15" opacity=".08"><animate attributeName="opacity" values=".08;.08;.88;.08;.08" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="3.6s" repeatCount="indefinite"/><animate attributeName="r" values="14;14;24;14;14" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="3.6s" repeatCount="indefinite"/></circle>
-        <circle cx="862" cy="310" r="15" opacity=".08"><animate attributeName="opacity" values=".08;.08;.88;.08;.08" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="4.8s" repeatCount="indefinite"/><animate attributeName="r" values="14;14;24;14;14" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="4.8s" repeatCount="indefinite"/></circle>
-        <circle cx="893" cy="486" r="15" opacity=".08"><animate attributeName="opacity" values=".08;.08;.88;.08;.08" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="6s" repeatCount="indefinite"/><animate attributeName="r" values="14;14;24;14;14" keyTimes="0;.28;.34;.46;1" dur="8.4s" begin="6s" repeatCount="indefinite"/></circle>
       </g>
 
       <g class="flow-pulses" fill="#D7FBFF" filter="url(#mktGlow)">
@@ -1042,24 +1028,12 @@
         <text x="95" y="103" text-anchor="middle" fill="#E8FFFF" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">REPORTS / ANALYTICS</text>
       </g>
 
-      <g class="hc-ports" fill="#75FFF5" opacity=".72">
-        <circle cx="438" cy="252" r="4"/><circle cx="425" cy="360" r="4"/><circle cx="550" cy="438" r="4"/><circle cx="662" cy="252" r="4"/><circle cx="675" cy="360" r="4"/>
-      </g>
-
       <g class="hc-ecg-flow" fill="none" stroke="#F1FFFF" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#hcGlow)">
         <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="0s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" repeatCount="indefinite"/></path>
         <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="1.9s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="1.9s" repeatCount="indefinite"/></path>
         <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="3.8s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="3.8s" repeatCount="indefinite"/></path>
         <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="5.7s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="5.7s" repeatCount="indefinite"/></path>
         <path class="hc-ecg-packet" d="M-55 0 H-35 L-25 -9 L-15 11 L0 -31 L14 26 L24 -11 L34 0 H55" opacity="0"><animateMotion dur="11.5s" begin="7.6s" repeatCount="indefinite" rotate="auto" keyPoints="0;0;1;1" keyTimes="0;.06;.34;1"><mpath href="#hcBridge5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.06;.31;.36;1" dur="11.5s" begin="7.6s" repeatCount="indefinite"/></path>
-      </g>
-
-      <g class="hc-endpoint-flash" fill="none" stroke="#A0FFF7" stroke-width="4" filter="url(#hcGlow)">
-        <circle cx="290" cy="150" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" repeatCount="indefinite"/></circle>
-        <circle cx="290" cy="405" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="1.9s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="1.9s" repeatCount="indefinite"/></circle>
-        <circle cx="550" cy="480" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="3.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="3.8s" repeatCount="indefinite"/></circle>
-        <circle cx="810" cy="150" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="5.7s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="5.7s" repeatCount="indefinite"/></circle>
-        <circle cx="810" cy="405" r="10"><animate attributeName="r" values="10;10;24;10;10" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="7.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.31;.36;.46;1" dur="11.5s" begin="7.6s" repeatCount="indefinite"/></circle>
       </g>
     </svg>
   </div>
@@ -1103,10 +1077,10 @@
         <filter id="hrGlow" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         <filter id="hrSoft" x="-140%" y="-140%" width="380%" height="380%"><feGaussianBlur stdDeviation="18"/></filter>
         <path id="hrPath1" d="M448 229 L350 170 L280 136"/>
-        <path id="hrPath2" d="M418 310 L350 310 L280 310"/>
+        <path id="hrPath2" d="M418 310 H280"/>
         <path id="hrPath3" d="M448 391 L350 450 L280 484"/>
         <path id="hrPath4" d="M652 229 L750 170 L820 136"/>
-        <path id="hrPath5" d="M682 310 L750 310 L820 310"/>
+        <path id="hrPath5" d="M682 310 H820"/>
         <path id="hrPath6" d="M652 391 L750 450 L820 484"/>
       </defs>
 
@@ -1162,10 +1136,6 @@
         <text x="100" y="96" text-anchor="middle" fill="#ECFFFF" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">ANALYTICS</text>
       </g>
 
-      <g class="hr-endpoints" fill="#D9FFFF" stroke="#62EEE7" stroke-width="3" filter="url(#hrGlow)">
-        <circle cx="280" cy="136" r="7"/><circle cx="280" cy="310" r="7"/><circle cx="280" cy="484" r="7"/><circle cx="820" cy="136" r="7"/><circle cx="820" cy="310" r="7"/><circle cx="820" cy="484" r="7"/>
-      </g>
-
       <g class="hr-flow" fill="#F0FFFF" filter="url(#hrGlow)">
         <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="0s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" repeatCount="indefinite"/></circle>
         <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="1.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
@@ -1173,14 +1143,6 @@
         <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="4.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
         <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
         <circle r="8" opacity="0"><animateMotion dur="10.8s" begin="7.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.32;1"><mpath href="#hrPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.30;.35;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
-      </g>
-      <g class="hr-endpoint-pulse" fill="none" stroke="#9AFFF8" stroke-width="4" filter="url(#hrGlow)">
-        <circle cx="280" cy="136" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" repeatCount="indefinite"/></circle>
-        <circle cx="280" cy="310" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="1.5s" repeatCount="indefinite"/></circle>
-        <circle cx="280" cy="484" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="3s" repeatCount="indefinite"/></circle>
-        <circle cx="820" cy="136" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="4.5s" repeatCount="indefinite"/></circle>
-        <circle cx="820" cy="310" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="6s" repeatCount="indefinite"/></circle>
-        <circle cx="820" cy="484" r="10"><animate attributeName="r" values="10;10;22;10;10" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".05;.05;.9;.05;.05" keyTimes="0;.29;.35;.45;1" dur="10.8s" begin="7.5s" repeatCount="indefinite"/></circle>
       </g>
     </svg>
   </div>
@@ -1258,9 +1220,6 @@
         <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="4.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="4.5s" repeatCount="indefinite"/></circle>
         <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="6s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath5"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="6s" repeatCount="indefinite"/></circle>
         <circle r="8" opacity="0"><animateMotion dur="11.2s" begin="7.5s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;.07;.30;1"><mpath href="#hsPath6"/></animateMotion><animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.07;.28;.34;1" dur="11.2s" begin="7.5s" repeatCount="indefinite"/></circle>
-      </g>
-      <g class="hs-endpoint-pulse" fill="none" stroke="#A6FFF8" stroke-width="4" filter="url(#hsGlow)">
-        <circle cx="190" cy="170" r="13"/><circle cx="160" cy="280" r="13"/><circle cx="190" cy="452" r="13"/><circle cx="910" cy="170" r="13"/><circle cx="940" cy="280" r="13"/><circle cx="910" cy="452" r="13"/>
       </g>
     </svg>
   </div>
