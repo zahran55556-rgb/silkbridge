@@ -49,7 +49,7 @@
 .core-title{fill:var(--text);font:600 14px "Space Grotesk"}
 .core-sub{fill:var(--teal);font:500 8px "DM Mono";letter-spacing:.2em}
 .graph-connector.dimmed,.partner-connector.dimmed,.graph-node.dimmed{opacity:.12}
-.ecosystem-visual-caption{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;gap:8px;align-items:center;white-space:nowrap;color:var(--muted);font:500 9px "Space Grotesk";letter-spacing:.13em;text-transform:uppercase;background:rgba(11,18,32,.72);border:1px solid var(--line);backdrop-filter:blur(8px);padding:7px 10px;border-radius:999px}
+.ecosystem-visual-caption{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:flex;gap:8px;align-items:center;white-space:nowrap;color:var(--muted);font:500 9px "Space Grotesk";letter-spacing:.13em;text-transform:uppercase;background:rgba(11,18,32,.72);border:1px solid var(--line);backdrop-filter:blur(8px);padding:7px 10px;border-radius:999px}
 .ecosystem-visual-caption b{color:var(--gold);font-weight:500}
 .eco-section-head{display:flex;justify-content:space-between;gap:28px;align-items:end;margin-bottom:26px}
 .eco-toolbar-filters{margin:0;flex:1}
@@ -112,11 +112,11 @@ html,body{width:100%;max-width:100%;overflow-x:hidden}
 .partner-gcc-section{background:radial-gradient(circle at 80% 20%,rgba(201,162,39,.05),transparent 30%)}
 .ecosystem-hero .eco-hero-grid{grid-template-columns:1fr;gap:48px}
 .ecosystem-hero .eco-hero-grid>div:first-child{max-width:860px}
-.ecosystem-visual{min-height:680px}
-.ecosystem-visual svg{max-height:650px;width:min(100%,980px);overflow:visible}
+.ecosystem-visual{min-height:760px;padding:24px 30px 54px}
+.ecosystem-visual svg{max-height:650px;width:min(100%,1080px);overflow:visible}
 .partner-dot{stroke-width:2}
-.partner-label{font:600 11.5px "IBM Plex Sans";paint-order:stroke;stroke:rgba(11,18,32,.94);stroke-width:3px;stroke-linejoin:round}
-.node-label{font-size:15px}
+.partner-label{font:600 10.5px "IBM Plex Sans";paint-order:stroke;stroke:rgba(11,18,32,.96);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.node-label{font-size:14px;paint-order:stroke;stroke:rgba(11,18,32,.96);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
 .core-title{font-size:16px}
 .core-sub{font-size:9px}
 .mobile-ecosystem{display:none}

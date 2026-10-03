@@ -28,7 +28,7 @@
       <div class="ecosystem-visual" aria-label="Interactive SilkBridge partner ecosystem map">
         <div class="ecosystem-orbit orbit-a"></div>
         <div class="ecosystem-orbit orbit-b"></div>
-        <svg id="ecosystemGraph" viewBox="0 0 720 520" role="img" aria-labelledby="ecosystemGraphTitle ecosystemGraphDesc">
+        <svg id="ecosystemGraph" viewBox="0 0 980 650" role="img" aria-labelledby="ecosystemGraphTitle ecosystemGraphDesc">
           <title id="ecosystemGraphTitle">SilkBridge technology ecosystem</title>
           <desc id="ecosystemGraphDesc">SilkBridge at the center connects five technology verticals and their partner brands.</desc>
           <g id="graphLines"></g><g id="graphNodes"></g>
@@ -80,23 +80,67 @@ let active="all";
 
 const palette={marketing:"teal",healthcare:"gold",hr:"teal",hospitality:"gold",cybersecurity:"teal"};
 const positions={
-  marketing:{x:155,y:125,labelX:82,labelY:92,angle:-1.45},
-  healthcare:{x:150,y:300,labelX:55,labelY:298,angle:-2.75},
-  hr:{x:360,y:390,labelX:332,labelY:447,angle:1.57},
-  hospitality:{x:565,y:300,labelX:500,labelY:298,angle:.42},
-  cybersecurity:{x:565,y:125,labelX:492,labelY:92,angle:-.52}
+  marketing:{x:190,y:165,labelX:190,labelY:222,labelAnchor:"middle"},
+  healthcare:{x:205,y:360,labelX:255,labelY:365,labelAnchor:"start"},
+  hr:{x:490,y:500,labelX:490,labelY:552,labelAnchor:"middle"},
+  hospitality:{x:775,y:360,labelX:725,labelY:365,labelAnchor:"end"},
+  cybersecurity:{x:790,y:165,labelX:790,labelY:222,labelAnchor:"middle"}
 };
+const partnerLayouts={
+  marketing:[
+    {x:90,y:72,labelX:90,labelY:111,anchor:"middle"},
+    {x:190,y:58,labelX:190,labelY:97,anchor:"middle"},
+    {x:290,y:72,labelX:290,labelY:111,anchor:"middle"}
+  ],
+  healthcare:[
+    {x:72,y:255,labelX:108,labelY:259,anchor:"start"},
+    {x:62,y:325,labelX:98,labelY:329,anchor:"start"},
+    {x:62,y:395,labelX:98,labelY:399,anchor:"start"},
+    {x:82,y:465,labelX:118,labelY:469,anchor:"start"}
+  ],
+  hr:[
+    {x:270,y:585,labelX:270,labelY:621,anchor:"middle"},
+    {x:380,y:598,labelX:380,labelY:634,anchor:"middle"},
+    {x:490,y:602,labelX:490,labelY:638,anchor:"middle"},
+    {x:600,y:598,labelX:600,labelY:634,anchor:"middle"},
+    {x:710,y:585,labelX:710,labelY:621,anchor:"middle"}
+  ],
+  hospitality:[
+    {x:908,y:282,labelX:870,labelY:286,anchor:"end"},
+    {x:918,y:360,labelX:880,labelY:364,anchor:"end"},
+    {x:908,y:438,labelX:870,labelY:442,anchor:"end"}
+  ],
+  cybersecurity:[
+    {x:885,y:80,labelX:885,labelY:120,anchor:"middle"}
+  ]
+};
+
+function labelLines(value,maxChars=17){
+  const words=String(value).split(" ");
+  const lines=[];let line="";
+  words.forEach(word=>{
+    const next=line?line+" "+word:word;
+    if(line&&next.length>maxChars&&lines.length<1){lines.push(line);line=word}else line=next;
+  });
+  if(line)lines.push(line);
+  return lines.slice(0,2);
+}
+function svgLabel(value,x,y,anchor="middle",className="partner-label"){
+  const lines=labelLines(value);
+  return '<text x="'+x+'" y="'+y+'" class="'+className+'" text-anchor="'+anchor+'">'+lines.map((line,i)=>'<tspan x="'+x+'" dy="'+(i===0?0:13)+'">'+esc(line)+'</tspan>').join("")+'</text>';
+}
 
 function shortLogoName(slug){return "assets/logos/"+logoMap[slug]}
 
 function renderGraph(){
-  const center={x:360,y:255};
+  const center={x:490,y:315};
   lines.innerHTML="";
   nodes.innerHTML="";
   silkBridge.verticals.forEach(v=>{
-    const p=positions[v.id];
+    const p=positions[v.id],partnerLayout=partnerLayouts[v.id]||[];
     const path=document.createElementNS("http://www.w3.org/2000/svg","path");
-    path.setAttribute("d",`M ${center.x} ${center.y} Q ${(center.x+p.x)/2} ${(center.y+p.y)/2-42} ${p.x} ${p.y}`);
+    const controlY=v.id==="hr"?410:((center.y+p.y)/2-34);
+    path.setAttribute("d",`M ${center.x} ${center.y} Q ${(center.x+p.x)/2} ${controlY} ${p.x} ${p.y}`);
     path.setAttribute("class","graph-connector "+palette[v.id]);
     path.dataset.vertical=v.id;
     lines.appendChild(path);
@@ -107,31 +151,35 @@ function renderGraph(){
     group.setAttribute("tabindex","0");
     group.setAttribute("role","button");
     group.setAttribute("aria-label",`Explore ${v.title}`);
-    group.innerHTML=`<circle cx="${p.x}" cy="${p.y}" r="31" class="node-ring"></circle><circle cx="${p.x}" cy="${p.y}" r="7" class="node-core"></circle><text x="${p.labelX}" y="${p.labelY}" class="node-label">${esc(v.title.replace(" & Customer Care",""))}</text>`;
+    const verticalName=v.title.replace(" & Customer Care","");
+    group.innerHTML=`<circle cx="${p.x}" cy="${p.y}" r="33" class="node-ring"></circle><circle cx="${p.x}" cy="${p.y}" r="7" class="node-core"></circle>`+svgLabel(verticalName,p.labelX,p.labelY,p.labelAnchor,"node-label");
     nodes.appendChild(group);
 
-    v.partners=silkBridge.partners.filter(partner=>partner.vertical===v.id);
-    v.partners.forEach((partner,idx)=>{
-      const spread=(idx-(v.partners.length-1)/2)*38;
-      const px=p.x + Math.cos(p.angle)*84 + Math.cos(p.angle+Math.PI/2)*spread;
-      const py=p.y + Math.sin(p.angle)*84 + Math.sin(p.angle+Math.PI/2)*spread;
+    const partners=silkBridge.partners.filter(partner=>partner.vertical===v.id);
+    partners.forEach((partner,idx)=>{
+      const layout=partnerLayout[idx];
+      if(!layout)return;
       const pg=document.createElementNS("http://www.w3.org/2000/svg","g");
       pg.setAttribute("class","graph-node partner-node "+palette[v.id]);
       pg.dataset.vertical=v.id;
       pg.dataset.partner=partner.slug;
-      pg.setAttribute("tabindex","0");pg.setAttribute("role","link");pg.setAttribute("aria-label",`Open ${partner.name} partner profile`);
-      pg.innerHTML=`<circle cx="${px}" cy="${py}" r="16" class="partner-dot"></circle><text x="${px}" y="${py+34}" class="partner-label">${esc(partner.name)}</text>`;
+      pg.setAttribute("tabindex","0");
+      pg.setAttribute("role","link");
+      pg.setAttribute("aria-label",`Open ${partner.name} partner profile`);
+      pg.innerHTML=`<circle cx="${layout.x}" cy="${layout.y}" r="13" class="partner-dot"></circle>`+svgLabel(partner.name,layout.labelX,layout.labelY,layout.anchor,"partner-label");
       nodes.appendChild(pg);
 
       const pl=document.createElementNS("http://www.w3.org/2000/svg","line");
-      pl.setAttribute("x1",p.x);pl.setAttribute("y1",p.y);pl.setAttribute("x2",px);pl.setAttribute("y2",py);pl.setAttribute("class","partner-connector "+palette[v.id]);
+      pl.setAttribute("x1",p.x);pl.setAttribute("y1",p.y);pl.setAttribute("x2",layout.x);pl.setAttribute("y2",layout.y);
+      pl.setAttribute("class","partner-connector "+palette[v.id]);
       pl.dataset.vertical=v.id;
       lines.appendChild(pl);
     });
   });
+
   const core=document.createElementNS("http://www.w3.org/2000/svg","g");
   core.setAttribute("class","graph-core");
-  core.innerHTML=`<circle cx="${center.x}" cy="${center.y}" r="54" class="core-halo"></circle><circle cx="${center.x}" cy="${center.y}" r="42" class="core-disc"></circle><text x="${center.x}" y="${center.y-2}" text-anchor="middle" class="core-title">SilkBridge</text><text x="${center.x}" y="${center.y+14}" text-anchor="middle" class="core-sub">GCC</text>`;
+  core.innerHTML=`<circle cx="${center.x}" cy="${center.y}" r="58" class="core-halo"></circle><circle cx="${center.x}" cy="${center.y}" r="45" class="core-disc"></circle><text x="${center.x}" y="${center.y-2}" text-anchor="middle" class="core-title">SilkBridge</text><text x="${center.x}" y="${center.y+15}" text-anchor="middle" class="core-sub">GCC</text>`;
   nodes.appendChild(core);
 }
 renderGraph();
