@@ -520,6 +520,11 @@
   .contact-detail .ico{ color:var(--teal); flex-shrink:0; margin-top:2px; }
   .contact-detail strong{ display:block; font-family:'Space Grotesk',sans-serif; font-size:0.9rem; }
   .contact-detail span{ color:var(--muted); font-size:0.85rem; }
+  .contact-office{ margin-top:28px; padding-top:24px; border-top:1px solid var(--line); max-width:420px; }
+  .contact-office h3{ font-size:1.1rem; margin-bottom:20px; }
+  .contact-office address{ color:var(--muted); font-size:.85rem; font-style:normal; line-height:1.8; }
+  .contact-office address strong{ color:var(--text); }
+  .contact-office a{ overflow-wrap:anywhere; }
   #contact form{ flex:1; min-width:280px; display:flex; flex-direction:column; gap:14px; }
   #contact form input, #contact form select, #contact form textarea{
     background:var(--surface); border:1px solid var(--line); color:var(--text);
@@ -1303,8 +1308,16 @@
   <h3 id="panel-name">Country</h3>
   <p id="panel-brief">Select a market to view its regional role.</p>
   <div id="panel-contact" hidden>
+    <div data-contact-country="United Arab Emirates" hidden>
+      <p><a href="tel:+97148714140">+971 4 871 4140</a><br><a href="mailto:sales@silkbridge.eu">sales@silkbridge.eu</a><br><a href="https://wa.me/971528938137">WhatsApp: +971 52 893 8137</a></p>
+    </div>
+    <div data-contact-country="Saudi Arabia" hidden>
+      <p><a href="tel:+966544739960">+966 54 473 9960</a><br><a href="mailto:sales@silkbridge.eu">sales@silkbridge.eu</a></p>
+    </div>
+    <div data-contact-country="Qatar" hidden>
     <p><a href="mailto:qatar@silkbridge.eu">qatar@silkbridge.eu</a><br><a href="tel:+97431138055">+974 3113 8055</a></p>
     <address><strong>Salam Technology</strong>The Gate, Tower 2, 6th Floor,<br>Maysaloun Street, West Bay, Qatar.</address>
+    </div>
   </div>
 </aside>
 
@@ -1312,7 +1325,7 @@
   <div class="contact-info">
     <span class="eyebrow" style="text-align:left;">Get in Touch</span>
     <h2>Let's talk distribution.</h2>
-    <p>Reach out to our Dubai headquarters or our Saudi Arabia line. Our team typically responds within one business day.</p>
+    <p>Reach out to our Dubai headquarters, our Qatar office or our Saudi Arabia line. Our team typically responds within one business day.</p>
     <div class="contact-detail">
       <span class="ico">☎</span>
       <div><strong>UAE Landline</strong><span><a href="tel:+97148714140">+971 4 871 4140</a></span></div>
@@ -1328,6 +1341,18 @@
     <div class="contact-detail">
       <span class="ico">✉</span>
       <div><strong>Email</strong><span><a href="mailto:sales@silkbridge.eu">sales@silkbridge.eu</a></span></div>
+    </div>
+    <div class="contact-office" aria-labelledby="qatar-office-title">
+      <h3 id="qatar-office-title">Qatar office</h3>
+      <div class="contact-detail">
+        <span class="ico" aria-hidden="true">☎</span>
+        <div><strong>Qatar</strong><span><a href="tel:+97431138055">+974 3113 8055</a></span></div>
+      </div>
+      <div class="contact-detail">
+        <span class="ico" aria-hidden="true">✉</span>
+        <div><strong>Qatar email</strong><span><a href="mailto:qatar@silkbridge.eu">qatar@silkbridge.eu</a></span></div>
+      </div>
+      <address><strong>Salam Technology</strong><br>The Gate, Tower 2, 6th Floor,<br>Maysaloun Street, West Bay, Qatar.</address>
     </div>
   </div>
   <form id="contact-form" novalidate>
@@ -2172,7 +2197,13 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
     document.getElementById('panel-flag').textContent=c.flag;
     document.getElementById('panel-name').textContent=c.name;
     document.getElementById('panel-brief').textContent=c.brief;
-    document.getElementById('panel-contact').hidden = c.name !== 'Qatar';
+    const contact = document.getElementById('panel-contact');
+    let hasContact = false;
+    contact.querySelectorAll('[data-contact-country]').forEach(details=>{
+      details.hidden = details.dataset.contactCountry !== c.name;
+      if(!details.hidden) hasContact = true;
+    });
+    contact.hidden = !hasContact;
     panel.classList.add('open');
     backdrop.classList.add('open');
   }
