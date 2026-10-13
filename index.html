@@ -282,7 +282,7 @@
     background:var(--surface); border-left:1px solid var(--line);
     z-index:400; padding:36px 30px;
     transform:translateX(100%); transition:transform .4s cubic-bezier(.16,.84,.44,1);
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; overflow-y:auto;
   }
   #country-panel.open{ transform:translateX(0); }
   #country-panel .close-btn{ align-self:flex-end; background:none; border:none; color:var(--muted); font-size:1.4rem; cursor:pointer; margin-bottom:24px; }
@@ -291,6 +291,12 @@
   #country-panel h3{ font-size:1.4rem; margin-bottom:6px; }
   #country-panel .tag{ color:var(--teal); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:22px; display:block; }
   #country-panel p{ color:var(--muted); line-height:1.8; font-size:0.92rem; margin-bottom:16px; }
+  #panel-contact{ margin-top:8px; padding-top:20px; border-top:1px solid var(--line); }
+  #panel-contact[hidden]{ display:none; }
+  #panel-contact a{ color:var(--teal); display:inline-block; padding:8px 0; overflow-wrap:anywhere; text-underline-offset:4px; }
+  #panel-contact a:focus-visible{ outline:2px solid var(--teal); outline-offset:4px; }
+  #panel-contact address{ color:var(--muted); font-size:.92rem; font-style:normal; line-height:1.8; }
+  #panel-contact address strong{ display:block; color:var(--text); margin-bottom:6px; }
   #panel-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:390; opacity:0; pointer-events:none; transition:opacity .3s; }
   #panel-backdrop.open{ opacity:1; pointer-events:auto; }
 
@@ -724,6 +730,10 @@
   <span class="tag" id="panel-tag">Where we operate</span>
   <h3 id="panel-name">Country</h3>
   <p id="panel-brief">Brief goes here.</p>
+  <div id="panel-contact" hidden>
+    <p><a href="mailto:qatar@silkbridge.eu">qatar@silkbridge.eu</a><br><a href="tel:+97431138055">+974 3113 8055</a></p>
+    <address><strong>Salam Technology</strong>The Gate, Tower 2, 6th Floor,<br>Maysaloun Street, West Bay, Qatar.</address>
+  </div>
 </aside>
 
 <section id="contact">
@@ -1199,6 +1209,7 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
     document.getElementById('panel-flag').textContent = c.flag;
     document.getElementById('panel-name').textContent = c.name;
     document.getElementById('panel-brief').textContent = c.brief;
+    document.getElementById('panel-contact').hidden = c.name !== 'Qatar';
     panel.classList.add('open'); backdrop.classList.add('open');
   }
   function closePanel(){ panel.classList.remove('open'); backdrop.classList.remove('open'); }
