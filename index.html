@@ -894,7 +894,7 @@
       </a>
     </div>
   </div>
-  <div class="healthcare-tech-visual" role="img" aria-label="Animated hospital and clinic management platform with five connected operational systems and subtle light pulses along the connections">
+  <div class="healthcare-tech-visual" role="img" aria-label="Animated hospital and clinic management platform with five connected operational systems and ECG pulses traveling within the connecting lines">
     <svg viewBox="0 0 1100 620" aria-hidden="true">
       <defs>
         <linearGradient id="hcPlatform" x1="0" y1="0" x2="1" y2="1">
@@ -922,34 +922,11 @@
         <path d="M165 65 V550 M340 50 V566 M550 42 V574 M760 50 V566 M935 65 V550" stroke="#408BC8" stroke-width="1" stroke-dasharray="4 15"/>
       </g>
 
-      <g class="hc-bridges" fill="none" stroke="url(#hcBridge)" stroke-width="6.5" stroke-linecap="round">
+      <g class="hc-bridges" fill="none" stroke="url(#hcBridge)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <use href="#hcBridge1"/><use href="#hcBridge2"/><use href="#hcBridge3"/><use href="#hcBridge4"/><use href="#hcBridge5"/>
       </g>
 
-      <g class="hc-flow" fill="none" stroke="#DFFFFC" stroke-width="3" stroke-linecap="round" filter="url(#hcGlow)">
-        <path d="M438 252 L290 150" pathLength="100" stroke-dasharray="12 100" stroke-dashoffset="12" opacity="0">
-          <animate attributeName="stroke-dashoffset" values="12;-100;-100" keyTimes="0;.55;1" dur="6s" begin="0s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.9;.9;0;0" keyTimes="0;.06;.43;.55;1" dur="6s" begin="0s" repeatCount="indefinite"/>
-        </path>
-        <path d="M425 360 L290 405" pathLength="100" stroke-dasharray="12 100" stroke-dashoffset="12" opacity="0">
-          <animate attributeName="stroke-dashoffset" values="12;-100;-100" keyTimes="0;.55;1" dur="6s" begin="1.2s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.9;.9;0;0" keyTimes="0;.06;.43;.55;1" dur="6s" begin="1.2s" repeatCount="indefinite"/>
-        </path>
-        <path d="M550 438 L550 480" pathLength="100" stroke-dasharray="12 100" stroke-dashoffset="12" opacity="0">
-          <animate attributeName="stroke-dashoffset" values="12;-100;-100" keyTimes="0;.55;1" dur="6s" begin="2.4s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.9;.9;0;0" keyTimes="0;.06;.43;.55;1" dur="6s" begin="2.4s" repeatCount="indefinite"/>
-        </path>
-        <path d="M662 252 L810 150" pathLength="100" stroke-dasharray="12 100" stroke-dashoffset="12" opacity="0">
-          <animate attributeName="stroke-dashoffset" values="12;-100;-100" keyTimes="0;.55;1" dur="6s" begin="3.5999999999999996s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.9;.9;0;0" keyTimes="0;.06;.43;.55;1" dur="6s" begin="3.5999999999999996s" repeatCount="indefinite"/>
-        </path>
-        <path d="M675 360 L810 405" pathLength="100" stroke-dasharray="12 100" stroke-dashoffset="12" opacity="0">
-          <animate attributeName="stroke-dashoffset" values="12;-100;-100" keyTimes="0;.55;1" dur="6s" begin="4.8s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0;.9;.9;0;0" keyTimes="0;.06;.43;.55;1" dur="6s" begin="4.8s" repeatCount="indefinite"/>
-        </path>
-      </g>
-
-      <g class="hc-main" transform-origin="550px 310px">
+<g class="hc-main" transform-origin="550px 310px">
         <ellipse cx="550" cy="500" rx="190" ry="34" fill="#28DAD6" opacity=".07" filter="url(#hcSoft)"/>
         <circle cx="550" cy="310" r="139" fill="#25D0DF" opacity=".11" filter="url(#hcSoft)"/>
         <circle cx="550" cy="310" r="126" fill="url(#hcPlatform)" stroke="#76FFF6" stroke-opacity=".88" stroke-width="3.5"/>
@@ -1937,6 +1914,59 @@ document.querySelectorAll('.vertical-canvas').forEach(container=>{
     document.addEventListener('visibilitychange',sync);
     sync();
   });
+})();
+
+/* ---------- HEALTHCARE CONNECTION WAVEFORMS ---------- */
+(function healthcareWaveforms(){
+  const visual=document.querySelector('.healthcare-tech-visual');
+  const svg=visual?.querySelector('svg');
+  if(!svg)return;
+  const media=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const routes=Array.from({length:5},(_,i)=>{
+    const path=svg.querySelector('#hcBridge'+(i+1));
+    const original=path.getAttribute('d');
+    const [x1,y1,x2,y2]=original.match(/-?[\d.]+/g).map(Number);
+    const length=Math.hypot(x2-x1,y2-y1);
+    return {path,original,x1,y1,dx:(x2-x1)/length,dy:(y2-y1)/length,length,delay:i*1.2};
+  });
+  // A compact ECG profile deforms the connection itself; endpoints stay fixed.
+  const profile=[[-1,0],[-.65,0],[-.42,.18],[-.25,-.28],[0,1],[.23,-.65],[.43,.22],[.65,0],[1,0]];
+  function heightAt(t){
+    for(let i=1;i<profile.length;i++){
+      const [a,ya]=profile[i-1],[b,yb]=profile[i];
+      if(t>=a&&t<=b)return ya+(yb-ya)*(t-a)/(b-a);
+    }
+    return 0;
+  }
+  let visible=false,frame=0;
+  function draw(){
+    frame=0;
+    if(!visible||document.hidden||media.matches)return;
+    const time=svg.getCurrentTime();
+    routes.forEach(r=>{
+      const elapsed=time-r.delay,phase=((elapsed%6)+6)%6;
+      if(elapsed<0||phase>3.3){r.path.setAttribute('d',r.original);return;}
+      const half=Math.min(28,r.length*.32),amplitude=Math.min(15,r.length*.22);
+      const center=-half+(r.length+2*half)*(phase/3.3);
+      const steps=Math.ceil(r.length/1.5),points=[];
+      for(let i=0;i<=steps;i++){
+        const distance=r.length*i/steps;
+        const edge=Math.min(1,distance/half,(r.length-distance)/half);
+        const offset=heightAt((distance-center)/half)*amplitude*edge;
+        points.push((i?'L':'M')+(r.x1+r.dx*distance-r.dy*offset).toFixed(2)+' '+(r.y1+r.dy*distance+r.dx*offset).toFixed(2));
+      }
+      r.path.setAttribute('d',points.join(' '));
+    });
+    frame=requestAnimationFrame(draw);
+  }
+  function sync(){
+    cancelAnimationFrame(frame);frame=0;
+    if(media.matches)routes.forEach(r=>r.path.setAttribute('d',r.original));
+    if(visible&&!document.hidden&&!media.matches)frame=requestAnimationFrame(draw);
+  }
+  new IntersectionObserver(([entry])=>{visible=entry.isIntersecting;sync();}).observe(visual);
+  document.addEventListener('visibilitychange',sync);
+  media.addEventListener('change',sync);
 })();
 
 /* ---------- VIDEO PIN + ZOOM ---------- */
